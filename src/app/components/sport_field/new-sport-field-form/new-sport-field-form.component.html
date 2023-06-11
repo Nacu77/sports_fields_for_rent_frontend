@@ -1,0 +1,67 @@
+<div class="container p-5">
+  <mat-card class="align-items-center">
+    <mat-card-header class="m-3">
+      <mat-card-title>Add New Sport Field</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content class="m-3">
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="sportField.name" />
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea matInput [(ngModel)]="sportField.description"></textarea>
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Price (per hour) $</mat-label>
+        <input
+          matInput
+          type="number"
+          pattern="[0-9]*"
+          [(ngModel)]="sportField.pricePerHour"
+        />
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Address - country</mat-label>
+        <input matInput [(ngModel)]="sportField.address.country" />
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Address - city</mat-label>
+        <input matInput [(ngModel)]="sportField.address.city" />
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Address - street</mat-label>
+        <input matInput [(ngModel)]="sportField.address.street" />
+      </mat-form-field>
+      <br />
+
+      <mat-form-field>
+        <mat-label>Address - number</mat-label>
+        <input
+          matInput
+          type="number"
+          pattern="[0-9]*"
+          [(ngModel)]="sportField.address.number"
+        />
+      </mat-form-field>
+      <br />
+    </mat-card-content>
+
+    <mat-card-actions class="m-3">
+      <button mat-raised-button color="primary" (click)="newSportField()">
+        Submit
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
