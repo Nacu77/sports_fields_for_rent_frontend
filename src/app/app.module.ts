@@ -17,9 +17,24 @@ import { AppComponent } from './app.component';
 import { NewSportFieldFormComponent } from './components/sport_field/new-sport-field-form/new-sport-field-form.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { HomeHeaderComponent } from './components/home-header/home-header.component';
+import { HomeComponent } from './components/home/home.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { SportFieldsComponent } from './components/sport_field/sport-fields/sport-fields.component';
+import { SportFieldCardComponent } from './components/sport_field/sport-field-card/sport-field-card.component';
 
 @NgModule({
-  declarations: [AppComponent, NewSportFieldFormComponent],
+  declarations: [
+    AppComponent,
+    NewSportFieldFormComponent,
+    NavbarComponent,
+    HomeHeaderComponent,
+    HomeComponent,
+    FooterComponent,
+    SportFieldsComponent,
+    SportFieldCardComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -1,0 +1,6 @@
+<div *ngFor="let i of [0, 1, 2, 3, 4]" class="card-group m-5">
+  <ng-container *ngFor="let i of [0, 1, 2, 3]">
+    <app-sport-field-card #wrapper [sportField]="sportField"></app-sport-field-card>
+    <ng-content *ngTemplateOutlet="wrapper.sportFieldCardComponentTemplate"></ng-content>
+  </ng-container>
+</div>
