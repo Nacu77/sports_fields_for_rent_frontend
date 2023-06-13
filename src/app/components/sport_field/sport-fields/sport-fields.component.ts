@@ -12,4 +12,6 @@ export class SportFieldsComponent {
     name: 'Scoala Sportiva',
     address: {} as Address,
   } as SportField;
+
+  sideNavOpened: boolean = false;
 }

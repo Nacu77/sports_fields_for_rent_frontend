@@ -11,6 +11,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -51,6 +52,7 @@ import { SportFieldCardComponent } from './components/sport_field/sport-field-ca
     MatDatepickerModule,
     MatNativeDateModule,
     MatGridListModule,
+    MatSidenavModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
