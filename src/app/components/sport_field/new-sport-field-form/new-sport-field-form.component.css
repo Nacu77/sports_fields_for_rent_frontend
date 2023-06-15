@@ -1,8 +1,11 @@
-mat-card-content {
-  width: 100%;
-  text-align: center;
+.form-floating {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-mat-form-field {
-  width: 50%;
+.form-control:focus {
+  border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }

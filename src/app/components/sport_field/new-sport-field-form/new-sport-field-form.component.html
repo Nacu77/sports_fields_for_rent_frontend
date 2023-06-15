@@ -1,67 +1,48 @@
 <div class="container p-5">
-  <mat-card class="align-items-center">
-    <mat-card-header class="m-3">
-      <mat-card-title>Add New Sport Field</mat-card-title>
-    </mat-card-header>
+  <div class="card text-center">
+    <div class="card-header bg-dark text-white">Add New Sport Field</div>
 
-    <mat-card-content class="m-3">
-      <mat-form-field>
-        <mat-label>Name</mat-label>
-        <input matInput [(ngModel)]="sportField.name" />
-      </mat-form-field>
-      <br />
+    <div class="card-body container">
+      <form>
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="nameInput" placeholder="Name" />
+          <label for="nameInput">Name</label>
+        </div>
 
-      <mat-form-field>
-        <mat-label>Description</mat-label>
-        <textarea matInput [(ngModel)]="sportField.description"></textarea>
-      </mat-form-field>
-      <br />
+        <div class="form-floating mb-3">
+          <textarea class="form-control" placeholder="Description" id="descriptionTextarea"></textarea>
+          <label for="descriptionTextarea">Description</label>
+        </div>
 
-      <mat-form-field>
-        <mat-label>Price (per hour) $</mat-label>
-        <input
-          matInput
-          type="number"
-          pattern="[0-9]*"
-          [(ngModel)]="sportField.pricePerHour"
-        />
-      </mat-form-field>
-      <br />
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="countryInput" placeholder="Country" />
+          <label for="countryInput">Country</label>
+        </div>
 
-      <mat-form-field>
-        <mat-label>Address - country</mat-label>
-        <input matInput [(ngModel)]="sportField.address.country" />
-      </mat-form-field>
-      <br />
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="cityInput" placeholder="City" />
+          <label for="cityInput">City</label>
+        </div>
 
-      <mat-form-field>
-        <mat-label>Address - city</mat-label>
-        <input matInput [(ngModel)]="sportField.address.city" />
-      </mat-form-field>
-      <br />
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="streetInput" placeholder="Street" />
+          <label for="streetInput">Street</label>
+        </div>
 
-      <mat-form-field>
-        <mat-label>Address - street</mat-label>
-        <input matInput [(ngModel)]="sportField.address.street" />
-      </mat-form-field>
-      <br />
+        <div class="form-floating mb-3">
+          <input type="number" class="form-control" id="numberInput" placeholder="Number" />
+          <label for="numberInput">Number</label>
+        </div>
 
-      <mat-form-field>
-        <mat-label>Address - number</mat-label>
-        <input
-          matInput
-          type="number"
-          pattern="[0-9]*"
-          [(ngModel)]="sportField.address.number"
-        />
-      </mat-form-field>
-      <br />
-    </mat-card-content>
+        <div class="form-floating mb-3">
+          <input type="number" class="form-control" id="priceInput" placeholder="Price ($)" />
+          <label for="priceInput">Price ($)</label>
+        </div>
+      </form>
+    </div>
 
-    <mat-card-actions class="m-3">
-      <button mat-raised-button color="primary" (click)="newSportField()">
-        Submit
-      </button>
-    </mat-card-actions>
-  </mat-card>
+    <div class="card-footer bg-dark text-white">
+      <button class="btn btn-outline-light btn-floating m-1" (click)="newSportField()">Submit</button>
+    </div>
+  </div>
 </div>
