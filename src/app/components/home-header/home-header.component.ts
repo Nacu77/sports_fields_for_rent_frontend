@@ -17,15 +17,30 @@ export class HomeHeaderComponent {
     });
   }
 
-  getBackgroundImage(): string {
-    return '../../../../assets/images/header_image.jpg';
-  }
+  getHeaderDetails(): HeaderDetails | null {
+    switch (this.url) {
+      case '/':
+      case '/home':
+        return {
+          backgroundImage: '../../../../assets/images/home_header_image.jpg',
+          title: 'All for sport',
+          description: '"You win some, you lose some, and some get rained out, but you gotta suit up for them all" - J. Askenberg',
+        };
 
-  renderComponent(): boolean {
-    if (this.url === '/home' || this.url === '/sport-fields') {
-      return true;
+      case '/sport-fields':
+        return {
+          backgroundImage: '../../../../assets/images/sport_fields_image.jpg',
+          title: 'Find something suited for you',
+          description: 'Search between different sports and different fields. If something catches your eye, then check it out and rent it',
+        };
+      default:
+        return null;
     }
-
-    return false;
   }
+}
+
+interface HeaderDetails {
+  backgroundImage: string;
+  title: string;
+  description: string;
 }

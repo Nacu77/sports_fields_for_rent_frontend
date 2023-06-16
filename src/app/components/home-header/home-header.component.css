@@ -1,0 +1,5 @@
+div.bg-image {
+  background-position: center;
+  height: 500px;
+  object-fit: cover;
+}
