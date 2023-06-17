@@ -1,4 +1,4 @@
-import { Component, Input, TemplateRef, ViewChild } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { SportField } from 'src/app/models/sport-field';
 
 @Component({
@@ -7,6 +7,5 @@ import { SportField } from 'src/app/models/sport-field';
   styleUrls: ['./sport-field-card.component.css'],
 })
 export class SportFieldCardComponent {
-  @ViewChild('sportFieldCardComponentTemplate') sportFieldCardComponentTemplate: TemplateRef<any>;
   @Input() sportField: SportField;
 }

@@ -1,23 +1,21 @@
-import { AfterViewChecked, AfterViewInit, ChangeDetectorRef, Component } from '@angular/core';
-import { Address } from 'src/app/models/address';
+import { Component, OnInit } from '@angular/core';
 import { SportField } from 'src/app/models/sport-field';
+import { SportFieldService } from 'src/app/services/sport_field/sport-field.service';
 
 @Component({
   selector: 'app-sport-fields',
   templateUrl: './sport-fields.component.html',
   styleUrls: ['./sport-fields.component.css'],
 })
-export class SportFieldsComponent implements AfterViewChecked {
-  sportField: SportField = {
-    name: 'Scoala Sportiva',
-    address: {} as Address,
-  } as SportField;
+export class SportFieldsComponent implements OnInit {
+  sportFields: Array<SportField> = new Array<SportField>();
+  isFilterOpen: boolean = false;
 
-  sideNavOpened: boolean = false;
+  constructor(private sportFieldService: SportFieldService) {}
 
-  constructor(private cdRef: ChangeDetectorRef) {}
-
-  ngAfterViewChecked(): void {
-    this.cdRef.detectChanges();
+  ngOnInit(): void {
+    this.sportFieldService.findAll().subscribe((sportFields) => {
+      this.sportFields = sportFields;
+    });
   }
 }

@@ -21,4 +21,10 @@ export class SportFieldService {
       headers: this.headers,
     });
   }
+
+  findAll(): Observable<Array<SportField>> {
+    return this.http.get<Array<SportField>>(this.url, {
+      headers: this.headers,
+    });
+  }
 }

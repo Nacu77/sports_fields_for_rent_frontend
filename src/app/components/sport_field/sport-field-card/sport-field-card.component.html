@@ -1,12 +1,24 @@
-<ng-template #sportFieldCardComponentTemplate>
-  <div class="card text-white bg-dark m-3">
-    <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/042.webp" class="card-img-top" alt="Palm Springs Road" />
-    <div class="card-body">
-      <h5 class="card-title">{{ sportField.name }}</h5>
-      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-      <p class="card-text">
-        <small class="text-muted">Last updated 3 mins ago</small>
-      </p>
-    </div>
+<div class="card text-white bg-dark m-2 h-100">
+  <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/042.webp" class="card-img-top" alt="Sprot Field image" />
+  <div class="card-body pb-0">
+    <h5 class="card-title fst-italic">{{ sportField.name }}</h5>
+    <p class="card-text">
+      {{
+        "Address: " +
+          sportField.address.country +
+          ", " +
+          sportField.address.city +
+          ", " +
+          sportField.address.street +
+          ", " +
+          sportField.address.number
+      }}
+    </p>
   </div>
-</ng-template>
+  <div class="card-footer text-center">
+    <small class="fw-bold fst-italic">{{ sportField.pricePerHour + "$ / hour" }}</small>
+  </div>
+  <div class="card-footer text-center" style="background-color: rgba(0, 0, 0, 0.2)">
+    <a class="btn btn-outline-light btn-floating mt-2 mb-2" role="button">Visit</a>
+  </div>
+</div>

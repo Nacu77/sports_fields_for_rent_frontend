@@ -1,5 +1,11 @@
+<div class="text-center">
+  <a class="btn btn-dark btn-outline-white btn-floating m-3" role="button" (click)="drawer.toggle(); isFilterOpen = !isFilterOpen">
+    Toggle filter & sort options
+  </a>
+</div>
+
 <mat-drawer-container autosize>
-  <mat-drawer #drawer class="text-white bg-dark m-2 rounded" mode="side">
+  <mat-drawer #drawer class="text-white bg-dark m-3 rounded" mode="side">
     <div class="container">
       <p>Auto-resizing sidenavdsaaaaaaaaaaaaaaaaa</p>
       <form>
@@ -35,16 +41,14 @@
     </div>
   </mat-drawer>
 
-  <div>
-    <div class="text-center">
-      <button type="button" class="btn btn-dark mt-3" (click)="drawer.toggle(); sideNavOpened = !sideNavOpened">Toggle filter & sort options</button>
-    </div>
-
-    <div *ngFor="let i of [0, 1, 2, 3, 4]" class="card-group m-5">
-      <ng-container *ngFor="let i of sideNavOpened ? [0, 1, 2] : [0, 1, 2, 3]">
-        <app-sport-field-card #wrapper [sportField]="sportField"></app-sport-field-card>
-        <ng-content *ngTemplateOutlet="wrapper.sportFieldCardComponentTemplate"></ng-content>
-      </ng-container>
+  <div class="container-fluid p-5 pt-2">
+    <div
+      class="row g-3 justify-content-center"
+      [ngClass]="isFilterOpen ? 'row-cols-sm-1 row-cols-md-2 row-cols-lg-3' : 'row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4'"
+    >
+      <div class="col p-0" *ngFor="let sportField of sportFields">
+        <app-sport-field-card [sportField]="sportField"></app-sport-field-card>
+      </div>
     </div>
   </div>
 </mat-drawer-container>
