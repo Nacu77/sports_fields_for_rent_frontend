@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { SportField } from 'src/app/models/sport-field';
 
 @Injectable({
@@ -15,7 +16,7 @@ export class SportFieldService {
 
   constructor(private http: HttpClient) {}
 
-  create(sportField: SportField) {
+  create(sportField: SportField): Observable<SportField> {
     return this.http.post<SportField>(this.url, sportField, {
       headers: this.headers,
     });

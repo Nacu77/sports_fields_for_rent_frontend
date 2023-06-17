@@ -23,7 +23,7 @@ export class HomeHeaderComponent {
       case '/home':
         return {
           backgroundImage: '../../../../assets/images/home_header_image.jpg',
-          title: 'All for sport',
+          title: 'Sport for all',
           description: '"You win some, you lose some, and some get rained out, but you gotta suit up for them all" - J. Askenberg',
         };
 

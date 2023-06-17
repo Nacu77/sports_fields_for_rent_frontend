@@ -3,3 +3,7 @@ img {
   background-position: center;
   object-fit: cover;
 }
+
+div.card-footer {
+  background-color: rgba(0, 0, 0, 0.2);
+}
