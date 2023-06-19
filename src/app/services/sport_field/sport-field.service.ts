@@ -27,4 +27,16 @@ export class SportFieldService {
       headers: this.headers,
     });
   }
+
+  findById(id: string): Observable<SportField> {
+    return this.http.get<SportField>(this.url + id, {
+      headers: this.headers,
+    });
+  }
+
+  update(sportField: SportField): Observable<SportField> {
+    return this.http.put<SportField>(this.url, sportField, {
+      headers: this.headers,
+    });
+  }
 }

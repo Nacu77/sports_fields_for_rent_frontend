@@ -1,0 +1,4 @@
+<div class="map-container" leaflet [leafletOptions]="options" (leafletMapReady)="onMapReady($event)" (leafletClick)="mapClicked($event)"></div>
+<a *ngIf="markerPositionChanged" class="btn btn-dark btn-floating mb-1" role="button" style="display: block" (click)="onSaveNewLocationMarker()"
+  >Save new location marker</a
+>

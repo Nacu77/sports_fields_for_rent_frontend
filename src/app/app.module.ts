@@ -24,6 +24,9 @@ import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SportFieldsComponent } from './components/sport_field/sport-fields/sport-fields.component';
 import { SportFieldCardComponent } from './components/sport_field/sport-field-card/sport-field-card.component';
+import { SpecificSportFieldComponent } from './components/sport_field/specific-sport-field/specific-sport-field.component';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -35,6 +38,7 @@ import { SportFieldCardComponent } from './components/sport_field/sport-field-ca
     FooterComponent,
     SportFieldsComponent,
     SportFieldCardComponent,
+    SpecificSportFieldComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,6 +57,8 @@ import { SportFieldCardComponent } from './components/sport_field/sport-field-ca
     MatNativeDateModule,
     MatGridListModule,
     MatSidenavModule,
+    LeafletModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
