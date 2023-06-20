@@ -1,4 +1,46 @@
 <div class="map-container" leaflet [leafletOptions]="options" (leafletMapReady)="onMapReady($event)" (leafletClick)="mapClicked($event)"></div>
-<a *ngIf="markerPositionChanged" class="btn btn-dark btn-floating mb-1" role="button" style="display: block" (click)="onSaveNewLocationMarker()"
-  >Save new location marker</a
->
+
+<div class="container-fluid bg-dark text-white">
+  <div class="d-flex justify-content-end">
+    <button [disabled]="!markerPositionChanged" class="btn btn-outline-light btn-floating m-1" (click)="onSaveNewLocationMarker()">
+      Save new location marker
+    </button>
+    <button [disabled]="!markerPositionChanged" class="btn btn-outline-light btn-floating m-1" (click)="onResetLocationMarker()">
+      Reset location marker
+    </button>
+  </div>
+
+  <h2 class="fst-italic fw-bold text-center mb-5">{{ sportField.name }}</h2>
+
+  <div class="container-fluid mt-4 mb-4">
+    <div class="row">
+      <div class="col d-flex justify-content-center">
+        <div class="card text-white bg-dark" style="max-width: 40rem">
+          <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/042.webp" class="card-img-top" alt="Sport Field image" />
+          <div class="card-footer text-center p-0" style="background-color: rgba(0, 0, 0, 0.2)">
+            <button class="btn btn-outline-light btn-floating" style="display: block; width: 100%">Set primary image</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col d-flex justify-content-center" style="align-items: center">
+        <div class="card text-white bg-dark mb-3" style="max-width: 40rem">
+          <div class="card-body">
+            <div>
+              <span class="fst-italic fw-bold">Country: </span><span>{{ sportField.address.country }}</span>
+            </div>
+            <div>
+              <span class="fst-italic fw-bold">City: </span><span>{{ sportField.address.city }}</span>
+            </div>
+            <div>
+              <span class="fst-italic fw-bold">Street: </span><span>{{ sportField.address.street }}</span>
+            </div>
+            <div>
+              <span class="fst-italic fw-bold">Number: </span><span>{{ sportField.address.number }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

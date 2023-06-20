@@ -10,12 +10,14 @@ import { SportFieldService } from 'src/app/services/sport_field/sport-field.serv
 export class SportFieldsComponent implements OnInit {
   sportFields: Array<SportField> = new Array<SportField>();
   isFilterOpen: boolean = false;
+  sportFieldsLoaded: boolean = false;
 
   constructor(private sportFieldService: SportFieldService) {}
 
   ngOnInit(): void {
     this.sportFieldService.findAll().subscribe((sportFields) => {
       this.sportFields = sportFields;
+      this.sportFieldsLoaded = true;
     });
   }
 }

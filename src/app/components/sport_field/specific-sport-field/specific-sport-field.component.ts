@@ -62,6 +62,13 @@ export class SpecificSportFieldComponent implements OnInit {
     });
   }
 
+  onResetLocationMarker() {
+    const position = { lat: this.sportField.address.latitude, lng: this.sportField.address.longitude };
+    this.marker.setLatLng(position);
+    this.map.panTo(position);
+    this.markerPositionChanged = false;
+  }
+
   private initMarker(lat: number, lng: number) {
     if (!lat || !lng) {
       return;
