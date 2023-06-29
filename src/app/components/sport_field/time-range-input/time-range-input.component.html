@@ -1,0 +1,41 @@
+<div class="row mb-2">
+  <div class="col mt-2 text-end">
+    <div class="fst-italic fw-bold">{{ dayLabel }}</div>
+  </div>
+
+  <div class="col input-group">
+    <input
+      class="form-control"
+      [format]="24"
+      [(ngModel)]="startTime"
+      [ngxMatTimepicker]="pickerStart"
+      id="startInput"
+      placeholder="Start Time"
+      readonly
+    />
+    <span class="input-group-append">
+      <button class="btn btn-outline-dark no-border-start" type="button" (click)="pickerStart.open()">
+        <i class="fa fa-clock"></i>
+      </button>
+    </span>
+    <div class="ngx-mtp-box-bordered">
+      <ngx-mat-timepicker (closed)="onStartTimeChange()" #pickerStart></ngx-mat-timepicker>
+    </div>
+  </div>
+
+  <div class="col input-group">
+    <input class="form-control" [format]="24" [(ngModel)]="endTime" [ngxMatTimepicker]="pickerEnd" id="endInput" placeholder="End Time" readonly />
+    <span class="input-group-append">
+      <button class="btn btn-outline-dark no-border-start" type="button" (click)="pickerEnd.open()">
+        <i class="fa fa-clock"></i>
+      </button>
+    </span>
+    <div class="ngx-mtp-box-bordered">
+      <ngx-mat-timepicker color="primary" (closed)="onEndTimeChange()" #pickerEnd></ngx-mat-timepicker>
+    </div>
+  </div>
+
+  <div class="col">
+    <button class="btn btn-dark btn-outline-white btn-floating" [disabled]="!startTime && !endTime" (click)="onReset()">Reset</button>
+  </div>
+</div>

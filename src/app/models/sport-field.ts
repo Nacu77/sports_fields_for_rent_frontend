@@ -1,4 +1,5 @@
 import { Address } from './address';
+import { Schedule } from './schedule';
 
 export interface SportField {
   id: string;
@@ -7,4 +8,5 @@ export interface SportField {
   pricePerHour: number;
   address: Address;
   rating: number;
+  schedule: Schedule;
 }

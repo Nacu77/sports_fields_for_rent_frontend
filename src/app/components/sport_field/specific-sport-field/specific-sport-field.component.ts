@@ -4,6 +4,9 @@ import { SportField } from 'src/app/models/sport-field';
 import { SportFieldService } from 'src/app/services/sport_field/sport-field.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import * as Leaflet from 'leaflet';
+import { MatDialog } from '@angular/material/dialog';
+import { ScheduleDialogComponent } from '../schedule-dialog/schedule-dialog.component';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-specific-sport-field',
@@ -22,14 +25,45 @@ export class SpecificSportFieldComponent implements OnInit {
   };
   markerPositionChanged: boolean = false;
 
-  constructor(private sportFieldService: SportFieldService, private route: ActivatedRoute, private _snackBar: MatSnackBar) {}
+  constructor(
+    private sportFieldService: SportFieldService,
+    private route: ActivatedRoute,
+    private _snackBar: MatSnackBar,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.sportFieldService.findById(params['id']).subscribe((sportField) => {
         this.sportField = sportField;
+        this.formatSchedule();
         this.initMarker(this.sportField.address.latitude, this.sportField.address.longitude);
       });
+    });
+  }
+
+  openScheduleDialog(): void {
+    let schedule = { ...this.sportField.schedule };
+    if (!schedule) {
+      schedule = {};
+    }
+
+    const dialogRef = this.dialog.open(ScheduleDialogComponent, {
+      data: { schedule: schedule },
+    });
+
+    dialogRef.afterClosed().subscribe((newSchedule) => {
+      if (newSchedule) {
+        this.sportField.schedule = newSchedule;
+        this.sportFieldService.update(this.sportField).subscribe({
+          next: () => {
+            this.savedChangesSnackBar('New schedule saved');
+          },
+          error: (_e: HttpErrorResponse) => {
+            this.savedChangesSnackBar('Error while saving schedule');
+          },
+        });
+      }
     });
   }
 
@@ -56,9 +90,14 @@ export class SpecificSportFieldComponent implements OnInit {
     this.sportField.address.latitude = this.marker.getLatLng().lat;
     this.sportField.address.longitude = this.marker.getLatLng().lng;
 
-    this.sportFieldService.update(this.sportField).subscribe((_) => {
-      this.markerPositionChanged = false;
-      this.savedChangesSnackBar('New location marker saved');
+    this.sportFieldService.update(this.sportField).subscribe({
+      next: () => {
+        this.markerPositionChanged = false;
+        this.savedChangesSnackBar('New location marker saved');
+      },
+      error: (_e: HttpErrorResponse) => {
+        this.savedChangesSnackBar('Error while saving location marker');
+      },
     });
   }
 
@@ -96,5 +135,17 @@ export class SpecificSportFieldComponent implements OnInit {
     this._snackBar.open(message, 'OK', {
       duration: 5000,
     });
+  }
+
+  private formatSchedule() {
+    if (this.sportField?.schedule) {
+      let property: keyof typeof this.sportField.schedule;
+
+      for (property in this.sportField.schedule) {
+        if (this.sportField.schedule[property]) {
+          this.sportField.schedule[property] = this.sportField.schedule[property]?.slice(0, -3);
+        }
+      }
+    }
   }
 }

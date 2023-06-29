@@ -1,0 +1,48 @@
+<h1 mat-dialog-title class="bg-dark text-white text-center mb-4">Modify Schedule</h1>
+
+<div mat-dialog-content>
+  <form>
+    <app-time-range-input
+      [dayLabel]="'Monday:'"
+      [(startTime)]="data.schedule.mondayStart"
+      [(endTime)]="data.schedule.mondayEnd"
+    ></app-time-range-input>
+    <app-time-range-input
+      [dayLabel]="'Tuesday:'"
+      [(startTime)]="data.schedule.tuesdayStart"
+      [(endTime)]="data.schedule.tuesdayEnd"
+    ></app-time-range-input>
+    <app-time-range-input
+      [dayLabel]="'Wednesday:'"
+      [(startTime)]="data.schedule.wednesdayStart"
+      [(endTime)]="data.schedule.wednesdayEnd"
+    ></app-time-range-input>
+    <app-time-range-input
+      [dayLabel]="'Thursday:'"
+      [(startTime)]="data.schedule.thursdayStart"
+      [(endTime)]="data.schedule.thursdayEnd"
+    ></app-time-range-input>
+    <app-time-range-input
+      [dayLabel]="'Friday:'"
+      [(startTime)]="data.schedule.fridayStart"
+      [(endTime)]="data.schedule.fridayEnd"
+    ></app-time-range-input>
+    <app-time-range-input
+      [dayLabel]="'Saturday:'"
+      [(startTime)]="data.schedule.saturdayStart"
+      [(endTime)]="data.schedule.saturdayEnd"
+    ></app-time-range-input>
+    <app-time-range-input
+      [dayLabel]="'Sunday:'"
+      [(startTime)]="data.schedule.sundayStart"
+      [(endTime)]="data.schedule.sundayEnd"
+    ></app-time-range-input>
+  </form>
+
+  <div *ngIf="!isScheduleValid()" class="text-center text-danger">{{ "*" + invalidMessage }}</div>
+</div>
+
+<div mat-dialog-actions class="bg-dark text-white">
+  <button class="btn btn-outline-light me-auto" type="button" (click)="onCancelClick()">Cancel</button>
+  <button class="btn btn-outline-light" type="button" (click)="onSaveClick()" [disabled]="invalidMessage">Save</button>
+</div>

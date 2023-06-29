@@ -2,16 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
-import { MatInputModule } from '@angular/material/input';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatDialogModule } from '@angular/material/dialog';
+import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,6 +20,10 @@ import { SportFieldCardComponent } from './components/sport_field/sport-field-ca
 import { SpecificSportFieldComponent } from './components/sport_field/specific-sport-field/specific-sport-field.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ScheduleDialogComponent } from './components/sport_field/schedule-dialog/schedule-dialog.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { TimeRangeInputComponent } from './components/sport_field/time-range-input/time-range-input.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +36,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     SportFieldsComponent,
     SportFieldCardComponent,
     SpecificSportFieldComponent,
+    ScheduleDialogComponent,
+    TimeRangeInputComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,18 +46,11 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     CommonModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatRadioModule,
-    MatCardModule,
-    MatButtonModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatGridListModule,
-    MatSidenavModule,
     LeafletModule,
+    MatSidenavModule,
     MatSnackBarModule,
+    MatDialogModule,
+    NgxMatTimepickerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
