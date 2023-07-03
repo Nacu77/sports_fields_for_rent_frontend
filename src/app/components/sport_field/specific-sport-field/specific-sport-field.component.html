@@ -17,88 +17,27 @@
         <span class="fst-italic fw-bold">Number: </span><span>{{ sportField.address.number }}</span>
       </h6>
       <h4 class="fst-italic fw-bold mt-5">{{ sportField.pricePerHour + "$ / hour" }}</h4>
+
+      <a
+        *ngIf="isScheduleSet()"
+        class="btn btn-outline-light btn-floating mt-2 mb-2"
+        [routerLink]="['/sport-field/rent', sportField.id]"
+        role="button"
+        >Rent now</a
+      >
+      <small *ngIf="!isScheduleSet()" class="fw-light fst-italic">*Currently unavailable for rent</small>
     </div>
   </div>
 
   <!--SCHEDULE-->
-  <div class="row align-items-md-stretch m-5">
-    <div class="col-md-3"></div>
+  <div class="row m-5 d-flex justify-content-center">
     <div class="col-md-6">
       <div class="h-100 p-5 text-white bg-dark rounded-3 text-center">
-        <h2 class="mb-4">Schedule</h2>
-
-        <ng-container *ngIf="sportField.schedule">
-          <div class="row">
-            <div class="col fst-italic fw-bold text-end">
-              <p>Monday:</p>
-              <p>Tuesday:</p>
-              <p>Wednesday:</p>
-              <p>Thursday:</p>
-              <p>Friday:</p>
-              <p>Saturday:</p>
-              <p>Sunday:</p>
-            </div>
-
-            <div class="col text-start">
-              <p>
-                {{
-                  sportField.schedule.mondayStart && sportField.schedule.mondayEnd
-                    ? sportField.schedule.mondayStart + " - " + sportField.schedule.mondayEnd
-                    : "-"
-                }}
-              </p>
-              <p>
-                {{
-                  sportField.schedule.tuesdayStart && sportField.schedule.tuesdayEnd
-                    ? sportField.schedule.tuesdayStart + " - " + sportField.schedule.tuesdayEnd
-                    : "-"
-                }}
-              </p>
-              <p>
-                {{
-                  sportField.schedule.wednesdayStart && sportField.schedule.wednesdayEnd
-                    ? sportField.schedule.wednesdayStart + " - " + sportField.schedule.wednesdayEnd
-                    : "-"
-                }}
-              </p>
-              <p>
-                {{
-                  sportField.schedule.thursdayStart && sportField.schedule.thursdayEnd
-                    ? sportField.schedule.thursdayStart + " - " + sportField.schedule.thursdayEnd
-                    : "-"
-                }}
-              </p>
-              <p>
-                {{
-                  sportField.schedule.fridayStart && sportField.schedule.fridayEnd
-                    ? sportField.schedule.fridayStart + " - " + sportField.schedule.fridayEnd
-                    : "-"
-                }}
-              </p>
-              <p>
-                {{
-                  sportField.schedule.saturdayStart && sportField.schedule.saturdayEnd
-                    ? sportField.schedule.saturdayStart + " - " + sportField.schedule.saturdayEnd
-                    : "-"
-                }}
-              </p>
-              <p>
-                {{
-                  sportField.schedule.sundayStart && sportField.schedule.sundayEnd
-                    ? sportField.schedule.sundayStart + " - " + sportField.schedule.sundayEnd
-                    : "-"
-                }}
-              </p>
-            </div>
-          </div>
-
-          <button class="btn btn-outline-light" type="button" (click)="openScheduleDialog()">Edit Schedule</button>
-        </ng-container>
-
-        <button *ngIf="!sportField.schedule" class="btn btn-outline-light" type="button" (click)="openScheduleDialog()">Add Schedule</button>
+        <app-schedule [schedule]="sportField.schedule"></app-schedule>
+        <button *ngIf="isScheduleSet()" class="btn btn-outline-light" type="button" (click)="openScheduleDialog()">Edit Schedule</button>
+        <button *ngIf="!isScheduleSet()" class="btn btn-outline-light" type="button" (click)="openScheduleDialog()">Add Schedule</button>
       </div>
     </div>
-    <div class="col-md-3"></div>
   </div>
 
   <!--IMAGES-->

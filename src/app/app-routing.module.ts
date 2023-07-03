@@ -4,12 +4,14 @@ import { NewSportFieldFormComponent } from './components/sport_field/new-sport-f
 import { HomeComponent } from './components/home/home.component';
 import { SportFieldsComponent } from './components/sport_field/sport-fields/sport-fields.component';
 import { SpecificSportFieldComponent } from './components/sport_field/specific-sport-field/specific-sport-field.component';
+import { RentSportFieldComponent } from './components/sport_field/rent-sport-field/rent-sport-field.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'new-sport-field', component: NewSportFieldFormComponent },
   { path: 'sport-fields', component: SportFieldsComponent },
   { path: 'sport-field/:id', component: SpecificSportFieldComponent },
+  { path: 'sport-field/rent/:id', component: RentSportFieldComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 

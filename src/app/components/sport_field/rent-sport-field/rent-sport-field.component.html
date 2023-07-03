@@ -1,0 +1,50 @@
+<div class="row m-5 d-flex justify-content-center">
+  <div class="col-md-4">
+    <!--Calendar-->
+    <h3 class="text-center mb-3 fst-italic">Pick a day</h3>
+    <mat-card class="demo-inline-calendar-card">
+      <mat-calendar [(selected)]="selectedDate"></mat-calendar>
+    </mat-card>
+  </div>
+
+  <div class="col-md-4 text-center">
+    <!--Time inputs-->
+    <h3 class="text-center m-3 fst-italic">Pick a range time</h3>
+    <div class="input-group mb-2 w-50 container p-0">
+      <input
+        class="form-control"
+        [format]="24"
+        [(ngModel)]="startTime"
+        [ngxMatTimepicker]="pickerStart"
+        id="startInput"
+        placeholder="Start Time"
+        readonly
+      />
+      <span class="input-group-append">
+        <button class="btn btn-outline-dark no-border-start" type="button" (click)="pickerStart.open()">
+          <i class="fa fa-clock"></i>
+        </button>
+      </span>
+      <div class="ngx-mtp-box-bordered">
+        <ngx-mat-timepicker appendToInput="true" #pickerStart></ngx-mat-timepicker>
+      </div>
+    </div>
+
+    <div class="input-group mb-2 w-50 container p-0">
+      <input class="form-control" [format]="24" [(ngModel)]="endTime" [ngxMatTimepicker]="pickerEnd" id="endInput" placeholder="End Time" readonly />
+      <span class="input-group-append">
+        <button class="btn btn-outline-dark no-border-start" type="button" (click)="pickerEnd.open()">
+          <i class="fa fa-clock"></i>
+        </button>
+      </span>
+      <div class="ngx-mtp-box-bordered">
+        <ngx-mat-timepicker appendToInput="true" #pickerEnd></ngx-mat-timepicker>
+      </div>
+    </div>
+
+    <button class="btn btn-dark w-50" type="button" (click)="onRentClicked()">Rent it</button>
+
+    <!--Field Schedule-->
+    <app-schedule [schedule]="schedule"></app-schedule>
+  </div>
+</div>

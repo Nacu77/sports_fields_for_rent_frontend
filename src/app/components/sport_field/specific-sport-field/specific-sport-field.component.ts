@@ -7,6 +7,7 @@ import * as Leaflet from 'leaflet';
 import { MatDialog } from '@angular/material/dialog';
 import { ScheduleDialogComponent } from '../schedule-dialog/schedule-dialog.component';
 import { HttpErrorResponse } from '@angular/common/http';
+import { formatSchedule } from 'src/app/utility/format-utilities';
 
 @Component({
   selector: 'app-specific-sport-field',
@@ -36,7 +37,7 @@ export class SpecificSportFieldComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.sportFieldService.findById(params['id']).subscribe((sportField) => {
         this.sportField = sportField;
-        this.formatSchedule();
+        formatSchedule(this.sportField.schedule);
         this.initMarker(this.sportField.address.latitude, this.sportField.address.longitude);
       });
     });
@@ -108,6 +109,20 @@ export class SpecificSportFieldComponent implements OnInit {
     this.markerPositionChanged = false;
   }
 
+  isScheduleSet(): boolean {
+    if (this.sportField?.schedule) {
+      let property: keyof typeof this.sportField.schedule;
+
+      for (property in this.sportField.schedule) {
+        if (this.sportField.schedule[property]) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+  }
+
   private initMarker(lat: number, lng: number) {
     if (!lat || !lng) {
       return;
@@ -135,17 +150,5 @@ export class SpecificSportFieldComponent implements OnInit {
     this._snackBar.open(message, 'OK', {
       duration: 5000,
     });
-  }
-
-  private formatSchedule() {
-    if (this.sportField?.schedule) {
-      let property: keyof typeof this.sportField.schedule;
-
-      for (property in this.sportField.schedule) {
-        if (this.sportField.schedule[property]) {
-          this.sportField.schedule[property] = this.sportField.schedule[property]?.slice(0, -3);
-        }
-      }
-    }
   }
 }

@@ -5,6 +5,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatCardModule } from '@angular/material/card';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,9 +24,9 @@ import { SpecificSportFieldComponent } from './components/sport_field/specific-s
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ScheduleDialogComponent } from './components/sport_field/schedule-dialog/schedule-dialog.component';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { TimeRangeInputComponent } from './components/sport_field/time-range-input/time-range-input.component';
+import { RentSportFieldComponent } from './components/sport_field/rent-sport-field/rent-sport-field.component';
+import { ScheduleComponent } from './components/sport_field/schedule/schedule.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +41,8 @@ import { TimeRangeInputComponent } from './components/sport_field/time-range-inp
     SpecificSportFieldComponent,
     ScheduleDialogComponent,
     TimeRangeInputComponent,
+    RentSportFieldComponent,
+    ScheduleComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +56,9 @@ import { TimeRangeInputComponent } from './components/sport_field/time-range-inp
     MatSnackBarModule,
     MatDialogModule,
     NgxMatTimepickerModule,
+    MatCardModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
