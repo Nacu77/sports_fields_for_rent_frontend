@@ -13,11 +13,17 @@ import { formatSchedule } from 'src/app/utility/format-utilities';
   styleUrls: ['./rent-sport-field.component.css'],
 })
 export class RentSportFieldComponent implements OnInit {
+  readonly minDate: Date = new Date();
+
   schedule: Schedule;
   selectedDate: Date;
   startTime: string;
   endTime: string;
   sportFieldId: string;
+
+  errorMessage: string;
+  minTime?: string;
+  maxTime?: string;
 
   constructor(private sportFieldService: SportFieldService, private appointmentService: AppointmentService, private route: ActivatedRoute) {}
 
@@ -49,5 +55,81 @@ export class RentSportFieldComponent implements OnInit {
     this.appointmentService.create(appointment).subscribe((appointment) => {
       console.log(appointment);
     });
+  }
+
+  onDaySelected(): void {
+    this.startTime = '';
+    this.endTime = '';
+    switch (moment(this.selectedDate).isoWeekday()) {
+      case 1: {
+        this.minTime = this.schedule.mondayStart;
+        this.maxTime = this.schedule.mondayEnd;
+        break;
+      }
+      case 2: {
+        this.minTime = this.schedule.tuesdayStart;
+        this.maxTime = this.schedule.thursdayEnd;
+        break;
+      }
+      case 3: {
+        this.minTime = this.schedule.wednesdayStart;
+        this.maxTime = this.schedule.wednesdayEnd;
+        break;
+      }
+      case 4: {
+        this.minTime = this.schedule.thursdayStart;
+        this.maxTime = this.schedule.thursdayEnd;
+        break;
+      }
+      case 5: {
+        this.minTime = this.schedule.fridayStart;
+        this.maxTime = this.schedule.fridayEnd;
+        break;
+      }
+      case 6: {
+        this.minTime = this.schedule.saturdayStart;
+        this.maxTime = this.schedule.saturdayEnd;
+        break;
+      }
+      case 7: {
+        this.minTime = this.schedule.sundayStart;
+        this.maxTime = this.schedule.sundayEnd;
+        break;
+      }
+    }
+  }
+
+  isAppointmentInvalid(): boolean {
+    if (this.selectedDate == null) {
+      this.errorMessage = 'You must pick a day';
+      return true;
+    }
+
+    if (!this.minTime || !this.maxTime) {
+      this.errorMessage = "Can't rent on this day";
+      return true;
+    }
+
+    if (!this.startTime || !this.endTime) {
+      this.errorMessage = 'You must pick the start & end time';
+      return true;
+    }
+
+    if (
+      moment()
+        .hour(Number(this.startTime.substring(0, 2)))
+        .minute(Number(this.startTime.substring(3, 5)))
+        .isAfter(
+          moment()
+            .hour(Number(this.endTime.substring(0, 2)))
+            .minute(Number(this.endTime.substring(3, 5)))
+        )
+    ) {
+      this.errorMessage = 'Start time must be before end time';
+      return true;
+    }
+
+    this.errorMessage = '';
+    return false;
   }
 }
