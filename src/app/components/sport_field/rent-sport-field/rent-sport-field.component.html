@@ -9,15 +9,13 @@
 
   <div class="col-md-4 text-center">
     <!--Time inputs-->
-    <h3 class="text-center m-3 fst-italic">Pick a range time</h3>
+    <h3 class="text-center mb-3 fst-italic">Pick a range time</h3>
     <div class="input-group mb-2 w-50 container p-0">
       <input
         class="form-control"
         [format]="24"
         [(ngModel)]="startTime"
         [ngxMatTimepicker]="pickerStart"
-        [min]="this.minTime ? this.minTime : ''"
-        [max]="this.maxTime ? this.maxTime : ''"
         [disabled]="!this.minTime || !this.maxTime"
         id="startInput"
         placeholder="Start Time"
@@ -39,8 +37,6 @@
         [format]="24"
         [(ngModel)]="endTime"
         [ngxMatTimepicker]="pickerEnd"
-        [min]="this.minTime ? this.minTime : ''"
-        [max]="this.maxTime ? this.maxTime : ''"
         [disabled]="!this.minTime || !this.maxTime"
         id="endInput"
         placeholder="End Time"
@@ -63,5 +59,19 @@
 
     <!--Field Schedule-->
     <app-schedule [schedule]="schedule"></app-schedule>
+  </div>
+</div>
+
+<div class="row m-5 d-flex justify-content-center border-top pt-4">
+  <div class="col-md-4 text-center">
+    <!--Current Appointments-->
+    <h3 class="text-center mb-3 fst-italic">Current Appointments</h3>
+    <p *ngIf="!currentAppointments" class="text-muted">Please select a day!</p>
+    <p *ngIf="currentAppointments && currentAppointments.length == 0" class="text-muted">All day is free!</p>
+    <div *ngIf="currentAppointments && currentAppointments.length > 0">
+      <div *ngFor="let appointment of currentAppointments">
+        <p class="text-muted">{{ appointment.startDateTime + " - " + appointment.endDateTime }}</p>
+      </div>
+    </div>
   </div>
 </div>
