@@ -1,0 +1,17 @@
+.form-control:focus {
+  border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.no-border-start {
+  border-start-start-radius: unset;
+  border-end-start-radius: unset;
+  border-color: lightgrey;
+}
+
+label {
+  font-weight: bold;
+  font-style: italic;
+  text-align: end;
+}

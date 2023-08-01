@@ -1,4 +1,3 @@
-mat-drawer {
-  padding: 20px;
-  display: table;
+mat-chip-set {
+  display: inline-block;
 }

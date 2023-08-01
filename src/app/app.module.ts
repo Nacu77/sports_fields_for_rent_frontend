@@ -8,6 +8,8 @@ import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCardModule } from '@angular/material/card';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,6 +29,7 @@ import { ScheduleDialogComponent } from './components/sport_field/schedule-dialo
 import { TimeRangeInputComponent } from './components/sport_field/time-range-input/time-range-input.component';
 import { RentSportFieldComponent } from './components/sport_field/rent-sport-field/rent-sport-field.component';
 import { ScheduleComponent } from './components/sport_field/schedule/schedule.component';
+import { FilterAndSortDialogComponent } from './components/sport_field/filter-and-sort-dialog/filter-and-sort-dialog.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,7 @@ import { ScheduleComponent } from './components/sport_field/schedule/schedule.co
     TimeRangeInputComponent,
     RentSportFieldComponent,
     ScheduleComponent,
+    FilterAndSortDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,6 +63,8 @@ import { ScheduleComponent } from './components/sport_field/schedule/schedule.co
     MatCardModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatChipsModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

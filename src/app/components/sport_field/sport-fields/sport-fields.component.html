@@ -1,66 +1,28 @@
 <ng-container *ngIf="sportFieldsLoaded">
-  <div class="text-center">
-    <a class="btn btn-dark btn-outline-white btn-floating m-3" role="button" (click)="drawer.toggle(); isFilterOpen = !isFilterOpen">
-      Toggle filter & sort options
-    </a>
+  <div class="container text-center">
+    <!-- Filter & Sort button -->
+    <a class="btn btn-dark btn-outline-white btn-floating m-3" role="button" (click)="openFilterAndSortDialog()"> Open filter & sort options </a>
+
+    <!--Filter chips options-->
+    <mat-chip-set>
+      <mat-chip *ngFor="let option of filterAndSortOptions | keyvalue" (removed)="removeFilterOption(option.key)" highlighted>
+        {{ option.key + ": " + option.value }}
+        <mat-icon matChipRemove>cancel</mat-icon>
+      </mat-chip>
+    </mat-chip-set>
   </div>
 
-  <mat-drawer-container autosize>
-    <mat-drawer #drawer class="text-white bg-dark m-3 rounded" mode="side">
-      <div class="container">
-        <p>Auto-resizing sidenavdsaaaaaaaaaaaaaaaaa</p>
-        <form>
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input
-              type="email"
-              class="form-control bg-dark text-white"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-              value="name@example.com"
-            />
-            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control bg-dark text-white" id="exampleInputPassword1" />
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control bg-dark text-white" id="exampleInputPassword2" />
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control bg-dark text-white" id="exampleInputPassword3" />
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control bg-dark text-white" id="exampleInputPassword4" />
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control bg-dark text-white" id="exampleInputPassword5" />
-          </div>
-          <div class="text-center">
-            <button type="submit" class="btn btn-outline-light btn-floating mt-1">Submit</button>
-          </div>
-        </form>
-      </div>
-    </mat-drawer>
-
-    <div class="container-fluid p-5 pt-2">
-      <div
-        class="row g-3 justify-content-center"
-        [ngClass]="isFilterOpen ? 'row-cols-sm-1 row-cols-md-2 row-cols-lg-3' : 'row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4'"
-      >
-        <div class="col p-0" *ngFor="let sportField of sportFields">
-          <app-sport-field-card [sportField]="sportField"></app-sport-field-card>
-        </div>
+  <!--Sport fields cards-->
+  <div class="container-fluid p-5 pt-2 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+    <div class="row g-3 justify-content-center">
+      <div class="col p-0" *ngFor="let sportField of sportFields">
+        <app-sport-field-card [sportField]="sportField"></app-sport-field-card>
       </div>
     </div>
-  </mat-drawer-container>
+  </div>
 </ng-container>
 
+<!--Loading-->
 <div *ngIf="!sportFieldsLoaded" class="container-fluid text-center mt-5 mb-5">
   <h1 class="fst-italic fw-bold mb-5">Loading...</h1>
 
