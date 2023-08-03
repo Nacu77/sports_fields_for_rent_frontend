@@ -1,0 +1,9 @@
+<div class="d-flex bg-light justify-content-end">
+  <button [disabled]="!markerPositionChanged" class="btn btn-dark btn-outline-white btn-floating" (click)="onSaveNewLocationMarker()">
+    Save new location marker
+  </button>
+  <button [disabled]="!markerPositionChanged" class="btn btn-dark btn-outline-white btn-floating" (click)="onResetLocationMarker()">
+    Reset location marker
+  </button>
+</div>
+<div class="map-container" leaflet [leafletOptions]="options" (leafletMapReady)="onMapReady($event)" (leafletClick)="mapClicked($event)"></div>

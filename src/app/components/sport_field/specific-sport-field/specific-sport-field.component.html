@@ -1,44 +1,9 @@
 <ng-container *ngIf="sportField">
   <!--HEADER-->
-  <div class="container-fluid bg-dark text-white text-center p-0">
-    <div class="pt-5 pb-5" style="background-color: rgba(0, 0, 0, 0.2)">
-      <h1 class="fst-italic fw-bold mb-5">{{ sportField.name }}</h1>
-      <h4 *ngIf="sportField.description" class="fst-italic fw-bold mb-5">{{ sportField.description }}</h4>
-      <h6>
-        <span class="fst-italic fw-bold">Country: </span><span>{{ sportField.address.country }}</span>
-      </h6>
-      <h6>
-        <span class="fst-italic fw-bold">City: </span><span>{{ sportField.address.city }}</span>
-      </h6>
-      <h6>
-        <span class="fst-italic fw-bold">Street: </span><span>{{ sportField.address.street }}</span>
-      </h6>
-      <h6>
-        <span class="fst-italic fw-bold">Number: </span><span>{{ sportField.address.number }}</span>
-      </h6>
-      <h4 class="fst-italic fw-bold mt-5">{{ sportField.pricePerHour + "$ / hour" }}</h4>
-
-      <a
-        *ngIf="isScheduleSet()"
-        class="btn btn-outline-light btn-floating mt-2 mb-2"
-        [routerLink]="['/sport-field/rent', sportField.id]"
-        role="button"
-        >Rent now</a
-      >
-      <small *ngIf="!isScheduleSet()" class="fw-light fst-italic">*Currently unavailable for rent</small>
-    </div>
-  </div>
+  <app-specific-sport-field-header [sportField]="sportField" [isScheduleSet]="isScheduleSet()" />
 
   <!--SCHEDULE-->
-  <div class="row m-5 d-flex justify-content-center">
-    <div class="col-md-6">
-      <div class="h-100 p-5 text-white bg-dark rounded-3 text-center">
-        <app-schedule [schedule]="sportField.schedule"></app-schedule>
-        <button *ngIf="isScheduleSet()" class="btn btn-outline-light" type="button" (click)="openScheduleDialog()">Edit Schedule</button>
-        <button *ngIf="!isScheduleSet()" class="btn btn-outline-light" type="button" (click)="openScheduleDialog()">Add Schedule</button>
-      </div>
-    </div>
-  </div>
+  <app-specific-sport-field-schedule [sportField]="sportField" [isScheduleSet]="isScheduleSet()" (scheduleChange)="onScheduleChanged($event)" />
 
   <!--IMAGES-->
   <div class="album py-5 bg-light">
@@ -58,12 +23,4 @@
 </ng-container>
 
 <!--MAP-->
-<div class="d-flex bg-light justify-content-end">
-  <button [disabled]="!markerPositionChanged" class="btn btn-dark btn-outline-white btn-floating" (click)="onSaveNewLocationMarker()">
-    Save new location marker
-  </button>
-  <button [disabled]="!markerPositionChanged" class="btn btn-dark btn-outline-white btn-floating" (click)="onResetLocationMarker()">
-    Reset location marker
-  </button>
-</div>
-<div class="map-container" leaflet [leafletOptions]="options" (leafletMapReady)="onMapReady($event)" (leafletClick)="mapClicked($event)"></div>
+<app-specific-sport-field-map [sportField]="sportField" (locationChange)="onLocationChanged($event)" />

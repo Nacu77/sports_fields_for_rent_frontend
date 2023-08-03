@@ -21,15 +21,18 @@ import { HomeHeaderComponent } from './components/home-header/home-header.compon
 import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SportFieldsComponent } from './components/sport_field/sport-fields/sport-fields.component';
-import { SportFieldCardComponent } from './components/sport_field/sport-field-card/sport-field-card.component';
+import { SportFieldCardComponent } from './components/sport_field/common_components/sport-field-card/sport-field-card.component';
 import { SpecificSportFieldComponent } from './components/sport_field/specific-sport-field/specific-sport-field.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { ScheduleDialogComponent } from './components/sport_field/schedule-dialog/schedule-dialog.component';
-import { TimeRangeInputComponent } from './components/sport_field/time-range-input/time-range-input.component';
+import { ScheduleDialogComponent } from './components/sport_field/specific-sport-field/schedule-dialog/schedule-dialog.component';
+import { TimeRangeInputComponent } from './components/sport_field/common_components/time-range-input/time-range-input.component';
 import { RentSportFieldComponent } from './components/sport_field/rent-sport-field/rent-sport-field.component';
-import { ScheduleComponent } from './components/sport_field/schedule/schedule.component';
-import { FilterAndSortDialogComponent } from './components/sport_field/filter-and-sort-dialog/filter-and-sort-dialog.component';
+import { ScheduleComponent } from './components/sport_field/common_components/schedule/schedule.component';
+import { FilterAndSortDialogComponent } from './components/sport_field/sport-fields/filter-and-sort-dialog/filter-and-sort-dialog.component';
+import { SpecificSportFieldHeaderComponent } from './components/sport_field/specific-sport-field/specific-sport-field-header/specific-sport-field-header.component';
+import { SpecificSportFieldScheduleComponent } from './components/sport_field/specific-sport-field/specific-sport-field-schedule/specific-sport-field-schedule.component';
+import { SpecificSportFieldMapComponent } from './components/sport_field/specific-sport-field/specific-sport-field-map/specific-sport-field-map.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +50,9 @@ import { FilterAndSortDialogComponent } from './components/sport_field/filter-an
     RentSportFieldComponent,
     ScheduleComponent,
     FilterAndSortDialogComponent,
+    SpecificSportFieldHeaderComponent,
+    SpecificSportFieldScheduleComponent,
+    SpecificSportFieldMapComponent,
   ],
   imports: [
     BrowserModule,

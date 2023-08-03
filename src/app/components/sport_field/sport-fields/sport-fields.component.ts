@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SportField } from 'src/app/models/sport-field';
 import { SportFieldService } from 'src/app/services/sport_field/sport-field.service';
 import { MatDialog } from '@angular/material/dialog';
-import { FilterAndSortDialogComponent } from '../filter-and-sort-dialog/filter-and-sort-dialog.component';
+import { FilterAndSortDialogComponent } from './filter-and-sort-dialog/filter-and-sort-dialog.component';
 
 @Component({
   selector: 'app-sport-fields',

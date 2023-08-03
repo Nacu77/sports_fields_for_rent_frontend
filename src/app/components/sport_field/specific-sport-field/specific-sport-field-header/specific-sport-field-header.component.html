@@ -1,0 +1,24 @@
+<div class="container-fluid bg-dark text-white text-center p-0">
+  <div class="pt-5 pb-5" style="background-color: rgba(0, 0, 0, 0.2)">
+    <h1 class="fst-italic fw-bold mb-5">{{ sportField.name }}</h1>
+    <h4 *ngIf="sportField.description" class="fst-italic fw-bold mb-5">{{ sportField.description }}</h4>
+    <h6>
+      <span class="fst-italic fw-bold">Country: </span><span>{{ sportField.address.country }}</span>
+    </h6>
+    <h6>
+      <span class="fst-italic fw-bold">City: </span><span>{{ sportField.address.city }}</span>
+    </h6>
+    <h6>
+      <span class="fst-italic fw-bold">Street: </span><span>{{ sportField.address.street }}</span>
+    </h6>
+    <h6>
+      <span class="fst-italic fw-bold">Number: </span><span>{{ sportField.address.number }}</span>
+    </h6>
+    <h4 class="fst-italic fw-bold mt-5">{{ sportField.pricePerHour + "$ / hour" }}</h4>
+
+    <a *ngIf="isScheduleSet" class="btn btn-outline-light btn-floating mt-2 mb-2" [routerLink]="['/sport-field/rent', sportField.id]" role="button"
+      >Rent now</a
+    >
+    <small *ngIf="!isScheduleSet" class="fw-light fst-italic">*Currently unavailable for rent</small>
+  </div>
+</div>
