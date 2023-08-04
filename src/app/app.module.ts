@@ -33,6 +33,7 @@ import { FilterAndSortDialogComponent } from './components/sport_field/sport-fie
 import { SpecificSportFieldHeaderComponent } from './components/sport_field/specific-sport-field/specific-sport-field-header/specific-sport-field-header.component';
 import { SpecificSportFieldScheduleComponent } from './components/sport_field/specific-sport-field/specific-sport-field-schedule/specific-sport-field-schedule.component';
 import { SpecificSportFieldMapComponent } from './components/sport_field/specific-sport-field/specific-sport-field-map/specific-sport-field-map.component';
+import { SpecificSportFieldImagesComponent } from './components/sport_field/specific-sport-field/specific-sport-field-images/specific-sport-field-images.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { SpecificSportFieldMapComponent } from './components/sport_field/specifi
     SpecificSportFieldHeaderComponent,
     SpecificSportFieldScheduleComponent,
     SpecificSportFieldMapComponent,
+    SpecificSportFieldImagesComponent,
   ],
   imports: [
     BrowserModule,

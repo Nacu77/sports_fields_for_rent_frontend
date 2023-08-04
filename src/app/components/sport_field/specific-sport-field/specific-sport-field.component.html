@@ -6,20 +6,7 @@
   <app-specific-sport-field-schedule [sportField]="sportField" [isScheduleSet]="isScheduleSet()" (scheduleChange)="onScheduleChanged($event)" />
 
   <!--IMAGES-->
-  <div class="album py-5 bg-light">
-    <div class="container">
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <div *ngFor="let i of [0, 1, 2, 3, 4, 5, 6, 7, 8]" class="col">
-          <div class="card text-white bg-dark">
-            <img src="../../../../assets/images/sport_field_no_image.jpg" class="card-img-top" alt="Sport Field image" />
-            <div class="card-footer text-center p-0" style="background-color: rgba(0, 0, 0, 0.2)">
-              <button class="btn btn-dark btn-floating" style="display: block; width: 100%">Mark image as primary</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <app-specific-sport-field-images [sportField]="sportField" (imagesChangeMessage)="onImagesChange($event)" />
 </ng-container>
 
 <!--MAP-->

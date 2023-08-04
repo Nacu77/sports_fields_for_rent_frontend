@@ -64,6 +64,10 @@ export class SpecificSportFieldComponent implements OnInit {
     });
   }
 
+  onImagesChange(message: string): void {
+    this.savedChangesSnackBar(message);
+  }
+
   private savedChangesSnackBar(message: string) {
     this._snackBar.open(message, 'OK', {
       duration: 5000,
