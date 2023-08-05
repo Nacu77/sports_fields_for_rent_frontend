@@ -20,6 +20,7 @@
         <div *ngFor="let image of images" class="col">
           <div class="card text-white bg-dark">
             <button
+              *ngIf="!isImagePrimary(image)"
               type="button"
               class="btn-close btn-close-white m-2"
               aria-label="Delete"
@@ -30,7 +31,14 @@
             ></button>
             <img [src]="'data:image/jpeg;base64,' + image.byteArray" class="card-img-top" alt="Sport Field image" />
             <div class="card-footer text-center p-0" style="background-color: rgba(0, 0, 0, 0.2)">
-              <button class="btn btn-dark btn-floating" style="display: block; width: 100%">Mark image as primary</button>
+              <button
+                class="btn btn-dark btn-floating"
+                style="display: block; width: 100%"
+                (click)="onSetPrimaryImage(image)"
+                [disabled]="isImagePrimary(image)"
+              >
+                {{ isImagePrimary(image) ? "Image marked as primary" : "Mark image as primary" }}
+              </button>
             </div>
           </div>
         </div>

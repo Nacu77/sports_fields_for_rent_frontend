@@ -68,6 +68,18 @@ export class SpecificSportFieldComponent implements OnInit {
     this.savedChangesSnackBar(message);
   }
 
+  onPrimaryImageChange(imageName: string): void {
+    this.sportField.primaryImageName = imageName;
+    this.sportFieldService.update(this.sportField).subscribe({
+      next: () => {
+        this.savedChangesSnackBar('New primary image saved');
+      },
+      error: (_e: HttpErrorResponse) => {
+        this.savedChangesSnackBar('Error while saving primary image');
+      },
+    });
+  }
+
   private savedChangesSnackBar(message: string) {
     this._snackBar.open(message, 'OK', {
       duration: 5000,

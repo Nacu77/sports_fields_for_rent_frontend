@@ -1,5 +1,11 @@
 <div class="card text-white bg-dark m-2 h-100">
-  <img src="../../../../assets/images/sport_field_no_image.jpg" class="card-img-top" alt="Sprot Field image" />
+  <img
+    [src]="
+      sportField.primaryImage ? 'data:image/jpeg;base64,' + sportField.primaryImage.byteArray : '../../../../assets/images/sport_field_no_image.jpg'
+    "
+    class="card-img-top"
+    alt="Sport Field image"
+  />
   <div class="card-body pb-0">
     <h5 class="card-title fst-italic">{{ sportField.name }}</h5>
     <p class="card-text">

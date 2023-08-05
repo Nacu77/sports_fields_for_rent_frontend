@@ -1,3 +1,5 @@
 .card-img-top {
+  background-position: center;
+  object-fit: cover;
   height: 250px;
 }

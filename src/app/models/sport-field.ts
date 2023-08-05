@@ -1,4 +1,5 @@
 import { Address } from './address';
+import { Image } from './image';
 import { Schedule } from './schedule';
 
 export interface SportField {
@@ -9,4 +10,6 @@ export interface SportField {
   address: Address;
   rating: number;
   schedule: Schedule;
+  primaryImageName: string;
+  primaryImage: Image;
 }

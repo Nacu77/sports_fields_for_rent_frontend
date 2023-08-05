@@ -6,7 +6,11 @@
   <app-specific-sport-field-schedule [sportField]="sportField" [isScheduleSet]="isScheduleSet()" (scheduleChange)="onScheduleChanged($event)" />
 
   <!--IMAGES-->
-  <app-specific-sport-field-images [sportField]="sportField" (imagesChangeMessage)="onImagesChange($event)" />
+  <app-specific-sport-field-images
+    [sportField]="sportField"
+    (imagesChangeMessage)="onImagesChange($event)"
+    (primaryImageChange)="onPrimaryImageChange($event)"
+  />
 </ng-container>
 
 <!--MAP-->

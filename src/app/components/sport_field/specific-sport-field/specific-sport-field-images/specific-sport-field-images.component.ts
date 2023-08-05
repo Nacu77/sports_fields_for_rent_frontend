@@ -13,6 +13,7 @@ export class SpecificSportFieldImagesComponent implements OnInit {
   @Input() sportField: SportField;
 
   @Output() imagesChangeMessage = new EventEmitter<string>();
+  @Output() primaryImageChange = new EventEmitter<string>();
 
   noImagePath: string = '../../../../assets/images/sport_field_no_image.jpg';
   images: Array<Image>;
@@ -63,5 +64,14 @@ export class SpecificSportFieldImagesComponent implements OnInit {
         this.imagesChangeMessage.emit('Error while deleting image');
       },
     });
+  }
+
+  onSetPrimaryImage(image: Image): void {
+    this.sportField.primaryImageName = image.name;
+    this.primaryImageChange.emit(image.name);
+  }
+
+  isImagePrimary(image: Image): boolean {
+    return image.name === this.sportField.primaryImageName;
   }
 }
