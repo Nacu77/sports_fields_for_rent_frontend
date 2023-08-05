@@ -1,10 +1,12 @@
-<div class="bg-secondary">
-  <div class="row m-5 d-flex justify-content-center">
-    <div class="col-md-6">
-      <div class="h-100 p-5 text-white bg-dark rounded-3 text-center">
-        <app-schedule [schedule]="sportField.schedule"></app-schedule>
-        <button *ngIf="isScheduleSet" class="btn btn-outline-light" type="button" (click)="openScheduleDialog()">Edit Schedule</button>
-        <button *ngIf="!isScheduleSet" class="btn btn-outline-light" type="button" (click)="openScheduleDialog()">Add Schedule</button>
+<div class="bg-light">
+  <div style="background-color: rgba(0, 0, 0, 0.1)">
+    <div class="row m-5 d-flex justify-content-center">
+      <div class="col-md-6">
+        <div class="h-100 p-5 text-white bg-dark rounded-3 text-center">
+          <app-schedule [schedule]="sportField.schedule"></app-schedule>
+          <button *ngIf="isScheduleSet" class="btn btn-outline-light" type="button" (click)="openScheduleDialog()">Edit Schedule</button>
+          <button *ngIf="!isScheduleSet" class="btn btn-outline-light" type="button" (click)="openScheduleDialog()">Add Schedule</button>
+        </div>
       </div>
     </div>
   </div>

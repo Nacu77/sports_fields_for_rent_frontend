@@ -45,14 +45,16 @@ export class SpecificSportFieldMapComponent implements OnChanges {
     this.markerPositionChanged = true;
   }
 
-  onSaveNewLocationMarker() {
+  onSaveNewLocationMarker(event: any) {
+    event.stopPropagation();
     this.sportField.address.latitude = this.marker.getLatLng().lat;
     this.sportField.address.longitude = this.marker.getLatLng().lng;
     this.locationChange.emit(this.sportField);
     this.markerPositionChanged = false;
   }
 
-  onResetLocationMarker() {
+  onResetLocationMarker(event: any) {
+    event.stopPropagation();
     const position = { lat: this.sportField.address.latitude, lng: this.sportField.address.longitude };
     this.marker.setLatLng(position);
     this.map.panTo(position);
