@@ -1,4 +1,4 @@
-<ng-container *ngIf="sportFieldsLoaded">
+<div class="container" *ngIf="sportFieldsLoaded">
   <div class="container text-center">
     <!-- Filter & Sort button -->
     <a class="btn btn-dark btn-outline-white btn-floating m-3" role="button" (click)="openFilterAndSortDialog()"> Open filter & sort options </a>
@@ -13,12 +13,12 @@
   </div>
 
   <!--Sport fields cards-->
-  <div class="p-5 row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3">
+  <div class="p-5 row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-3 g-3">
     <div class="col p-0" *ngFor="let sportField of sportFields">
       <app-sport-field-card [sportField]="sportField"></app-sport-field-card>
     </div>
   </div>
-</ng-container>
+</div>
 
 <!--Loading-->
 <div *ngIf="!sportFieldsLoaded" class="container-fluid text-center mt-5 mb-5">
