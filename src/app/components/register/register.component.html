@@ -1,0 +1,29 @@
+<div class="p-5" style="background-color: rgba(0, 0, 0, 0.1)">
+  <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 justify-content-center">
+    <div class="col">
+      <div class="card text-center">
+        <div class="card-header bg-dark text-white">
+          <h2 class="fw-bold fst-italic">Register</h2>
+        </div>
+
+        <div class="card-body container p-5">
+          <form>
+            <app-custom-input [(model)]="user.username" field="username" type="text" label="Username" [errorsMap]="errorsMap" />
+            <app-custom-input [(model)]="user.firstName" field="firstName" type="text" label="First Name" [errorsMap]="errorsMap" />
+            <app-custom-input [(model)]="user.lastName" field="lastName" type="text" label="Last Name" [errorsMap]="errorsMap" />
+            <app-custom-input [(model)]="user.email" field="email" type="email" label="Email" [errorsMap]="errorsMap" />
+            <app-custom-input [(model)]="user.phoneNumber" field="phoneNumber" type="number" label="Phone Number" [errorsMap]="errorsMap" />
+            <app-custom-input [(model)]="user.password" field="password" type="password" label="Password" [errorsMap]="errorsMap" />
+            <app-custom-select [(model)]="user.role" field="role" [options]="roles" [errorsMap]="errorsMap" />
+          </form>
+        </div>
+
+        <div class="card-footer bg-dark text-white">
+          <button class="btn btn-outline-light btn-floating m-1" (click)="register()">Submit</button>
+        </div>
+      </div>
+
+      <p class="text-center mt-5 fst-italic">You already have an account? Then <a class="text-dark" routerLink="/login">login</a>!</p>
+    </div>
+  </div>
+</div>

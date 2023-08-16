@@ -4,9 +4,12 @@
       <a class="btn btn-outline-light btn-floating m-1" routerLink="/home" routerLinkActive="active" role="button">Home</a>
       <a class="btn btn-outline-light btn-floating m-1" routerLink="/sport-fields" routerLinkActive="active" role="button">Sport Fields</a>
     </div>
-    <div>
-      <a class="btn btn-outline-light btn-floating m-1" role="button">Login</a>
-      <a class="btn btn-outline-light btn-floating m-1" role="button">Register</a>
+    <div *ngIf="!isLoggedIn()">
+      <a class="btn btn-outline-light btn-floating m-1" routerLink="/login" routerLinkActive="active" role="button">Login</a>
+      <a class="btn btn-outline-light btn-floating m-1" routerLink="/register" routerLinkActive="active" role="button">Register</a>
+    </div>
+    <div *ngIf="isLoggedIn()">
+      <button class="btn btn-outline-light btn-floating m-1" (click)="logout()">Logout</button>
     </div>
   </div>
 </nav>

@@ -5,9 +5,13 @@ import { HomeComponent } from './components/home/home.component';
 import { SportFieldsComponent } from './components/sport_field/sport-fields/sport-fields.component';
 import { SpecificSportFieldComponent } from './components/sport_field/specific-sport-field/specific-sport-field.component';
 import { RentSportFieldComponent } from './components/sport_field/rent-sport-field/rent-sport-field.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'new-sport-field', component: NewSportFieldFormComponent },
   { path: 'sport-fields', component: SportFieldsComponent },
   { path: 'sport-field/:id', component: SpecificSportFieldComponent },

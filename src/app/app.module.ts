@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -34,6 +34,11 @@ import { SpecificSportFieldHeaderComponent } from './components/sport_field/spec
 import { SpecificSportFieldScheduleComponent } from './components/sport_field/specific-sport-field/specific-sport-field-schedule/specific-sport-field-schedule.component';
 import { SpecificSportFieldMapComponent } from './components/sport_field/specific-sport-field/specific-sport-field-map/specific-sport-field-map.component';
 import { SpecificSportFieldImagesComponent } from './components/sport_field/specific-sport-field/specific-sport-field-images/specific-sport-field-images.component';
+import { RegisterComponent } from './components/register/register.component';
+import { CustomInputComponent } from './components/common/custom-input/custom-input.component';
+import { CustomSelectComponent } from './components/common/custom-select/custom-select.component';
+import { LoginComponent } from './components/login/login.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -55,6 +60,10 @@ import { SpecificSportFieldImagesComponent } from './components/sport_field/spec
     SpecificSportFieldScheduleComponent,
     SpecificSportFieldMapComponent,
     SpecificSportFieldImagesComponent,
+    RegisterComponent,
+    CustomInputComponent,
+    CustomSelectComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -74,7 +83,7 @@ import { SpecificSportFieldImagesComponent } from './components/sport_field/spec
     MatChipsModule,
     MatIconModule,
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

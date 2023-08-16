@@ -1,0 +1,14 @@
+<div class="form-floating">
+  <select
+    class="form-select pt-0 pb-0"
+    [id]="field + 'Select'"
+    [name]="field"
+    [(ngModel)]="model"
+    (ngModelChange)="modelChange.emit(model)"
+    [ngClass]="errorsMap ? (errorsMap.has(field) ? 'is-invalid' : 'is-valid') : ''"
+  >
+    <option selected disabled hidden [ngValue]="undefined">{{ "Choose " + field }}</option>
+    <option *ngFor="let option of options | keyvalue" [ngValue]="option.key">{{ option.value }}</option>
+  </select>
+  <span *ngIf="errorsMap && errorsMap.has(field)" class="text-danger">*{{ errorsMap.get(field) }}</span>
+</div>

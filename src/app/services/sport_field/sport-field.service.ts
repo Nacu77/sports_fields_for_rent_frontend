@@ -9,34 +9,26 @@ import { SportField } from 'src/app/models/sport-field';
 export class SportFieldService {
   private url = 'http://localhost:8080/api/fields/';
 
-  headers: HttpHeaders = new HttpHeaders({
-    'Content-Type': 'application/json',
-    Authorization: 'Basic ' + btoa('admin:admin'),
-  });
+  // headers: HttpHeaders = new HttpHeaders({
+  //   'Content-Type': 'application/json',
+  //   Authorization: 'Basic ' + btoa('admin:admin'),
+  // });
 
   constructor(private http: HttpClient) {}
 
   create(sportField: SportField): Observable<SportField> {
-    return this.http.post<SportField>(this.url, sportField, {
-      headers: this.headers,
-    });
+    return this.http.post<SportField>(this.url, sportField);
   }
 
   findAll(): Observable<Array<SportField>> {
-    return this.http.get<Array<SportField>>(this.url, {
-      headers: this.headers,
-    });
+    return this.http.get<Array<SportField>>(this.url);
   }
 
   findById(id: string): Observable<SportField> {
-    return this.http.get<SportField>(this.url + id, {
-      headers: this.headers,
-    });
+    return this.http.get<SportField>(this.url + id);
   }
 
   update(sportField: SportField): Observable<SportField> {
-    return this.http.put<SportField>(this.url, sportField, {
-      headers: this.headers,
-    });
+    return this.http.put<SportField>(this.url, sportField);
   }
 }

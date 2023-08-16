@@ -1,0 +1,14 @@
+<div class="form-floating mb-3">
+  <input
+    class="form-control"
+    [id]="field + 'Input'"
+    [name]="field"
+    [type]="type"
+    [placeholder]="label"
+    [(ngModel)]="model"
+    (ngModelChange)="modelChange.emit(model)"
+    [ngClass]="errorsMap ? (errorsMap.has(field) ? 'is-invalid' : 'is-valid') : ''"
+  />
+  <label [for]="field + 'Input'">{{ label }}</label>
+  <span *ngIf="errorsMap && errorsMap.has(field)" class="text-danger">*{{ errorsMap.get(field) }}</span>
+</div>
