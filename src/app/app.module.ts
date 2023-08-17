@@ -39,6 +39,7 @@ import { CustomInputComponent } from './components/common/custom-input/custom-in
 import { CustomSelectComponent } from './components/common/custom-select/custom-select.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     CustomInputComponent,
     CustomSelectComponent,
     LoginComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

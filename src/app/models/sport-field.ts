@@ -4,6 +4,7 @@ import { Schedule } from './schedule';
 
 export interface SportField {
   id: string;
+  createdBy: string | null;
   name: string;
   description: string;
   pricePerHour: number;

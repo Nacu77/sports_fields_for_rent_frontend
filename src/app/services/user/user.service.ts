@@ -23,4 +23,8 @@ export class UserService {
       responseType: 'text' as const,
     });
   }
+
+  getProfile(username: string): Observable<User> {
+    return this.http.get<User>(this.url + username);
+  }
 }

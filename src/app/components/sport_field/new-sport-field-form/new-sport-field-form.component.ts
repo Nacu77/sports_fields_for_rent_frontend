@@ -26,6 +26,7 @@ export class NewSportFieldFormComponent {
   newSportField() {
     console.log(this.sportField);
 
+    this.sportField.createdBy = sessionStorage.getItem('app.username');
     this.sportFieldService.create(this.sportField).subscribe({
       next: () => {
         this.errorsMap = new Map<string, string>();

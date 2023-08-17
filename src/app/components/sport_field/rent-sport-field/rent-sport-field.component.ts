@@ -47,6 +47,7 @@ export class RentSportFieldComponent implements OnInit {
     appointment.startDateTime = this.selectedDateTimeToMoment(this.selectedDate, this.startTime).format('YYYY-MM-DDTHH:mm:ss');
     appointment.endDateTime = this.selectedDateTimeToMoment(this.selectedDate, this.endTime).format('YYYY-MM-DDTHH:mm:ss');
     appointment.sportFieldId = this.sportFieldId;
+    appointment.createdBy = sessionStorage.getItem('app.username');
 
     this.appointmentService.create(appointment).subscribe((appointment) => {
       console.log(appointment);

@@ -7,11 +7,13 @@ import { SpecificSportFieldComponent } from './components/sport_field/specific-s
 import { RentSportFieldComponent } from './components/sport_field/rent-sport-field/rent-sport-field.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'profile', component: ProfileComponent },
   { path: 'new-sport-field', component: NewSportFieldFormComponent },
   { path: 'sport-fields', component: SportFieldsComponent },
   { path: 'sport-field/:id', component: SpecificSportFieldComponent },
