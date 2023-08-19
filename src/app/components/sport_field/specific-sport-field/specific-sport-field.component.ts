@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
 import { formatSchedule } from 'src/app/utility/format-utilities';
 import { Schedule } from 'src/app/models/schedule';
+import { savedChangesSnackBar } from 'src/app/utility/snackbar-utilities';
 
 @Component({
   selector: 'app-specific-sport-field',
@@ -15,7 +16,7 @@ import { Schedule } from 'src/app/models/schedule';
 export class SpecificSportFieldComponent implements OnInit {
   sportField: SportField;
 
-  constructor(private sportFieldService: SportFieldService, private route: ActivatedRoute, private _snackBar: MatSnackBar) {}
+  constructor(private sportFieldService: SportFieldService, private route: ActivatedRoute, private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -44,10 +45,10 @@ export class SpecificSportFieldComponent implements OnInit {
     this.sportField.schedule = schedule;
     this.sportFieldService.update(this.sportField).subscribe({
       next: () => {
-        this.savedChangesSnackBar('New schedule saved');
+        savedChangesSnackBar('New schedule saved', this.snackBar);
       },
       error: (_e: HttpErrorResponse) => {
-        this.savedChangesSnackBar('Error while saving schedule');
+        savedChangesSnackBar('Error while saving schedule', this.snackBar);
       },
     });
   }
@@ -56,33 +57,27 @@ export class SpecificSportFieldComponent implements OnInit {
     this.sportField = sportField;
     this.sportFieldService.update(this.sportField).subscribe({
       next: () => {
-        this.savedChangesSnackBar('New location marker saved');
+        savedChangesSnackBar('New location marker saved', this.snackBar);
       },
       error: (_e: HttpErrorResponse) => {
-        this.savedChangesSnackBar('Error while saving location marker');
+        savedChangesSnackBar('Error while saving location marker', this.snackBar);
       },
     });
   }
 
   onImagesChange(message: string): void {
-    this.savedChangesSnackBar(message);
+    savedChangesSnackBar(message, this.snackBar);
   }
 
   onPrimaryImageChange(imageName: string): void {
     this.sportField.primaryImageName = imageName;
     this.sportFieldService.update(this.sportField).subscribe({
       next: () => {
-        this.savedChangesSnackBar('New primary image saved');
+        savedChangesSnackBar('New primary image saved', this.snackBar);
       },
       error: (_e: HttpErrorResponse) => {
-        this.savedChangesSnackBar('Error while saving primary image');
+        savedChangesSnackBar('Error while saving primary image', this.snackBar);
       },
-    });
-  }
-
-  private savedChangesSnackBar(message: string) {
-    this._snackBar.open(message, 'OK', {
-      duration: 5000,
     });
   }
 }

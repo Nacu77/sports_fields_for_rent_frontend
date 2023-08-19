@@ -40,6 +40,8 @@ import { CustomSelectComponent } from './components/common/custom-select/custom-
 import { LoginComponent } from './components/login/login.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { ProfileComponent } from './components/profile/profile.component';
+import { AppointmentCardComponent } from './components/profile/common_components/appointment-card/appointment-card.component';
+import { CustomModalComponent } from './components/common/custom-modal/custom-modal.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +68,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     CustomSelectComponent,
     LoginComponent,
     ProfileComponent,
+    AppointmentCardComponent,
+    CustomModalComponent,
   ],
   imports: [
     BrowserModule,

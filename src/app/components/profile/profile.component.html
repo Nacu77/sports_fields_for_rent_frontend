@@ -1,4 +1,4 @@
-<div class="container-fluid bg-light text-center p-5">
+<div *ngIf="user" class="container-fluid border-bottom bg-light text-center p-5">
   <h1 class="fst-italic fw-bold mb-5">{{ user.lastName + " " + user.firstName }}</h1>
   <h6>
     <span class="fst-italic fw-bold">Username: </span><span>{{ user.username }}</span>
@@ -9,4 +9,12 @@
   <h6>
     <span class="fst-italic fw-bold">Phone number: </span><span>{{ user.phoneNumber }}</span>
   </h6>
+</div>
+
+<div *ngIf="currentAppointments" class="container">
+  <div class="p-5 row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3">
+    <div class="col p-0" *ngFor="let appointment of currentAppointments">
+      <app-appointment-card [appointment]="appointment" (cancelAppointment)="onCancelAppointment($event)"></app-appointment-card>
+    </div>
+  </div>
 </div>

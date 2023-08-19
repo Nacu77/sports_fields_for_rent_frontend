@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 import { Moment } from 'moment';
 import { Appointment } from 'src/app/models/appointment';
@@ -29,7 +29,12 @@ export class RentSportFieldComponent implements OnInit {
 
   currentAppointments: Array<Appointment>;
 
-  constructor(private sportFieldService: SportFieldService, private appointmentService: AppointmentService, private route: ActivatedRoute) {}
+  constructor(
+    private sportFieldService: SportFieldService,
+    private appointmentService: AppointmentService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -49,10 +54,8 @@ export class RentSportFieldComponent implements OnInit {
     appointment.sportFieldId = this.sportFieldId;
     appointment.createdBy = sessionStorage.getItem('app.username');
 
-    this.appointmentService.create(appointment).subscribe((appointment) => {
-      console.log(appointment);
-      this.startTime = '';
-      this.endTime = '';
+    this.appointmentService.create(appointment).subscribe((_appointment) => {
+      this.router.navigateByUrl('/profile');
     });
   }
 
