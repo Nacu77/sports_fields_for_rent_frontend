@@ -9,9 +9,14 @@ import { Appointment } from 'src/app/models/appointment';
 export class AppointmentCardComponent {
   @Input() appointment: Appointment;
 
-  @Output() cancelAppointment = new EventEmitter<Appointment>();
+  @Output() prepareCancelAppointment = new EventEmitter<Appointment>();
+  @Output() cancelAppointment = new EventEmitter<void>();
+
+  onPrepareCancelAppointment(): void {
+    this.prepareCancelAppointment.emit(this.appointment);
+  }
 
   onCancelAppointment(): void {
-    this.cancelAppointment.emit(this.appointment);
+    this.cancelAppointment.emit();
   }
 }

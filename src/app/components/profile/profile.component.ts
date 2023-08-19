@@ -16,6 +16,7 @@ import { savedChangesSnackBar } from 'src/app/utility/snackbar-utilities';
 export class ProfileComponent implements OnInit {
   user: User;
   currentAppointments: Array<Appointment>;
+  appointmentToCancel: Appointment;
 
   constructor(private userService: UserService, private appointmentService: AppointmentService, private snackBar: MatSnackBar) {}
 
@@ -35,10 +36,14 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  onCancelAppointment(appointment: Appointment): void {
-    this.appointmentService.delete(appointment.id).subscribe({
+  onPrepareCancelAppointment(appointment: Appointment): void {
+    this.appointmentToCancel = appointment;
+  }
+
+  onCancelAppointment(): void {
+    this.appointmentService.delete(this.appointmentToCancel.id).subscribe({
       next: () => {
-        this.currentAppointments = this.currentAppointments.filter((currentAppointment) => currentAppointment.id !== appointment.id);
+        this.currentAppointments = this.currentAppointments.filter((currentAppointment) => currentAppointment.id !== this.appointmentToCancel.id);
         savedChangesSnackBar('Appointment canceled successfully', this.snackBar);
       },
       error: (_e: HttpErrorResponse) => {

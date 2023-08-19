@@ -19,10 +19,17 @@
     </div>
   </div>
   <div class="card-footer text-center">
-    <a class="btn btn-outline-light btn-floating mt-2 mb-2" [routerLink]="['/sport-field', appointment.sportFieldId]" role="button">See Field</a>
+    <a class="text-white fst-italic" [routerLink]="['/sport-field', appointment.sportFieldId]">See Field</a>
   </div>
   <div class="card-footer text-center" style="background-color: rgba(0, 0, 0, 0.2)">
-    <button class="btn btn-outline-light btn-floating mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Cancel Appointment</button>
+    <button
+      class="btn btn-outline-light btn-floating mt-2 mb-2"
+      data-bs-toggle="modal"
+      data-bs-target="#staticBackdrop"
+      (click)="onPrepareCancelAppointment()"
+    >
+      Cancel Appointment
+    </button>
   </div>
 </div>
 
