@@ -214,7 +214,8 @@ export class RentSportFieldComponent implements OnInit {
 
       return (
         (selectedStartMoment.isSameOrAfter(appointmentStartMoment) && selectedStartMoment.isBefore(appointmentEndMoment)) ||
-        (selectedEndMoment.isAfter(appointmentStartMoment) && selectedEndMoment.isSameOrBefore(appointmentEndMoment))
+        (selectedEndMoment.isAfter(appointmentStartMoment) && selectedEndMoment.isSameOrBefore(appointmentEndMoment)) ||
+        (selectedStartMoment.isSameOrBefore(appointmentStartMoment) && selectedEndMoment.isSameOrAfter(appointmentEndMoment))
       );
     });
 
