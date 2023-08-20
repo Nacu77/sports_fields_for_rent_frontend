@@ -40,9 +40,10 @@ import { CustomSelectComponent } from './components/common/custom-select/custom-
 import { LoginComponent } from './components/login/login.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { ProfileComponent } from './components/profile/profile.component';
-import { AppointmentCardComponent } from './components/profile/common_components/appointment-card/appointment-card.component';
+import { AppointmentCardComponent } from './components/common/appointment-card/appointment-card.component';
 import { CustomModalComponent } from './components/common/custom-modal/custom-modal.component';
 import { ShowControlDirective } from './directives/show-control.directive';
+import { SpecificSportFieldAppointmentsComponent } from './components/sport_field/specific-sport-field/specific-sport-field-appointments/specific-sport-field-appointments.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { ShowControlDirective } from './directives/show-control.directive';
     AppointmentCardComponent,
     CustomModalComponent,
     ShowControlDirective,
+    SpecificSportFieldAppointmentsComponent,
   ],
   imports: [
     BrowserModule,

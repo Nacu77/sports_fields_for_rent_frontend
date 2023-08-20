@@ -1,5 +1,15 @@
 <div class="card text-white bg-dark m-2 h-100">
-  <div class="card-header text-center fst-italic fw-bold fs-5 mb-3" style="background-color: rgba(0, 0, 0, 0.2)">
+  <button
+    *ngIf="isCurrent"
+    type="button"
+    class="btn-close btn-close m-2"
+    aria-label="Delete"
+    style="position: absolute"
+    data-bs-toggle="modal"
+    data-bs-target="#appointmentCancelModal"
+    (click)="onPrepareCancelAppointment()"
+  ></button>
+  <div class="card-header bg-light text-dark text-center fst-italic fw-bold mb-3" style="background-color: rgba(0, 0, 0, 0.2)">
     {{ isCurrent ? "Future Appointment" : "Old Appointment" }}
   </div>
   <div class="card-body pb-0 mb-0">
@@ -20,19 +30,11 @@
       </div>
     </div>
   </div>
-  <div class="card-footer text-center">
-    <a class="text-white fst-italic" [routerLink]="['/sport-field', appointment.sportFieldId]">See Field</a>
-  </div>
-  <div *ngIf="isCurrent" class="card-footer text-center p-0" style="background-color: rgba(0, 0, 0, 0.2)">
-    <button
-      class="btn btn-dark btn-floating"
-      style="display: block; width: 100%"
-      data-bs-toggle="modal"
-      data-bs-target="#appointmentCancelModal"
-      (click)="onPrepareCancelAppointment()"
-    >
-      Cancel Appointment
-    </button>
+  <div class="card-footer text-center" style="background-color: rgba(0, 0, 0, 0.2)">
+    <a *ngIf="forProfile" class="text-white fst-italic" [routerLink]="['/sport-field', appointment.sportFieldId]">See Field</a>
+    <p *ngIf="!forProfile">
+      <span>Created by: </span><span class="fw-bold fst-italic">{{ appointment.createdBy }}</span>
+    </p>
   </div>
 </div>
 

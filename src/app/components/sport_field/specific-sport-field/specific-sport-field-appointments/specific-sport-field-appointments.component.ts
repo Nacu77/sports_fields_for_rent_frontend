@@ -1,11 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Appointment } from 'src/app/models/appointment';
-import { GetAppointmentsForSpecificUserRequest } from 'src/app/models/requests/get-appointments-for-specific-user-request';
-import { User } from 'src/app/models/user';
+import { GetAppointmentsForSpecificFieldRequest } from 'src/app/models/requests/get-appointments-for-specific-field-request';
+import { SportField } from 'src/app/models/sport-field';
 import { AppointmentService } from 'src/app/services/appointment/appointment.service';
-import { UserService } from 'src/app/services/user/user.service';
 import { formatAppointments } from 'src/app/utility/format-utilities';
 import { savedChangesSnackBar } from 'src/app/utility/snackbar-utilities';
 
@@ -15,12 +14,13 @@ enum ProfileOptions {
 }
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css'],
+  selector: 'app-specific-sport-field-appointments',
+  templateUrl: './specific-sport-field-appointments.component.html',
+  styleUrls: ['./specific-sport-field-appointments.component.css'],
 })
-export class ProfileComponent implements OnInit {
-  user: User;
+export class SpecificSportFieldAppointmentsComponent implements OnInit {
+  @Input() sportField: SportField;
+
   currentAppointments: Array<Appointment>;
   appointmentsHistory: Array<Appointment>;
 
@@ -29,7 +29,7 @@ export class ProfileComponent implements OnInit {
 
   ProfileOptionsType = ProfileOptions;
 
-  constructor(private userService: UserService, private appointmentService: AppointmentService, private snackBar: MatSnackBar) {}
+  constructor(private appointmentService: AppointmentService, private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.getAppointments(true);
@@ -62,23 +62,18 @@ export class ProfileComponent implements OnInit {
   }
 
   private getAppointments(isCurrent: boolean): void {
-    const username = this.userService.getUsername();
-    if (username) {
-      this.userService.getProfile(username).subscribe((user) => (this.user = user));
-
-      const getAppointmentsForSpecificUserRequest: GetAppointmentsForSpecificUserRequest = {
-        username: username,
-        isCurrent: isCurrent,
-      };
-      this.appointmentService.getAppointmentsForSpecificUser(getAppointmentsForSpecificUserRequest).subscribe((appointments) => {
-        if (isCurrent) {
-          this.currentAppointments = appointments;
-          formatAppointments(this.currentAppointments);
-        } else {
-          this.appointmentsHistory = appointments;
-          formatAppointments(this.appointmentsHistory);
-        }
-      });
-    }
+    const getAppointmentsForSpecificFieldRequest: GetAppointmentsForSpecificFieldRequest = {
+      sportFieldId: this.sportField.id,
+      isCurrent: isCurrent,
+    };
+    this.appointmentService.getAppointmentsForSpecificField(getAppointmentsForSpecificFieldRequest).subscribe((appointments) => {
+      if (isCurrent) {
+        this.currentAppointments = appointments;
+        formatAppointments(this.currentAppointments);
+      } else {
+        this.appointmentsHistory = appointments;
+        formatAppointments(this.appointmentsHistory);
+      }
+    });
   }
 }

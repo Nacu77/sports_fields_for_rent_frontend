@@ -7,6 +7,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { formatSchedule } from 'src/app/utility/format-utilities';
 import { Schedule } from 'src/app/models/schedule';
 import { savedChangesSnackBar } from 'src/app/utility/snackbar-utilities';
+import { shouldElementDisplay } from 'src/app/utility/auth-utilities';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-specific-sport-field',
@@ -16,7 +18,12 @@ import { savedChangesSnackBar } from 'src/app/utility/snackbar-utilities';
 export class SpecificSportFieldComponent implements OnInit {
   sportField: SportField;
 
-  constructor(private sportFieldService: SportFieldService, private route: ActivatedRoute, private snackBar: MatSnackBar) {}
+  constructor(
+    private sportFieldService: SportFieldService,
+    private userService: UserService,
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -79,5 +86,9 @@ export class SpecificSportFieldComponent implements OnInit {
         savedChangesSnackBar('Error while saving primary image', this.snackBar);
       },
     });
+  }
+
+  shouldElementDisplay(): boolean {
+    return shouldElementDisplay(this.userService, this.sportField.createdBy);
   }
 }

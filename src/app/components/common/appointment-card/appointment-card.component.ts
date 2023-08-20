@@ -9,6 +9,7 @@ import { Appointment } from 'src/app/models/appointment';
 export class AppointmentCardComponent {
   @Input() appointment: Appointment;
   @Input() isCurrent: boolean;
+  @Input() forProfile: boolean;
 
   @Output() prepareCancelAppointment = new EventEmitter<Appointment>();
   @Output() cancelAppointment = new EventEmitter<void>();

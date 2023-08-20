@@ -11,6 +11,9 @@
     (imagesChangeMessage)="onImagesChange($event)"
     (primaryImageChange)="onPrimaryImageChange($event)"
   />
+
+  <!--APPOINTMENTS-->
+  <app-specific-sport-field-appointments *ngIf="shouldElementDisplay()" [sportField]="sportField" />
 </ng-container>
 
 <!--MAP-->

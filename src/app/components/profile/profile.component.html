@@ -31,6 +31,7 @@
       <app-appointment-card
         [appointment]="appointment"
         [isCurrent]="true"
+        [forProfile]="true"
         (prepareCancelAppointment)="onPrepareCancelAppointment($event)"
         (cancelAppointment)="onCancelAppointment()"
       ></app-appointment-card>

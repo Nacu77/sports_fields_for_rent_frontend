@@ -16,6 +16,10 @@ export class LoginComponent {
   constructor(private userService: UserService, private router: Router) {}
 
   login(): void {
+    if (this.userService.isLoggedIn()) {
+      this.userService.logout();
+    }
+
     this.userService.login(this.username, this.password).subscribe({
       next: (token) => {
         sessionStorage.setItem('app.token', token);

@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'new-sport-field', component: NewSportFieldFormComponent, canActivate: [AuthGuard], data: { role: 'OWNER' } },
   { path: 'sport-fields', component: SportFieldsComponent },
   { path: 'sport-field/:id', component: SpecificSportFieldComponent },
-  { path: 'sport-field/rent/:id', component: RentSportFieldComponent, canActivate: [AuthGuard], data: { role: 'USER' } },
+  { path: 'sport-field/rent/:id', component: RentSportFieldComponent, canActivate: [AuthGuard], data: { authenticated: true } },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 
