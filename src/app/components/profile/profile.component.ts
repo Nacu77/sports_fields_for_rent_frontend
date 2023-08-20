@@ -8,6 +8,11 @@ import { AppointmentService } from 'src/app/services/appointment/appointment.ser
 import { UserService } from 'src/app/services/user/user.service';
 import { savedChangesSnackBar } from 'src/app/utility/snackbar-utilities';
 
+enum ProfileOptions {
+  CURRENT_APPOINTMENTS,
+  APPOINTMENTS_HISTORY,
+}
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -16,24 +21,27 @@ import { savedChangesSnackBar } from 'src/app/utility/snackbar-utilities';
 export class ProfileComponent implements OnInit {
   user: User;
   currentAppointments: Array<Appointment>;
+  appointmentsHistory: Array<Appointment>;
+
   appointmentToCancel: Appointment;
+  selectedOption: ProfileOptions = ProfileOptions.CURRENT_APPOINTMENTS;
+
+  ProfileOptionsType = ProfileOptions;
 
   constructor(private userService: UserService, private appointmentService: AppointmentService, private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
-    const username = sessionStorage.getItem('app.username');
-    if (username) {
-      this.userService.getProfile(username).subscribe((user) => (this.user = user));
+    this.getAppointments(true);
+  }
 
-      const getAppointmentsForSpecificUserRequest: GetAppointmentsForSpecificUserRequest = {
-        username: username,
-        isCurrent: true,
-      };
-      this.appointmentService.getAppointmentsForSpecificUser(getAppointmentsForSpecificUserRequest).subscribe((appointments) => {
-        this.currentAppointments = appointments;
-        this.formatAppointments(appointments);
-      });
-    }
+  showCurrentAppointments(): void {
+    this.selectedOption = ProfileOptions.CURRENT_APPOINTMENTS;
+    this.getAppointments(true);
+  }
+
+  showAppointmentsHistory(): void {
+    this.selectedOption = ProfileOptions.APPOINTMENTS_HISTORY;
+    this.getAppointments(false);
   }
 
   onPrepareCancelAppointment(appointment: Appointment): void {
@@ -50,6 +58,27 @@ export class ProfileComponent implements OnInit {
         savedChangesSnackBar('Error while canceling appointment', this.snackBar);
       },
     });
+  }
+
+  private getAppointments(isCurrent: boolean): void {
+    const username = sessionStorage.getItem('app.username');
+    if (username) {
+      this.userService.getProfile(username).subscribe((user) => (this.user = user));
+
+      const getAppointmentsForSpecificUserRequest: GetAppointmentsForSpecificUserRequest = {
+        username: username,
+        isCurrent: isCurrent,
+      };
+      this.appointmentService.getAppointmentsForSpecificUser(getAppointmentsForSpecificUserRequest).subscribe((appointments) => {
+        if (isCurrent) {
+          this.currentAppointments = appointments;
+          this.formatAppointments(this.currentAppointments);
+        } else {
+          this.appointmentsHistory = appointments;
+          this.formatAppointments(this.appointmentsHistory);
+        }
+      });
+    }
   }
 
   private formatAppointments(appointments: Array<Appointment>): void {
