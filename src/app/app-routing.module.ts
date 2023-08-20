@@ -8,16 +8,17 @@ import { RentSportFieldComponent } from './components/sport_field/rent-sport-fie
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { AuthGuard } from './auth/auth-guard.service';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'new-sport-field', component: NewSportFieldFormComponent },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard], data: { authenticated: true } },
+  { path: 'new-sport-field', component: NewSportFieldFormComponent, canActivate: [AuthGuard], data: { role: 'OWNER' } },
   { path: 'sport-fields', component: SportFieldsComponent },
   { path: 'sport-field/:id', component: SpecificSportFieldComponent },
-  { path: 'sport-field/rent/:id', component: RentSportFieldComponent },
+  { path: 'sport-field/rent/:id', component: RentSportFieldComponent, canActivate: [AuthGuard], data: { role: 'USER' } },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 

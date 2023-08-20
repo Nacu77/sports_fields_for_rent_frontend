@@ -5,7 +5,7 @@
   (leafletMapReady)="onMapReady($event)"
   (leafletClick)="mapClicked($event)"
 >
-  <div class="d-flex justify-content-end" style="position: relative; z-index: 1000">
+  <div showControl [ownedBy]="sportField.createdBy" *ngIf="sportField" class="d-flex justify-content-end" style="position: relative; z-index: 1000">
     <button [disabled]="!markerPositionChanged" class="btn btn-light btn-outline-dark btn-floating" (click)="onSaveNewLocationMarker($event)">
       Save new location marker
     </button>

@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class CustomModalComponent {
   @Input() title: string;
   @Input() text: string;
+  @Input() backdropId: string;
   @Output() yesClicked = new EventEmitter<void>();
 
   onYesClicked(): void {

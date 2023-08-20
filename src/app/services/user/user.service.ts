@@ -24,7 +24,39 @@ export class UserService {
     });
   }
 
+  logout() {
+    sessionStorage.removeItem('app.token');
+    sessionStorage.removeItem('app.roles');
+    sessionStorage.removeItem('app.username');
+  }
+
   getProfile(username: string): Observable<User> {
     return this.http.get<User>(this.url + username);
+  }
+
+  isLoggedIn(): boolean {
+    return sessionStorage.getItem('app.token') != null;
+  }
+
+  getUsername(): string | null {
+    return sessionStorage.getItem('app.username');
+  }
+
+  isUserInRole(roleFromRoute: string) {
+    const roles = sessionStorage.getItem('app.roles');
+
+    if (roles!.includes(',')) {
+      if (roles === roleFromRoute) {
+        return true;
+      }
+    } else {
+      const roleArray = roles!.split(',');
+      for (let role of roleArray) {
+        if (role === roleFromRoute) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 }

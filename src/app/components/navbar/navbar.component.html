@@ -9,8 +9,11 @@
       <a class="btn btn-outline-light btn-floating m-1" routerLink="/register" routerLinkActive="active" role="button">Register</a>
     </div>
     <div *ngIf="isLoggedIn()">
-      <button class="btn btn-outline-light btn-floating m-1" routerLink="/profile" routerLinkActive="active" role="button">Profile</button>
-      <button class="btn btn-outline-light btn-floating m-1" (click)="logout()">Logout</button>
+      <a class="btn btn-outline-light btn-floating m-1" routerLink="/profile" routerLinkActive="active" role="button">Profile</a>
+      <button class="btn btn-outline-light btn-floating m-1" data-bs-toggle="modal" data-bs-target="#logoutModal">Logout</button>
     </div>
   </div>
 </nav>
+
+<!--Logout modal-->
+<app-custom-modal backdropId="logoutModal" title="Logout Confirmation" text="Are you sure you want to logout?" (yesClicked)="logout()" />

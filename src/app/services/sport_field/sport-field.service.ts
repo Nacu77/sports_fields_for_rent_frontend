@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SportField } from 'src/app/models/sport-field';
@@ -8,11 +8,6 @@ import { SportField } from 'src/app/models/sport-field';
 })
 export class SportFieldService {
   private url = 'http://localhost:8080/api/fields/';
-
-  // headers: HttpHeaders = new HttpHeaders({
-  //   'Content-Type': 'application/json',
-  //   Authorization: 'Basic ' + btoa('admin:admin'),
-  // });
 
   constructor(private http: HttpClient) {}
 

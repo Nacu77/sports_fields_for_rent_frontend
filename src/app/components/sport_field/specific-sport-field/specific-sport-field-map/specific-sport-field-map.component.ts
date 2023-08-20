@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import * as Leaflet from 'leaflet';
 import { SportField } from 'src/app/models/sport-field';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-specific-sport-field-map',
@@ -21,6 +22,8 @@ export class SpecificSportFieldMapComponent implements OnChanges {
   };
   markerPositionChanged: boolean = false;
 
+  constructor(private userService: UserService) {}
+
   ngOnChanges(changes: SimpleChanges) {
     this.sportField = changes['sportField'].currentValue;
     this.initMarker(this.sportField?.address?.latitude, this.sportField?.address?.longitude);
@@ -31,13 +34,15 @@ export class SpecificSportFieldMapComponent implements OnChanges {
   }
 
   mapClicked($event: any) {
-    if (!this.marker) {
-      this.initMarker($event.latlng.lat, $event.latlng.lng);
+    if (this.sportField.createdBy && this.sportField.createdBy === this.userService.getUsername()) {
+      if (!this.marker) {
+        this.initMarker($event.latlng.lat, $event.latlng.lng);
+      }
+      const position = { lat: $event.latlng.lat, lng: $event.latlng.lng };
+      this.marker.setLatLng(position);
+      this.map.panTo(position);
+      this.markerPositionChanged = true;
     }
-    const position = { lat: $event.latlng.lat, lng: $event.latlng.lng };
-    this.marker.setLatLng(position);
-    this.map.panTo(position);
-    this.markerPositionChanged = true;
   }
 
   markerDragEnd($event: any) {

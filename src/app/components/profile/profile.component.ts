@@ -61,7 +61,7 @@ export class ProfileComponent implements OnInit {
   }
 
   private getAppointments(isCurrent: boolean): void {
-    const username = sessionStorage.getItem('app.username');
+    const username = this.userService.getUsername();
     if (username) {
       this.userService.getProfile(username).subscribe((user) => (this.user = user));
 

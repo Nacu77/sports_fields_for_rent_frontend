@@ -38,10 +38,11 @@ import { RegisterComponent } from './components/register/register.component';
 import { CustomInputComponent } from './components/common/custom-input/custom-input.component';
 import { CustomSelectComponent } from './components/common/custom-select/custom-select.component';
 import { LoginComponent } from './components/login/login.component';
-import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { AuthInterceptor } from './auth/auth.interceptor';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AppointmentCardComponent } from './components/profile/common_components/appointment-card/appointment-card.component';
 import { CustomModalComponent } from './components/common/custom-modal/custom-modal.component';
+import { ShowControlDirective } from './directives/show-control.directive';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { CustomModalComponent } from './components/common/custom-modal/custom-mo
     ProfileComponent,
     AppointmentCardComponent,
     CustomModalComponent,
+    ShowControlDirective,
   ],
   imports: [
     BrowserModule,

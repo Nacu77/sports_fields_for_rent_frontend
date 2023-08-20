@@ -4,8 +4,26 @@
       <div class="col-md-6">
         <div class="h-100 p-5 text-white bg-dark rounded-3 text-center">
           <app-schedule [schedule]="sportField.schedule"></app-schedule>
-          <button *ngIf="isScheduleSet" class="btn btn-outline-light" type="button" (click)="openScheduleDialog()">Edit Schedule</button>
-          <button *ngIf="!isScheduleSet" class="btn btn-outline-light" type="button" (click)="openScheduleDialog()">Add Schedule</button>
+          <button
+            showControl
+            [ownedBy]="sportField.createdBy"
+            *ngIf="isScheduleSet"
+            class="btn btn-outline-light"
+            type="button"
+            (click)="openScheduleDialog()"
+          >
+            Edit Schedule
+          </button>
+          <button
+            showControl
+            [ownedBy]="sportField.createdBy"
+            *ngIf="!isScheduleSet"
+            class="btn btn-outline-light"
+            type="button"
+            (click)="openScheduleDialog()"
+          >
+            Add Schedule
+          </button>
         </div>
       </div>
     </div>

@@ -28,7 +28,7 @@
       class="btn btn-dark btn-floating"
       style="display: block; width: 100%"
       data-bs-toggle="modal"
-      data-bs-target="#staticBackdrop"
+      data-bs-target="#appointmentCancelModal"
       (click)="onPrepareCancelAppointment()"
     >
       Cancel Appointment
@@ -38,6 +38,7 @@
 
 <!--Cancel appointment modal-->
 <app-custom-modal
+  backdropId="appointmentCancelModal"
   title="Cancel Appointment Confirmation"
   text="Are you sure you want to cancel this appointment?"
   (yesClicked)="onCancelAppointment()"

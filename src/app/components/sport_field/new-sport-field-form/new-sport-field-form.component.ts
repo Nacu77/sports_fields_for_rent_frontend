@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Address } from 'src/app/models/address';
 import { SportField } from 'src/app/models/sport-field';
 import { SportFieldService } from 'src/app/services/sport_field/sport-field.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-new-sport-field-form',
@@ -21,12 +22,12 @@ export class NewSportFieldFormComponent {
 
   errorsMap: Map<string, string>;
 
-  constructor(private sportFieldService: SportFieldService) {}
+  constructor(private sportFieldService: SportFieldService, private userService: UserService) {}
 
   newSportField() {
     console.log(this.sportField);
 
-    this.sportField.createdBy = sessionStorage.getItem('app.username');
+    this.sportField.createdBy = this.userService.getUsername();
     this.sportFieldService.create(this.sportField).subscribe({
       next: () => {
         this.errorsMap = new Map<string, string>();

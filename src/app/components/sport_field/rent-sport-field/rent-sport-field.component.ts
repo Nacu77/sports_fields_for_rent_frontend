@@ -7,6 +7,7 @@ import { GetAppointmentsForSpecificDateRequest } from 'src/app/models/requests/g
 import { Schedule } from 'src/app/models/schedule';
 import { AppointmentService } from 'src/app/services/appointment/appointment.service';
 import { SportFieldService } from 'src/app/services/sport_field/sport-field.service';
+import { UserService } from 'src/app/services/user/user.service';
 import { formatSchedule } from 'src/app/utility/format-utilities';
 
 @Component({
@@ -32,6 +33,7 @@ export class RentSportFieldComponent implements OnInit {
   constructor(
     private sportFieldService: SportFieldService,
     private appointmentService: AppointmentService,
+    private userService: UserService,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -52,7 +54,7 @@ export class RentSportFieldComponent implements OnInit {
     appointment.startDateTime = this.selectedDateTimeToMoment(this.selectedDate, this.startTime).format('YYYY-MM-DDTHH:mm:ss');
     appointment.endDateTime = this.selectedDateTimeToMoment(this.selectedDate, this.endTime).format('YYYY-MM-DDTHH:mm:ss');
     appointment.sportFieldId = this.sportFieldId;
-    appointment.createdBy = sessionStorage.getItem('app.username');
+    appointment.createdBy = this.userService.getUsername();
 
     this.appointmentService.create(appointment).subscribe((_appointment) => {
       this.router.navigateByUrl('/profile');
