@@ -2,7 +2,7 @@
   <button
     *ngIf="isCurrent"
     type="button"
-    class="btn-close btn-close m-2"
+    class="btn-close m-2"
     aria-label="Delete"
     style="position: absolute"
     data-bs-toggle="modal"
@@ -31,7 +31,9 @@
     </div>
   </div>
   <div class="card-footer text-center" style="background-color: rgba(0, 0, 0, 0.2)">
-    <a *ngIf="forProfile" class="text-white fst-italic" [routerLink]="['/sport-field', appointment.sportFieldId]">See Field</a>
+    <a *ngIf="forProfile" class="btn btn-outline-light btn-floating mt-2 mb-2" [routerLink]="['/sport-field', appointment.sportFieldId]" role="button"
+      >Visit</a
+    >
     <p *ngIf="!forProfile">
       <span>Created by: </span><span class="fw-bold fst-italic">{{ appointment.createdBy }}</span>
     </p>

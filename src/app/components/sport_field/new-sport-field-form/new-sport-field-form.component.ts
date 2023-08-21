@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Address } from 'src/app/models/address';
 import { SportField } from 'src/app/models/sport-field';
 import { SportFieldService } from 'src/app/services/sport_field/sport-field.service';
@@ -22,16 +23,13 @@ export class NewSportFieldFormComponent {
 
   errorsMap: Map<string, string>;
 
-  constructor(private sportFieldService: SportFieldService, private userService: UserService) {}
+  constructor(private sportFieldService: SportFieldService, private userService: UserService, private router: Router) {}
 
   newSportField() {
-    console.log(this.sportField);
-
     this.sportField.createdBy = this.userService.getUsername();
     this.sportFieldService.create(this.sportField).subscribe({
       next: () => {
-        this.errorsMap = new Map<string, string>();
-        console.log('Success!');
+        this.router.navigateByUrl('/profile');
       },
       error: (e: HttpErrorResponse) => {
         this.errorsMap = new Map<string, string>();

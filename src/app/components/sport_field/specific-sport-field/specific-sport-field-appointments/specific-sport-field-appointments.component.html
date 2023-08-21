@@ -1,12 +1,12 @@
-<div class="bg-light border-top pt-3">
-  <div *ngIf="currentAppointments" class="container mt-3 text-center">
+<div class="bg-light border-top">
+  <div *ngIf="currentAppointments" class="container text-center">
     <!-- Toggle options -->
-    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+    <div class="btn-group d-flex" role="group" aria-label="Basic radio toggle button group">
       <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked (click)="showCurrentAppointments()" />
-      <label class="btn btn-outline-dark" for="btnradio1">Current Appointments</label>
+      <label class="btn btn-outline-dark w-100" for="btnradio1">Current Appointments</label>
 
       <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" (click)="showAppointmentsHistory()" />
-      <label class="btn btn-outline-dark" for="btnradio2">Appointments History</label>
+      <label class="btn btn-outline-dark w-100" for="btnradio2">Appointments History</label>
     </div>
 
     <!-- Current Appointments -->

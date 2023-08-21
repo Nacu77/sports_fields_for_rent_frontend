@@ -3,8 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Appointment } from 'src/app/models/appointment';
 import { GetAppointmentsForSpecificUserRequest } from 'src/app/models/requests/get-appointments-for-specific-user-request';
+import { SportField } from 'src/app/models/sport-field';
 import { User } from 'src/app/models/user';
 import { AppointmentService } from 'src/app/services/appointment/appointment.service';
+import { SportFieldService } from 'src/app/services/sport_field/sport-field.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { formatAppointments } from 'src/app/utility/format-utilities';
 import { savedChangesSnackBar } from 'src/app/utility/snackbar-utilities';
@@ -12,6 +14,7 @@ import { savedChangesSnackBar } from 'src/app/utility/snackbar-utilities';
 enum ProfileOptions {
   CURRENT_APPOINTMENTS,
   APPOINTMENTS_HISTORY,
+  OWNED_FIELDS,
 }
 
 @Component({
@@ -23,13 +26,20 @@ export class ProfileComponent implements OnInit {
   user: User;
   currentAppointments: Array<Appointment>;
   appointmentsHistory: Array<Appointment>;
+  ownedFields: Array<SportField>;
 
   appointmentToCancel: Appointment;
+  fieldToDelete: SportField;
   selectedOption: ProfileOptions = ProfileOptions.CURRENT_APPOINTMENTS;
 
   ProfileOptionsType = ProfileOptions;
 
-  constructor(private userService: UserService, private appointmentService: AppointmentService, private snackBar: MatSnackBar) {}
+  constructor(
+    private userService: UserService,
+    private appointmentService: AppointmentService,
+    private sportFieldService: SportFieldService,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.getAppointments(true);
@@ -45,6 +55,15 @@ export class ProfileComponent implements OnInit {
     this.getAppointments(false);
   }
 
+  showOwnedFields(): void {
+    this.selectedOption = ProfileOptions.OWNED_FIELDS;
+    this.getOwnedFields();
+  }
+
+  displayOwnedFields(): boolean {
+    return this.userService.isUserInRole('OWNER');
+  }
+
   onPrepareCancelAppointment(appointment: Appointment): void {
     this.appointmentToCancel = appointment;
   }
@@ -57,6 +76,22 @@ export class ProfileComponent implements OnInit {
       },
       error: (_e: HttpErrorResponse) => {
         savedChangesSnackBar('Error while canceling appointment', this.snackBar);
+      },
+    });
+  }
+
+  onPrepareDeleteField(sportField: SportField): void {
+    this.fieldToDelete = sportField;
+  }
+
+  onDeleteField(): void {
+    this.sportFieldService.delete(this.fieldToDelete.id).subscribe({
+      next: () => {
+        this.ownedFields = this.ownedFields.filter((ownedField) => ownedField.id !== this.fieldToDelete.id);
+        savedChangesSnackBar('Field deleted successfully', this.snackBar);
+      },
+      error: (_e: HttpErrorResponse) => {
+        savedChangesSnackBar('Error while deleting field', this.snackBar);
       },
     });
   }
@@ -79,6 +114,13 @@ export class ProfileComponent implements OnInit {
           formatAppointments(this.appointmentsHistory);
         }
       });
+    }
+  }
+
+  private getOwnedFields(): void {
+    const username = this.userService.getUsername();
+    if (username) {
+      this.sportFieldService.findAllByUser(username).subscribe((sportFields) => (this.ownedFields = sportFields));
     }
   }
 }

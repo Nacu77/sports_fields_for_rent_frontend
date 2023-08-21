@@ -21,7 +21,7 @@ import { HomeHeaderComponent } from './components/home-header/home-header.compon
 import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SportFieldsComponent } from './components/sport_field/sport-fields/sport-fields.component';
-import { SportFieldCardComponent } from './components/sport_field/common_components/sport-field-card/sport-field-card.component';
+import { SportFieldCardComponent } from './components/common/sport-field-card/sport-field-card.component';
 import { SpecificSportFieldComponent } from './components/sport_field/specific-sport-field/specific-sport-field.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MatSnackBarModule } from '@angular/material/snack-bar';

@@ -15,6 +15,10 @@ export class SportFieldService {
     return this.http.post<SportField>(this.url, sportField);
   }
 
+  delete(id: string): Observable<void> {
+    return this.http.delete<void>(this.url + id);
+  }
+
   findAll(): Observable<Array<SportField>> {
     return this.http.get<Array<SportField>>(this.url);
   }
@@ -25,5 +29,9 @@ export class SportFieldService {
 
   update(sportField: SportField): Observable<SportField> {
     return this.http.put<SportField>(this.url, sportField);
+  }
+
+  findAllByUser(username: string): Observable<Array<SportField>> {
+    return this.http.get<Array<SportField>>(this.url + 'specific/' + username);
   }
 }
