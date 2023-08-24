@@ -57,8 +57,8 @@ export class ProfileCurrentAppointmentsComponent implements OnInit {
       next: () => {
         savedChangesSnackBar('Appointment Post created successfully', this.snackBar);
       },
-      error: (_e: HttpErrorResponse) => {
-        savedChangesSnackBar('Error while creating appointmnent post', this.snackBar);
+      error: (e: HttpErrorResponse) => {
+        savedChangesSnackBar(e.error.message, this.snackBar);
       },
     });
   }
