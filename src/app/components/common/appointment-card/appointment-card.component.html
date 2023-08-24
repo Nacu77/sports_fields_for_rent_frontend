@@ -18,7 +18,7 @@
         <p class="fw-bold fst-italic">Start date:</p>
       </div>
       <div class="col text-start">
-        <p>{{ appointment.startDateTime }}</p>
+        <p>{{ appointment.startDateTime | formatAppointmentDate }}</p>
       </div>
     </div>
     <div class="row">
@@ -26,7 +26,7 @@
         <p class="fw-bold fst-italic">End date:</p>
       </div>
       <div class="col text-start">
-        <p>{{ appointment.endDateTime }}</p>
+        <p>{{ appointment.endDateTime | formatAppointmentDate }}</p>
       </div>
     </div>
   </div>
@@ -37,6 +37,9 @@
     <p *ngIf="!forProfile">
       <span>Created by: </span><span class="fw-bold fst-italic">{{ appointment.createdBy }}</span>
     </p>
+  </div>
+  <div *ngIf="forProfile && isCurrent" class="card-footer text-center p-0" style="background-color: rgba(0, 0, 0, 0.2)">
+    <button class="btn btn-dark btn-floating" style="display: block; width: 100%" (click)="openAppointmentPostDialog()">Add Appointment Post</button>
   </div>
 </div>
 

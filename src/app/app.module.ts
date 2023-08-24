@@ -44,6 +44,8 @@ import { AppointmentCardComponent } from './components/common/appointment-card/a
 import { CustomModalComponent } from './components/common/custom-modal/custom-modal.component';
 import { ShowControlDirective } from './directives/show-control.directive';
 import { SpecificSportFieldAppointmentsComponent } from './components/sport_field/specific-sport-field/specific-sport-field-appointments/specific-sport-field-appointments.component';
+import { AppointmentPostDialogComponent } from './components/common/appointment-card/appointment-post-dialog/appointment-post-dialog.component';
+import { FormatAppointmentDatePipe } from './pipes/format-appointment-date.pipe';
 
 @NgModule({
   declarations: [
@@ -74,6 +76,8 @@ import { SpecificSportFieldAppointmentsComponent } from './components/sport_fiel
     CustomModalComponent,
     ShowControlDirective,
     SpecificSportFieldAppointmentsComponent,
+    AppointmentPostDialogComponent,
+    FormatAppointmentDatePipe,
   ],
   imports: [
     BrowserModule,

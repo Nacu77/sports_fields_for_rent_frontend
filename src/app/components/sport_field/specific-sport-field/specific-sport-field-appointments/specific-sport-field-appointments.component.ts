@@ -5,7 +5,6 @@ import { Appointment } from 'src/app/models/appointment';
 import { GetAppointmentsForSpecificFieldRequest } from 'src/app/models/requests/get-appointments-for-specific-field-request';
 import { SportField } from 'src/app/models/sport-field';
 import { AppointmentService } from 'src/app/services/appointment/appointment.service';
-import { formatAppointments } from 'src/app/utility/format-utilities';
 import { savedChangesSnackBar } from 'src/app/utility/snackbar-utilities';
 
 enum ProfileOptions {
@@ -69,10 +68,8 @@ export class SpecificSportFieldAppointmentsComponent implements OnInit {
     this.appointmentService.getAppointmentsForSpecificField(getAppointmentsForSpecificFieldRequest).subscribe((appointments) => {
       if (isCurrent) {
         this.currentAppointments = appointments;
-        formatAppointments(this.currentAppointments);
       } else {
         this.appointmentsHistory = appointments;
-        formatAppointments(this.appointmentsHistory);
       }
     });
   }

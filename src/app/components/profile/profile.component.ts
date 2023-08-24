@@ -2,13 +2,14 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Appointment } from 'src/app/models/appointment';
+import { AppointmentPost } from 'src/app/models/appointment-post';
 import { GetAppointmentsForSpecificUserRequest } from 'src/app/models/requests/get-appointments-for-specific-user-request';
 import { SportField } from 'src/app/models/sport-field';
 import { User } from 'src/app/models/user';
 import { AppointmentService } from 'src/app/services/appointment/appointment.service';
+import { AppointmentPostService } from 'src/app/services/appointment_post/appointment-post.service';
 import { SportFieldService } from 'src/app/services/sport_field/sport-field.service';
 import { UserService } from 'src/app/services/user/user.service';
-import { formatAppointments } from 'src/app/utility/format-utilities';
 import { savedChangesSnackBar } from 'src/app/utility/snackbar-utilities';
 
 enum ProfileOptions {
@@ -37,6 +38,7 @@ export class ProfileComponent implements OnInit {
   constructor(
     private userService: UserService,
     private appointmentService: AppointmentService,
+    private appointmentPostService: AppointmentPostService,
     private sportFieldService: SportFieldService,
     private snackBar: MatSnackBar
   ) {}
@@ -80,6 +82,17 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  onNewAppointmentPost(appointmentPost: AppointmentPost): void {
+    this.appointmentPostService.create(appointmentPost).subscribe({
+      next: () => {
+        savedChangesSnackBar('Appointment Post created successfully', this.snackBar);
+      },
+      error: (_e: HttpErrorResponse) => {
+        savedChangesSnackBar('Error while creating appointmnent post', this.snackBar);
+      },
+    });
+  }
+
   onPrepareDeleteField(sportField: SportField): void {
     this.fieldToDelete = sportField;
   }
@@ -108,10 +121,8 @@ export class ProfileComponent implements OnInit {
       this.appointmentService.getAppointmentsForSpecificUser(getAppointmentsForSpecificUserRequest).subscribe((appointments) => {
         if (isCurrent) {
           this.currentAppointments = appointments;
-          formatAppointments(this.currentAppointments);
         } else {
           this.appointmentsHistory = appointments;
-          formatAppointments(this.appointmentsHistory);
         }
       });
     }
