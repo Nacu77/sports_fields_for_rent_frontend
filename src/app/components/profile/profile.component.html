@@ -12,7 +12,7 @@
   </h6>
 </div>
 
-<div *ngIf="currentAppointments" class="container text-center">
+<div *ngIf="user" class="container text-center">
   <!-- Toggle options -->
   <div class="btn-group d-flex" role="group" aria-label="Basic radio toggle button group">
     <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked (click)="showCurrentAppointments()" />
@@ -21,51 +21,24 @@
     <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" (click)="showAppointmentsHistory()" />
     <label class="btn btn-outline-dark w-100" for="btnradio2">Appointments History</label>
 
+    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" (click)="showAppointmentPosts()" />
+    <label class="btn btn-outline-dark w-100" for="btnradio3">Appointment Posts</label>
+
     <ng-container *ngIf="displayOwnedFields()">
-      <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" (click)="showOwnedFields()" />
-      <label class="btn btn-outline-dark w-100" for="btnradio3">Owned Fields</label>
+      <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" (click)="showOwnedFields()" />
+      <label class="btn btn-outline-dark w-100" for="btnradio4">Owned Fields</label>
     </ng-container>
   </div>
 
   <!-- Current Appointments -->
-  <div
-    *ngIf="selectedOption === ProfileOptionsType.CURRENT_APPOINTMENTS"
-    class="p-5 row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3"
-  >
-    <div class="col p-0" *ngFor="let appointment of currentAppointments">
-      <app-appointment-card
-        [appointment]="appointment"
-        [isCurrent]="true"
-        [forProfile]="true"
-        (prepareCancelAppointment)="onPrepareCancelAppointment($event)"
-        (cancelAppointment)="onCancelAppointment()"
-        (newAppointmentPost)="onNewAppointmentPost($event)"
-      ></app-appointment-card>
-    </div>
-  </div>
+  <app-profile-current-appointments *ngIf="selectedOption === ProfileOptionsType.CURRENT_APPOINTMENTS" [username]="user.username" />
 
   <!-- Appointments History -->
-  <div
-    *ngIf="selectedOption === ProfileOptionsType.APPOINTMENTS_HISTORY"
-    class="p-5 row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3"
-  >
-    <div class="col p-0" *ngFor="let appointment of appointmentsHistory">
-      <app-appointment-card [appointment]="appointment" [isCurrent]="false" [forProfile]="true"></app-appointment-card>
-    </div>
-  </div>
+  <app-profile-appointments-history *ngIf="selectedOption === ProfileOptionsType.APPOINTMENTS_HISTORY" [username]="user.username" />
+
+  <!-- Appointment Posts -->
+  <app-profile-appointment-posts *ngIf="selectedOption === ProfileOptionsType.APPOINTMENT_POSTS" [username]="user.username" />
 
   <!-- Owned Sport Fields -->
-  <div
-    *ngIf="selectedOption === ProfileOptionsType.OWNED_FIELDS"
-    class="p-5 row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-2 row-cols-xl-3 g-3"
-  >
-    <div class="col p-0" *ngFor="let sportField of ownedFields">
-      <app-sport-field-card
-        [sportField]="sportField"
-        [forProfile]="true"
-        (prepareDeleteField)="onPrepareDeleteField($event)"
-        (deleteField)="onDeleteField()"
-      ></app-sport-field-card>
-    </div>
-  </div>
+  <app-profile-owned-fields *ngIf="selectedOption === ProfileOptionsType.OWNED_FIELDS" [username]="user.username" />
 </div>

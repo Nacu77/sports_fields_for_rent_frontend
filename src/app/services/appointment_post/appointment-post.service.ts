@@ -14,4 +14,12 @@ export class AppointmentPostService {
   create(appointmentPost: AppointmentPost): Observable<AppointmentPost> {
     return this.http.post<AppointmentPost>(this.url, appointmentPost);
   }
+
+  delete(id: string): Observable<void> {
+    return this.http.delete<void>(this.url + id);
+  }
+
+  getAppointmentPostsForSpecificUser(username: string): Observable<Array<AppointmentPost>> {
+    return this.http.get<Array<AppointmentPost>>(this.url + 'get-appointment-posts-for-specific-user/' + username);
+  }
 }

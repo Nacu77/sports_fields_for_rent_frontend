@@ -46,6 +46,11 @@ import { ShowControlDirective } from './directives/show-control.directive';
 import { SpecificSportFieldAppointmentsComponent } from './components/sport_field/specific-sport-field/specific-sport-field-appointments/specific-sport-field-appointments.component';
 import { AppointmentPostDialogComponent } from './components/common/appointment-card/appointment-post-dialog/appointment-post-dialog.component';
 import { FormatAppointmentDatePipe } from './pipes/format-appointment-date.pipe';
+import { AppointmentPostCardComponent } from './components/common/appointment-post-card/appointment-post-card.component';
+import { ProfileCurrentAppointmentsComponent } from './components/profile/profile-current-appointments/profile-current-appointments.component';
+import { ProfileAppointmentsHistoryComponent } from './components/profile/profile-appointments-history/profile-appointments-history.component';
+import { ProfileOwnedFieldsComponent } from './components/profile/profile-owned-fields/profile-owned-fields.component';
+import { ProfileAppointmentPostsComponent } from './components/profile/profile-appointment-posts/profile-appointment-posts.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +83,11 @@ import { FormatAppointmentDatePipe } from './pipes/format-appointment-date.pipe'
     SpecificSportFieldAppointmentsComponent,
     AppointmentPostDialogComponent,
     FormatAppointmentDatePipe,
+    AppointmentPostCardComponent,
+    ProfileCurrentAppointmentsComponent,
+    ProfileAppointmentsHistoryComponent,
+    ProfileOwnedFieldsComponent,
+    ProfileAppointmentPostsComponent,
   ],
   imports: [
     BrowserModule,
