@@ -15,6 +15,10 @@ export class AppointmentPostService {
     return this.http.post<AppointmentPost>(this.url, appointmentPost);
   }
 
+  findAll(): Observable<Array<AppointmentPost>> {
+    return this.http.get<Array<AppointmentPost>>(this.url);
+  }
+
   delete(id: string): Observable<void> {
     return this.http.delete<void>(this.url + id);
   }

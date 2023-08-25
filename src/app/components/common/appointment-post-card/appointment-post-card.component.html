@@ -28,11 +28,14 @@
     </div>
   </div>
   <div class="card-footer text-center">
-    <p>{{ appointmentPost.applicants ? appointmentPost.applicants.length : 0 + "/" + appointmentPost.slots }}</p>
+    <small class="fw-bold fst-italic">{{ appointmentPost.applicants ? appointmentPost.applicants.length : 0 + "/" + appointmentPost.slots }}</small>
   </div>
   <div class="card-footer text-center" style="background-color: rgba(0, 0, 0, 0.2)">
-    <a class="btn btn-outline-light btn-floating mt-2 mb-2" [routerLink]="['/sport-field', appointmentPost.appointment.sportFieldId]" role="button"
-      >Visit</a
+    <button class="btn btn-outline-light mt-2 mb-2">Apply</button>
+  </div>
+  <div class="card-footer bg-light text-center p-0">
+    <a class="btn btn-outline-dark card-footer-button" [routerLink]="['/sport-field', appointmentPost.appointment.sportFieldId]" role="button"
+      >See Field</a
     >
   </div>
 </div>

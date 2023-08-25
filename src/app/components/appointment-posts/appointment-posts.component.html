@@ -1,0 +1,7 @@
+<div class="container">
+  <div class="p-5 row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-3 g-3">
+    <div class="col p-0" *ngFor="let appointmentPost of appointmentPosts">
+      <app-appointment-post-card [appointmentPost]="appointmentPost"></app-appointment-post-card>
+    </div>
+  </div>
+</div>

@@ -9,6 +9,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AuthGuard } from './auth/auth-guard.service';
+import { AppointmentPostsComponent } from './components/appointment-posts/appointment-posts.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'sport-fields', component: SportFieldsComponent },
   { path: 'sport-field/:id', component: SpecificSportFieldComponent },
   { path: 'sport-field/rent/:id', component: RentSportFieldComponent, canActivate: [AuthGuard], data: { authenticated: true } },
+  { path: 'appointment-posts', component: AppointmentPostsComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 

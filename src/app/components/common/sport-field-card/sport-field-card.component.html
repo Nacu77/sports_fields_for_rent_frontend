@@ -24,19 +24,13 @@
   <div class="card-footer text-center">
     <small class="fw-bold fst-italic">{{ sportField.pricePerHour + "$ / hour" }}</small>
   </div>
-  <div class="card-footer text-center" style="background-color: rgba(0, 0, 0, 0.2)">
-    <a class="btn btn-outline-light btn-floating mt-2 mb-2" [routerLink]="['/sport-field', sportField.id]" role="button">Visit</a>
-  </div>
-  <div *ngIf="forProfile" class="card-footer text-center p-0" style="background-color: rgba(0, 0, 0, 0.2)">
-    <button
-      class="btn btn-dark btn-floating"
-      style="display: block; width: 100%"
-      data-bs-toggle="modal"
-      data-bs-target="#fieldDeleteModal"
-      (click)="onPrepareDeleteField()"
-    >
+  <div *ngIf="forProfile" class="card-footer text-center" style="background-color: rgba(0, 0, 0, 0.2)">
+    <button class="btn btn-outline-light mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#fieldDeleteModal" (click)="onPrepareDeleteField()">
       Delete Sport Field
     </button>
+  </div>
+  <div class="card-footer bg-light text-center p-0">
+    <a class="btn btn-outline-dark card-footer-button" [routerLink]="['/sport-field', sportField.id]" role="button">See Field</a>
   </div>
 </div>
 

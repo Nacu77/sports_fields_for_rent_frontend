@@ -30,16 +30,14 @@
       </div>
     </div>
   </div>
-  <div class="card-footer text-center" style="background-color: rgba(0, 0, 0, 0.2)">
-    <a *ngIf="forProfile" class="btn btn-outline-light btn-floating mt-2 mb-2" [routerLink]="['/sport-field', appointment.sportFieldId]" role="button"
-      >Visit</a
-    >
-    <p *ngIf="!forProfile">
-      <span>Created by: </span><span class="fw-bold fst-italic">{{ appointment.createdBy }}</span>
-    </p>
+  <div *ngIf="!forProfile" class="card-footer text-center" style="background-color: rgba(0, 0, 0, 0.2)">
+    <span>Created by: </span><span class="fw-bold fst-italic">{{ appointment.createdBy }}</span>
   </div>
-  <div *ngIf="forProfile && isCurrent" class="card-footer text-center p-0" style="background-color: rgba(0, 0, 0, 0.2)">
-    <button class="btn btn-dark btn-floating" style="display: block; width: 100%" (click)="openAppointmentPostDialog()">Add Appointment Post</button>
+  <div *ngIf="forProfile && isCurrent" class="card-footer text-center" style="background-color: rgba(0, 0, 0, 0.2)">
+    <button class="btn btn-outline-light mt-2 mb-2" (click)="openAppointmentPostDialog()">Add Appointment Post</button>
+  </div>
+  <div *ngIf="forProfile" class="card-footer bg-light text-center p-0">
+    <a class="btn btn-outline-dark card-footer-button" [routerLink]="['/sport-field', appointment.sportFieldId]" role="button">See Field</a>
   </div>
 </div>
 

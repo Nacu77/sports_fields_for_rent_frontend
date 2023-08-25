@@ -3,3 +3,16 @@ img {
   object-fit: cover;
   height: 250px;
 }
+
+:focus {
+  border-color: inherit;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.card-footer-button {
+  display: block;
+  width: 100%;
+  border-radius: 0;
+  border: none;
+}

@@ -17,7 +17,7 @@ import { NewSportFieldFormComponent } from './components/sport_field/new-sport-f
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { HomeHeaderComponent } from './components/home-header/home-header.component';
+import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SportFieldsComponent } from './components/sport_field/sport-fields/sport-fields.component';
@@ -51,13 +51,14 @@ import { ProfileCurrentAppointmentsComponent } from './components/profile/profil
 import { ProfileAppointmentsHistoryComponent } from './components/profile/profile-appointments-history/profile-appointments-history.component';
 import { ProfileOwnedFieldsComponent } from './components/profile/profile-owned-fields/profile-owned-fields.component';
 import { ProfileAppointmentPostsComponent } from './components/profile/profile-appointment-posts/profile-appointment-posts.component';
+import { AppointmentPostsComponent } from './components/appointment-posts/appointment-posts.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NewSportFieldFormComponent,
     NavbarComponent,
-    HomeHeaderComponent,
+    HeaderComponent,
     HomeComponent,
     FooterComponent,
     SportFieldsComponent,
@@ -88,6 +89,7 @@ import { ProfileAppointmentPostsComponent } from './components/profile/profile-a
     ProfileAppointmentsHistoryComponent,
     ProfileOwnedFieldsComponent,
     ProfileAppointmentPostsComponent,
+    AppointmentPostsComponent,
   ],
   imports: [
     BrowserModule,

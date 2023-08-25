@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { EventType, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-home-header',
-  templateUrl: './home-header.component.html',
-  styleUrls: ['./home-header.component.css'],
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.css'],
 })
-export class HomeHeaderComponent {
+export class HeaderComponent {
   url: string;
 
   constructor(private router: Router) {
@@ -33,6 +33,15 @@ export class HomeHeaderComponent {
           title: 'Find something suited for you',
           description: 'Search between different sports and different fields. If something catches your eye, then check it out and rent it',
         };
+
+      case '/appointment-posts':
+        return {
+          backgroundImage: '../../../../assets/images/appointment_posts_image.jpg',
+          title: 'Make new friends while doing sport',
+          description:
+            'If you want to do some sport but your friends are not available, then search here some appointments and apply to make new friends',
+        };
+
       default:
         return null;
     }
