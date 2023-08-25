@@ -40,20 +40,4 @@ export class ProfileAppointmentPostsComponent implements OnInit {
       },
     });
   }
-
-  onAppliedAppointmentPost(appointmentPost: AppointmentPost): void {
-    this.appointmentPostService.update(appointmentPost).subscribe({
-      next: () => {
-        this.appointmentPosts.forEach((appPost) => {
-          if (appPost.id === appointmentPost.id) {
-            appPost = appointmentPost;
-          }
-        });
-        savedChangesSnackBar('Applied successfully to appointment post', this.snackBar);
-      },
-      error: (_e: HttpErrorResponse) => {
-        savedChangesSnackBar('Error while applying to appointment post', this.snackBar);
-      },
-    });
-  }
 }

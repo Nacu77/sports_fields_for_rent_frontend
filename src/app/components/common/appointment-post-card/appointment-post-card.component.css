@@ -10,3 +10,7 @@
   border-radius: 0;
   border: none;
 }
+
+a:hover {
+  cursor: pointer;
+}

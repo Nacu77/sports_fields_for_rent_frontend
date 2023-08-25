@@ -1,0 +1,15 @@
+<h1 mat-dialog-title class="bg-dark text-white text-center mb-4">Applicants</h1>
+
+<div mat-dialog-content class="m-3">
+  <mat-chip-set>
+    <mat-chip *ngFor="let applicant of data.applicants; let applicantIndex = index" (removed)="onApplicantRemove(applicantIndex)" highlighted>
+      {{ applicant }}
+      <mat-icon *ngIf="applicant === data.username" matChipRemove>cancel</mat-icon>
+    </mat-chip>
+  </mat-chip-set>
+</div>
+
+<div mat-dialog-actions class="bg-dark text-white">
+  <button class="btn btn-outline-light me-auto" type="button" (click)="onCancelClick()">Cancel</button>
+  <button class="btn btn-outline-light" type="button" [disabled]="!removedApplicants" (click)="onSaveClick()">Save</button>
+</div>

@@ -12,7 +12,7 @@
     <!-- Current Appointments -->
     <div
       *ngIf="selectedOption === ProfileOptionsType.CURRENT_APPOINTMENTS"
-      class="p-5 row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3"
+      class="p-5 row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-3 g-3"
     >
       <div class="col p-0" *ngFor="let appointment of currentAppointments">
         <app-appointment-card
@@ -27,7 +27,7 @@
     <!-- Appointments History -->
     <div
       *ngIf="selectedOption === ProfileOptionsType.APPOINTMENTS_HISTORY"
-      class="p-5 row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3"
+      class="p-5 row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-3 g-3"
     >
       <div class="col p-0" *ngFor="let appointment of appointmentsHistory">
         <app-appointment-card [appointment]="appointment" [isCurrent]="false"></app-appointment-card>

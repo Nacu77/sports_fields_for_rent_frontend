@@ -3,7 +3,7 @@
     <div class="col p-0" *ngFor="let appointmentPost of appointmentPosts">
       <app-appointment-post-card
         [appointmentPost]="appointmentPost"
-        (appliedAppointmenPost)="onAppliedAppointmentPost($event)"
+        (appliedToAppointmentPost)="onAppliedToAppointmentPost()"
       ></app-appointment-post-card>
     </div>
   </div>

@@ -1,5 +1,7 @@
 <div class="card text-white bg-dark m-2 h-100">
   <button
+    showControl
+    [ownedBy]="appointmentPost.appointment.createdBy"
     type="button"
     class="btn-close m-2"
     aria-label="Delete"
@@ -28,7 +30,9 @@
     </div>
   </div>
   <div class="card-footer text-center">
-    <small class="fw-bold fst-italic">{{ (appointmentPost.applicants ? appointmentPost.applicants.length : 0) + "/" + appointmentPost.slots }}</small>
+    <a class="text-white fw-bold fst-italic" (click)="openApplicantsDialog()">{{
+      (appointmentPost.applicants ? appointmentPost.applicants.length : 0) + "/" + appointmentPost.slots
+    }}</a>
   </div>
   <div class="card-footer text-center" style="background-color: rgba(0, 0, 0, 0.2)">
     <button
