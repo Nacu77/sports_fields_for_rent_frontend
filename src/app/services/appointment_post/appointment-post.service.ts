@@ -19,6 +19,10 @@ export class AppointmentPostService {
     return this.http.get<Array<AppointmentPost>>(this.url);
   }
 
+  update(appointmentPost: AppointmentPost): Observable<AppointmentPost> {
+    return this.http.put<AppointmentPost>(this.url, appointmentPost);
+  }
+
   delete(id: string): Observable<void> {
     return this.http.delete<void>(this.url + id);
   }

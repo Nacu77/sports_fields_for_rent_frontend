@@ -52,6 +52,7 @@ import { ProfileAppointmentsHistoryComponent } from './components/profile/profil
 import { ProfileOwnedFieldsComponent } from './components/profile/profile-owned-fields/profile-owned-fields.component';
 import { ProfileAppointmentPostsComponent } from './components/profile/profile-appointment-posts/profile-appointment-posts.component';
 import { AppointmentPostsComponent } from './components/appointment-posts/appointment-posts.component';
+import { ApplyAppointmentPostDialogComponent } from './components/common/appointment-post-card/apply-appointment-post-dialog/apply-appointment-post-dialog.component';
 
 @NgModule({
   declarations: [
@@ -90,6 +91,7 @@ import { AppointmentPostsComponent } from './components/appointment-posts/appoin
     ProfileOwnedFieldsComponent,
     ProfileAppointmentPostsComponent,
     AppointmentPostsComponent,
+    ApplyAppointmentPostDialogComponent,
   ],
   imports: [
     BrowserModule,

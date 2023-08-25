@@ -1,0 +1,43 @@
+<h1 mat-dialog-title class="bg-dark text-white text-center mb-4">Apply Appointment Post</h1>
+
+<div mat-dialog-content class="m-3">
+  <div class="mb-3">
+    <div class="row">
+      <div class="col text-center">
+        <p class="fw-bold fst-italic">Start date:</p>
+      </div>
+      <div class="col text-start">
+        <p>{{ data.appointmentPost.appointment.startDateTime | formatAppointmentDate }}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-center">
+        <p class="fw-bold fst-italic">End date:</p>
+      </div>
+      <div class="col text-start">
+        <p>{{ data.appointmentPost.appointment.endDateTime | formatAppointmentDate }}</p>
+      </div>
+    </div>
+  </div>
+
+  <form class="text-center">
+    <label for="slotsRange" class="form-label"
+      ><span class="fst-italic fw-bold">Number of slots to reserve: </span><span>{{ slots }}</span></label
+    >
+    <input
+      [(ngModel)]="slots"
+      type="range"
+      class="form-range"
+      min="1"
+      [max]="data.appointmentPost.slots - (data.appointmentPost.applicants ? data.appointmentPost.applicants.length : 0)"
+      step="1"
+      id="slotsRange"
+      name="slotsRange"
+    />
+  </form>
+</div>
+
+<div mat-dialog-actions class="bg-dark text-white">
+  <button class="btn btn-outline-light me-auto" type="button" (click)="onCancelClick()">Cancel</button>
+  <button class="btn btn-outline-light" type="button" (click)="onSaveClick()">Save</button>
+</div>
