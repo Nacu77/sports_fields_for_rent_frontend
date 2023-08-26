@@ -20,9 +20,7 @@ export class ProfileAppointmentPostsComponent implements OnInit {
   constructor(private appointmentPostService: AppointmentPostService, private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
-    this.appointmentPostService
-      .getAppointmentPostsForSpecificUser(this.username)
-      .subscribe((appointmentPosts) => (this.appointmentPosts = appointmentPosts));
+    this.getAppointmentPosts();
   }
 
   onPrepareDeleteAppointmentPost(appointmentPost: AppointmentPost): void {
@@ -39,5 +37,15 @@ export class ProfileAppointmentPostsComponent implements OnInit {
         savedChangesSnackBar('Error while deleting appointment post', this.snackBar);
       },
     });
+  }
+
+  onAppointmentPostUpdated(): void {
+    this.getAppointmentPosts();
+  }
+
+  private getAppointmentPosts(): void {
+    this.appointmentPostService
+      .getAppointmentPostsForSpecificUser(this.username)
+      .subscribe((appointmentPosts) => (this.appointmentPosts = appointmentPosts));
   }
 }

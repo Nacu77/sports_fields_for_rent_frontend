@@ -20,7 +20,7 @@ export class AppointmentPostCardComponent {
 
   @Output() prepareDeleteAppointmentPost = new EventEmitter<AppointmentPost>();
   @Output() deleteAppointmentPost = new EventEmitter<void>();
-  @Output() appliedToAppointmentPost = new EventEmitter<void>();
+  @Output() appointmentPostUpdated = new EventEmitter<void>();
 
   constructor(
     private appointmentPostService: AppointmentPostService,
@@ -55,7 +55,7 @@ export class AppointmentPostCardComponent {
       if (appointmentPost) {
         this.appointmentPostService.update(appointmentPost).subscribe({
           next: () => {
-            this.appliedToAppointmentPost.emit();
+            this.appointmentPostUpdated.emit();
             savedChangesSnackBar('Applied successfully to appointment post', this.snackBar);
           },
           error: (_e: HttpErrorResponse) => {
@@ -84,6 +84,7 @@ export class AppointmentPostCardComponent {
         this.appointmentPost.applicants = applicants;
         this.appointmentPostService.update(this.appointmentPost).subscribe({
           next: () => {
+            this.appointmentPostUpdated.emit();
             savedChangesSnackBar('Edited successfully applicants of appointment post', this.snackBar);
           },
           error: (_e: HttpErrorResponse) => {

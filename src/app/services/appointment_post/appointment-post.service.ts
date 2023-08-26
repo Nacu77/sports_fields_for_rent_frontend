@@ -30,4 +30,8 @@ export class AppointmentPostService {
   getAppointmentPostsForSpecificUser(username: string): Observable<Array<AppointmentPost>> {
     return this.http.get<Array<AppointmentPost>>(this.url + 'get-appointment-posts-for-specific-user/' + username);
   }
+
+  getAppliedAppointmentPostsForSpecificUser(username: string): Observable<Array<AppointmentPost>> {
+    return this.http.get<Array<AppointmentPost>>(this.url + 'get-applied-appointment-posts-for-specific-user/' + username);
+  }
 }

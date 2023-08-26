@@ -54,6 +54,7 @@ import { ProfileAppointmentPostsComponent } from './components/profile/profile-a
 import { AppointmentPostsComponent } from './components/appointment-posts/appointment-posts.component';
 import { ApplyAppointmentPostDialogComponent } from './components/common/appointment-post-card/apply-appointment-post-dialog/apply-appointment-post-dialog.component';
 import { ApplicantsDialogComponent } from './components/common/appointment-post-card/applicants-dialog/applicants-dialog.component';
+import { ProfileAppliedPostsComponent } from './components/profile/profile-applied-posts/profile-applied-posts.component';
 
 @NgModule({
   declarations: [
@@ -94,6 +95,7 @@ import { ApplicantsDialogComponent } from './components/common/appointment-post-
     AppointmentPostsComponent,
     ApplyAppointmentPostDialogComponent,
     ApplicantsDialogComponent,
+    ProfileAppliedPostsComponent,
   ],
   imports: [
     BrowserModule,

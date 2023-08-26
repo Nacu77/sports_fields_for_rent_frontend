@@ -14,19 +14,30 @@
 
 <div *ngIf="user" class="container text-center">
   <!-- Toggle options -->
-  <div class="btn-group d-flex" role="group" aria-label="Basic radio toggle button group">
-    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked (click)="showCurrentAppointments()" />
-    <label class="btn btn-outline-dark w-100" for="btnradio1">Current Appointments</label>
+  <div class="d-flex" [ngClass]="isScreenSmall ? 'btn-group-vertical' : 'btn-group'" role="group" aria-label="Basic radio toggle button group">
+    <input
+      type="radio"
+      class="btn-check"
+      name="btnradio"
+      id="currentAppointmentsOption"
+      autocomplete="off"
+      checked
+      (click)="showCurrentAppointments()"
+    />
+    <label class="btn btn-outline-dark w-100" for="currentAppointmentsOption">Current Appointments</label>
 
-    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" (click)="showAppointmentsHistory()" />
-    <label class="btn btn-outline-dark w-100" for="btnradio2">Appointments History</label>
+    <input type="radio" class="btn-check" name="btnradio" id="appointmentsHistoryOption" autocomplete="off" (click)="showAppointmentsHistory()" />
+    <label class="btn btn-outline-dark w-100" for="appointmentsHistoryOption">Appointments History</label>
 
-    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" (click)="showAppointmentPosts()" />
-    <label class="btn btn-outline-dark w-100" for="btnradio3">Appointment Posts</label>
+    <input type="radio" class="btn-check" name="btnradio" id="appointmentPostsOption" autocomplete="off" (click)="showAppointmentPosts()" />
+    <label class="btn btn-outline-dark w-100" for="appointmentPostsOption">Appointment Posts</label>
+
+    <input type="radio" class="btn-check" name="btnradio" id="appliedPostsOption" autocomplete="off" (click)="showAppliedPosts()" />
+    <label class="btn btn-outline-dark w-100" for="appliedPostsOption">Applied Posts</label>
 
     <ng-container *ngIf="displayOwnedFields()">
-      <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" (click)="showOwnedFields()" />
-      <label class="btn btn-outline-dark w-100" for="btnradio4">Owned Fields</label>
+      <input type="radio" class="btn-check" name="btnradio" id="ownedFieldsOption" autocomplete="off" (click)="showOwnedFields()" />
+      <label class="btn btn-outline-dark w-100" for="ownedFieldsOption">Owned Fields</label>
     </ng-container>
   </div>
 
@@ -38,6 +49,9 @@
 
   <!-- Appointment Posts -->
   <app-profile-appointment-posts *ngIf="selectedOption === ProfileOptionsType.APPOINTMENT_POSTS" [username]="user.username" />
+
+  <!-- Applied Posts -->
+  <app-profile-applied-posts *ngIf="selectedOption === ProfileOptionsType.APPLIED_POSTS" [username]="user.username" />
 
   <!-- Owned Sport Fields -->
   <app-profile-owned-fields *ngIf="selectedOption === ProfileOptionsType.OWNED_FIELDS" [username]="user.username" />

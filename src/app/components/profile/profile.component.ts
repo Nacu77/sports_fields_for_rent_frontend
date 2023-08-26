@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -6,6 +6,7 @@ enum ProfileOptions {
   CURRENT_APPOINTMENTS,
   APPOINTMENTS_HISTORY,
   APPOINTMENT_POSTS,
+  APPLIED_POSTS,
   OWNED_FIELDS,
 }
 
@@ -18,6 +19,8 @@ export class ProfileComponent implements OnInit {
   user: User;
   selectedOption: ProfileOptions = ProfileOptions.CURRENT_APPOINTMENTS;
   ProfileOptionsType = ProfileOptions;
+
+  isScreenSmall: boolean;
 
   constructor(private userService: UserService) {}
 
@@ -40,11 +43,24 @@ export class ProfileComponent implements OnInit {
     this.selectedOption = ProfileOptions.APPOINTMENT_POSTS;
   }
 
+  showAppliedPosts(): void {
+    this.selectedOption = ProfileOptions.APPLIED_POSTS;
+  }
+
   showOwnedFields(): void {
     this.selectedOption = ProfileOptions.OWNED_FIELDS;
   }
 
   displayOwnedFields(): boolean {
     return this.userService.isUserInRole('OWNER');
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    if (window.innerWidth < 700) {
+      this.isScreenSmall = true;
+    } else {
+      this.isScreenSmall = false;
+    }
   }
 }

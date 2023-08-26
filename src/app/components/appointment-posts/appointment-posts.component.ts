@@ -17,7 +17,7 @@ export class AppointmentPostsComponent implements OnInit {
     this.appointmentPostService.findAll().subscribe((appointmentPosts) => (this.appointmentPosts = appointmentPosts));
   }
 
-  onAppliedToAppointmentPost(): void {
+  onAppointmentPostUpdated(): void {
     this.router.navigateByUrl('/profile');
   }
 }
