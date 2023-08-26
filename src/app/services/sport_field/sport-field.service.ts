@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { GetFilteredFieldsRequest } from 'src/app/models/requests/get-filtered-fields-request';
 import { SportField } from 'src/app/models/sport-field';
 
 @Injectable({
@@ -33,5 +34,9 @@ export class SportFieldService {
 
   findAllByUser(username: string): Observable<Array<SportField>> {
     return this.http.get<Array<SportField>>(this.url + 'specific/' + username);
+  }
+
+  getFilteredFields(getFilteredFieldsRequest: GetFilteredFieldsRequest): Observable<Array<SportField>> {
+    return this.http.post<Array<SportField>>(this.url + 'get-filtered-fields', getFilteredFieldsRequest);
   }
 }

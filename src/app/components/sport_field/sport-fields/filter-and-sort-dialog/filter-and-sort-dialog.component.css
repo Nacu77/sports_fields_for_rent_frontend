@@ -15,3 +15,8 @@ label {
   font-style: italic;
   text-align: end;
 }
+
+a:hover,
+i:hover {
+  cursor: pointer;
+}

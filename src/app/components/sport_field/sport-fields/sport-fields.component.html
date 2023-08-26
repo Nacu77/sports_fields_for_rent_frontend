@@ -10,6 +10,14 @@
         <mat-icon matChipRemove>cancel</mat-icon>
       </mat-chip>
     </mat-chip-set>
+
+    <!--Search by name-->
+    <div class="d-flex w-50 ms-auto me-auto">
+      <input [(ngModel)]="searchName" class="form-control" name="searchByName" placeholder="Search By Name" aria-label="Search By Name" />
+      <button class="btn btn-dark" (click)="onSearch()">Search</button>
+    </div>
+
+    <a class="btn btn-outline-dark mt-2" (click)="onReset()">Reset</a>
   </div>
 
   <!--Sport fields cards-->

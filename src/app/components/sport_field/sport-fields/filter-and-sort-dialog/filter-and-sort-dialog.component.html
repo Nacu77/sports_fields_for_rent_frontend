@@ -51,6 +51,20 @@
         <input type="text" [(ngModel)]="data.filterAndSortOptions.city" class="form-control" id="city" name="city" placeholder="City" />
       </div>
     </div>
+
+    <div class="dropdown text-center">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownSort" data-bs-toggle="dropdown" aria-expanded="false">
+        Sort by
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownSort">
+        <li><a class="dropdown-item">Min Price</a></li>
+        <li><a class="dropdown-item">Max Price</a></li>
+        <li><a class="dropdown-item">Country</a></li>
+        <li><a class="dropdown-item">City</a></li>
+      </ul>
+      <span *ngIf="sortAsc" class="ms-2"><i class="fa fa-arrow-up" (click)="sortAsc = !sortAsc"></i></span>
+      <span *ngIf="!sortAsc" class="ms-2"><i class="fa fa-arrow-down" (click)="sortAsc = !sortAsc"></i></span>
+    </div>
   </form>
 
   <div *ngIf="!areFilterOptionsValid()" class="text-center text-danger">{{ "*" + invalidMessage }}</div>

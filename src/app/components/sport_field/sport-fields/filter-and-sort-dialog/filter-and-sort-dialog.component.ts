@@ -9,6 +9,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class FilterAndSortDialogComponent {
   invalidMessage: string | undefined = undefined;
 
+  sortAsc: boolean = true;
+
   constructor(public dialogRef: MatDialogRef<FilterAndSortDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {}
 
   onCancelClick(): void {

@@ -1,4 +1,4 @@
-<div class="card text-white bg-dark m-2 h-100">
+<div class="card text-white text-center bg-dark m-2 h-100">
   <img
     [src]="
       sportField.primaryImage ? 'data:image/jpeg;base64,' + sportField.primaryImage.byteArray : '../../../../assets/images/sport_field_no_image.jpg'
@@ -7,18 +7,10 @@
     alt="Sport Field image"
   />
   <div class="card-body pb-0">
-    <h5 class="card-title fst-italic">{{ sportField.name }}</h5>
+    <h5 class="card-title fst-italic mb-3">{{ sportField.name }}</h5>
     <p class="card-text">
-      {{
-        "Address: " +
-          sportField.address.country +
-          ", " +
-          sportField.address.city +
-          ", " +
-          sportField.address.street +
-          ", " +
-          sportField.address.number
-      }}
+      <span class="fst-italic fw-bold">Address: </span>
+      {{ sportField.address.country + ", " + sportField.address.city + ", " + sportField.address.street + ", " + sportField.address.number }}
     </p>
   </div>
   <div class="card-footer text-center">
