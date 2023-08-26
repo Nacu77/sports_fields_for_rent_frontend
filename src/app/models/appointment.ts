@@ -4,4 +4,5 @@ export interface Appointment {
   createdBy: string | null;
   startDateTime: string;
   endDateTime: string;
+  sportFieldName: string;
 }
