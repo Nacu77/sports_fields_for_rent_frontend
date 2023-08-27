@@ -1,0 +1,18 @@
+<h1 mat-dialog-title class="bg-dark text-white text-center mb-4">Edit Field</h1>
+
+<div mat-dialog-content>
+  <form class="text-center">
+    <app-custom-input [(model)]="data.sportField.name" field="name" type="text" label="Name" [errorsMap]="errorsMap" />
+    <app-custom-input [(model)]="data.sportField.description" field="description" type="text" label="Description" [errorsMap]="errorsMap" />
+    <app-custom-input [(model)]="data.sportField.address.country" field="address.country" type="text" label="Country" [errorsMap]="errorsMap" />
+    <app-custom-input [(model)]="data.sportField.address.city" field="address.city" type="text" label="City" [errorsMap]="errorsMap" />
+    <app-custom-input [(model)]="data.sportField.address.street" field="address.street" type="text" label="Street" [errorsMap]="errorsMap" />
+    <app-custom-input [(model)]="data.sportField.address.number" field="address.number" type="number" label="Number" [errorsMap]="errorsMap" />
+    <app-custom-input [(model)]="data.sportField.pricePerHour" field="pricePerHour" type="number" label="Price ($) / hour" [errorsMap]="errorsMap" />
+  </form>
+</div>
+
+<div mat-dialog-actions class="bg-dark text-white">
+  <button class="btn btn-outline-light me-auto" type="button" (click)="onCancelClick()">Cancel</button>
+  <button class="btn btn-outline-light" type="button" (click)="onSaveClick()">Save</button>
+</div>

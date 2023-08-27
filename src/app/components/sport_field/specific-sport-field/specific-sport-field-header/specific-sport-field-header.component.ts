@@ -1,5 +1,9 @@
 import { Component, Input } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { SportField } from 'src/app/models/sport-field';
+import { EditFieldHeaderDialogComponent } from './edit-field-header-dialog/edit-field-header-dialog.component';
+import { savedChangesSnackBar } from 'src/app/utility/snackbar-utilities';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-specific-sport-field-header',
@@ -9,6 +13,8 @@ import { SportField } from 'src/app/models/sport-field';
 export class SpecificSportFieldHeaderComponent {
   @Input() sportField: SportField;
   @Input() isScheduleSet: boolean;
+
+  constructor(public dialog: MatDialog, private snackBar: MatSnackBar) {}
 
   getHeaderImage(): string {
     switch (this.sportField.type?.toString()) {
@@ -23,5 +29,20 @@ export class SpecificSportFieldHeaderComponent {
     }
   }
 
-  openEditFieldHeader(): void {}
+  openEditFieldHeader(): void {
+    let sportField = { ...this.sportField };
+    sportField.address = { ...this.sportField.address };
+
+    const dialogRef = this.dialog.open(EditFieldHeaderDialogComponent, {
+      data: { sportField: sportField },
+      minWidth: '40%',
+    });
+
+    dialogRef.afterClosed().subscribe((updatedSportField) => {
+      if (updatedSportField) {
+        this.sportField = updatedSportField;
+        savedChangesSnackBar('Field edited successfully', this.snackBar);
+      }
+    });
+  }
 }

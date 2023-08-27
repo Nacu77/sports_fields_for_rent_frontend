@@ -11,7 +11,6 @@ import { Schedule } from 'src/app/models/schedule';
 })
 export class SpecificSportFieldScheduleComponent {
   @Input() sportField: SportField;
-  @Input() isScheduleSet: boolean;
 
   @Output() scheduleChange = new EventEmitter<Schedule>();
 

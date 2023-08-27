@@ -58,6 +58,7 @@ import { ProfileAppliedPostsComponent } from './components/profile/profile-appli
 import { NoResultsComponent } from './components/common/no-results/no-results.component';
 import { LoadingComponent } from './components/common/loading/loading.component';
 import { EditProfileDialogComponent } from './components/profile/edit-profile-dialog/edit-profile-dialog.component';
+import { EditFieldHeaderDialogComponent } from './components/sport_field/specific-sport-field/specific-sport-field-header/edit-field-header-dialog/edit-field-header-dialog.component';
 
 @NgModule({
   declarations: [
@@ -102,6 +103,7 @@ import { EditProfileDialogComponent } from './components/profile/edit-profile-di
     NoResultsComponent,
     LoadingComponent,
     EditProfileDialogComponent,
+    EditFieldHeaderDialogComponent,
   ],
   imports: [
     BrowserModule,
