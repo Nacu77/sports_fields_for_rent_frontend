@@ -85,13 +85,43 @@ export class RentSportFieldComponent implements OnInit {
       date: moment(this.selectedDate).format('YYYY-MM-DD'),
     };
 
-    this.appointmentService.getAppointmentsForSpecificDate(getAppointmentsForSpecificDateRequest).subscribe((currentAppointments) => {
-      this.currentAppointments = currentAppointments.map((appointment) => {
-        appointment.startDateTime = moment(appointment.startDateTime).format('HH:mm');
-        appointment.endDateTime = moment(appointment.endDateTime).format('HH:mm');
-        return appointment;
+    this.appointmentService
+      .getAppointmentsForSpecificDate(getAppointmentsForSpecificDateRequest)
+      .subscribe((currentAppointments) => (this.currentAppointments = currentAppointments));
+  }
+
+  generateFreeSlots(): Array<any> {
+    let freeSlots: Array<any> = new Array<any>();
+    const scheduleStartTime = this.selectedDateTimeToMoment(this.selectedDate, this.minTime).format('YYYY-MM-DDTHH:mm:ss');
+    const scheduleEndTime = this.selectedDateTimeToMoment(this.selectedDate, this.maxTime).format('YYYY-MM-DDTHH:mm:ss');
+
+    // add slot from schedule start to first appointment
+    if (scheduleStartTime !== this.currentAppointments[0].startDateTime) {
+      freeSlots.push({
+        startDateTime: scheduleStartTime,
+        endDateTime: this.currentAppointments[0].startDateTime,
       });
-    });
+    }
+
+    // add slots between appointments
+    for (let i = 1; i < this.currentAppointments.length; i++) {
+      if (this.currentAppointments[i - 1].endDateTime !== this.currentAppointments[i].startDateTime) {
+        freeSlots.push({
+          startDateTime: this.currentAppointments[i - 1].endDateTime,
+          endDateTime: this.currentAppointments[i].startDateTime,
+        });
+      }
+    }
+
+    // add slot from last appointment to schedule end
+    if (scheduleEndTime !== this.currentAppointments[this.currentAppointments.length - 1].endDateTime) {
+      freeSlots.push({
+        startDateTime: this.currentAppointments[this.currentAppointments.length - 1].endDateTime,
+        endDateTime: scheduleEndTime,
+      });
+    }
+
+    return freeSlots;
   }
 
   private setMinAndMaxTime(): void {

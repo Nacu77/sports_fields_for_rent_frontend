@@ -1,14 +1,14 @@
 <div class="row m-5 d-flex justify-content-center">
-  <div class="col-md-4">
-    <!--Calendar-->
+  <!--Calendar-->
+  <div class="col-md-5">
     <h3 class="text-center mb-3 fst-italic">Pick a day</h3>
     <mat-card class="demo-inline-calendar-card">
       <mat-calendar [(selected)]="selectedDate" [minDate]="minDate" (selectedChange)="onDaySelected()"></mat-calendar>
     </mat-card>
   </div>
 
-  <div class="col-md-4 text-center">
-    <!--Time inputs-->
+  <!--Time inputs-->
+  <div class="col-md-5 text-center">
     <h3 class="text-center mb-3 fst-italic">Pick a range time</h3>
     <div class="input-group mb-2 w-50 container p-0">
       <input
@@ -62,15 +62,31 @@
   </div>
 </div>
 
-<div class="row m-5 d-flex justify-content-center border-top pt-4">
-  <div class="col-md-4 text-center">
-    <!--Current Appointments-->
+<div class="row m-0 d-flex justify-content-center border-top bg-light py-4">
+  <!--Current Appointments-->
+  <div class="col-md-5 text-center">
     <h3 class="text-center mb-3 fst-italic">Current Appointments</h3>
-    <p *ngIf="!currentAppointments" class="text-muted">Please select a day!</p>
-    <p *ngIf="currentAppointments && currentAppointments.length == 0" class="text-muted">All day is free!</p>
+    <p *ngIf="!currentAppointments" class="fw-bold">Please select a day!</p>
+    <p *ngIf="currentAppointments && currentAppointments.length == 0" class="fw-bold">All day is free!</p>
     <div *ngIf="currentAppointments && currentAppointments.length > 0">
       <div *ngFor="let appointment of currentAppointments">
-        <p class="text-muted">{{ appointment.startDateTime + " - " + appointment.endDateTime }}</p>
+        <p class="fw-bold text-danger">
+          {{ (appointment.startDateTime | formatAppointmentDate : "HH:mm") + " - " + (appointment.endDateTime | formatAppointmentDate : "HH:mm") }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!--Free Appointments-->
+  <div class="col-md-5 text-center">
+    <h3 class="text-center mb-3 fst-italic">Free Slots</h3>
+    <p *ngIf="!currentAppointments" class="fw-bold">Please select a day!</p>
+    <p *ngIf="currentAppointments && currentAppointments.length == 0" class="fw-bold">All day is free!</p>
+    <div *ngIf="currentAppointments && currentAppointments.length > 0">
+      <div *ngFor="let slot of generateFreeSlots()">
+        <p class="fw-bold text-success">
+          {{ (slot.startDateTime | formatAppointmentDate : "HH:mm") + " - " + (slot.endDateTime | formatAppointmentDate : "HH:mm") }}
+        </p>
       </div>
     </div>
   </div>
