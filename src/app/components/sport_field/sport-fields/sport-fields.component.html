@@ -26,15 +26,14 @@
       <app-sport-field-card [sportField]="sportField"></app-sport-field-card>
     </div>
   </div>
+
+  <!--No Results-->
+  <ng-container *ngIf="sportFields.length == 0">
+    <app-no-results message="There where 0 sport fields fetched..." />
+  </ng-container>
 </div>
 
 <!--Loading-->
-<div *ngIf="!sportFieldsLoaded" class="container-fluid text-center mt-5 mb-5">
-  <h1 class="fst-italic fw-bold mb-5">Loading...</h1>
-
-  <ng-container *ngFor="let i of [0, 1, 2]">
-    <div class="spinner-grow spinner-grow-md m-2" style="width: 3rem; height: 3rem" role="status">
-      <span class="visually-hidden">Loading...</span>
-    </div>
-  </ng-container>
-</div>
+<ng-container *ngIf="!sportFieldsLoaded">
+  <app-loading />
+</ng-container>

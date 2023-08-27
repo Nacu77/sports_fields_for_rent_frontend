@@ -55,6 +55,8 @@ import { AppointmentPostsComponent } from './components/appointment-posts/appoin
 import { ApplyAppointmentPostDialogComponent } from './components/common/appointment-post-card/apply-appointment-post-dialog/apply-appointment-post-dialog.component';
 import { ApplicantsDialogComponent } from './components/common/appointment-post-card/applicants-dialog/applicants-dialog.component';
 import { ProfileAppliedPostsComponent } from './components/profile/profile-applied-posts/profile-applied-posts.component';
+import { NoResultsComponent } from './components/common/no-results/no-results.component';
+import { LoadingComponent } from './components/common/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -96,6 +98,8 @@ import { ProfileAppliedPostsComponent } from './components/profile/profile-appli
     ApplyAppointmentPostDialogComponent,
     ApplicantsDialogComponent,
     ProfileAppliedPostsComponent,
+    NoResultsComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
