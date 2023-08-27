@@ -9,11 +9,11 @@ import { UserService } from 'src/app/services/user/user.service';
 import { savedChangesSnackBar } from 'src/app/utility/snackbar-utilities';
 
 @Component({
-  selector: 'app-new-sport-field-form',
-  templateUrl: './new-sport-field-form.component.html',
-  styleUrls: ['./new-sport-field-form.component.css'],
+  selector: 'app-new-sport-field',
+  templateUrl: './new-sport-field.component.html',
+  styleUrls: ['./new-sport-field.component.css'],
 })
-export class NewSportFieldFormComponent implements OnInit {
+export class NewSportFieldComponent implements OnInit {
   sportField = {
     name: '',
     address: {

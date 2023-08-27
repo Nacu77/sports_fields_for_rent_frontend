@@ -13,7 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NewSportFieldFormComponent } from './components/sport_field/new-sport-field-form/new-sport-field-form.component';
+import { NewSportFieldComponent } from './components/new-sport-field/new-sport-field.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -26,9 +26,9 @@ import { SpecificSportFieldComponent } from './components/sport_field/specific-s
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ScheduleDialogComponent } from './components/sport_field/specific-sport-field/schedule-dialog/schedule-dialog.component';
-import { TimeRangeInputComponent } from './components/sport_field/common_components/time-range-input/time-range-input.component';
-import { RentSportFieldComponent } from './components/sport_field/rent-sport-field/rent-sport-field.component';
-import { ScheduleComponent } from './components/sport_field/common_components/schedule/schedule.component';
+import { TimeRangeInputComponent } from './components/common/time-range-input/time-range-input.component';
+import { RentSportFieldComponent } from './components/rent-sport-field/rent-sport-field.component';
+import { ScheduleComponent } from './components/common/schedule/schedule.component';
 import { FilterAndSortDialogComponent } from './components/sport_field/sport-fields/filter-and-sort-dialog/filter-and-sort-dialog.component';
 import { SpecificSportFieldHeaderComponent } from './components/sport_field/specific-sport-field/specific-sport-field-header/specific-sport-field-header.component';
 import { SpecificSportFieldScheduleComponent } from './components/sport_field/specific-sport-field/specific-sport-field-schedule/specific-sport-field-schedule.component';
@@ -62,7 +62,7 @@ import { EditProfileDialogComponent } from './components/profile/edit-profile-di
 @NgModule({
   declarations: [
     AppComponent,
-    NewSportFieldFormComponent,
+    NewSportFieldComponent,
     NavbarComponent,
     HeaderComponent,
     HomeComponent,
