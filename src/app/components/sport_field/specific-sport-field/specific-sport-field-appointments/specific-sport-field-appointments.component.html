@@ -24,6 +24,11 @@
       </div>
     </div>
 
+    <!-- No Current Appointments -->
+    <ng-container *ngIf="selectedOption === ProfileOptionsType.CURRENT_APPOINTMENTS && currentAppointments?.length === 0">
+      <app-no-results message="There are no appointments made yet." />
+    </ng-container>
+
     <!-- Appointments History -->
     <div
       *ngIf="selectedOption === ProfileOptionsType.APPOINTMENTS_HISTORY"
@@ -33,5 +38,10 @@
         <app-appointment-card [appointment]="appointment" [isCurrent]="false"></app-appointment-card>
       </div>
     </div>
+
+    <!-- No Appointments History -->
+    <ng-container *ngIf="selectedOption === ProfileOptionsType.APPOINTMENTS_HISTORY && appointmentsHistory?.length === 0">
+      <app-no-results message="There is no appointments history yet." />
+    </ng-container>
   </div>
 </div>

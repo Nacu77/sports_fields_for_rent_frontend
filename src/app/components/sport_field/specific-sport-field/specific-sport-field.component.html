@@ -1,4 +1,4 @@
-<ng-container *ngIf="sportField">
+<ng-container *ngIf="loaded">
   <!--HEADER-->
   <app-specific-sport-field-header [sportField]="sportField" [isScheduleSet]="isScheduleSet()" />
 
@@ -14,6 +14,11 @@
 
   <!--APPOINTMENTS-->
   <app-specific-sport-field-appointments *ngIf="shouldElementDisplay()" [sportField]="sportField" />
+</ng-container>
+
+<!--Loading-->
+<ng-container *ngIf="!loaded">
+  <app-loading />
 </ng-container>
 
 <!--MAP-->

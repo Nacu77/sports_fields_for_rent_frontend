@@ -22,4 +22,6 @@ export class SpecificSportFieldHeaderComponent {
         return '';
     }
   }
+
+  openEditFieldHeader(): void {}
 }

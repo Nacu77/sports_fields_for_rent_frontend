@@ -17,6 +17,7 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class SpecificSportFieldComponent implements OnInit {
   sportField: SportField;
+  loaded: boolean = false;
 
   constructor(
     private sportFieldService: SportFieldService,
@@ -30,6 +31,7 @@ export class SpecificSportFieldComponent implements OnInit {
       this.sportFieldService.findById(params['id']).subscribe((sportField) => {
         this.sportField = sportField;
         formatSchedule(this.sportField.schedule);
+        this.loaded = true;
       });
     });
   }

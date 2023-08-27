@@ -49,6 +49,10 @@
       </div>
     </div>
   </div>
+
+  <ng-container *ngIf="images?.length === 0">
+    <app-no-results message="No images added in the gallery." />
+  </ng-container>
 </div>
 
 <!-- Delete Confirmation Modal -->
