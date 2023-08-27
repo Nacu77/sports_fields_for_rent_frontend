@@ -1,0 +1,16 @@
+<h1 mat-dialog-title class="bg-dark text-white text-center mb-4">Edit User</h1>
+
+<div mat-dialog-content>
+  <form class="text-center">
+    <app-custom-input [(model)]="data.user.firstName" field="firstName" type="text" label="First Name" [errorsMap]="errorsMap" />
+    <app-custom-input [(model)]="data.user.lastName" field="lastName" type="text" label="Last Name" [errorsMap]="errorsMap" />
+    <app-custom-input [(model)]="data.user.email" field="email" type="email" label="Email" [errorsMap]="errorsMap" />
+    <app-custom-input [(model)]="data.user.phoneNumber" field="phoneNumber" type="number" label="Phone Number" [errorsMap]="errorsMap" />
+    <app-custom-input [(model)]="data.user.password" field="password" type="password" label="New Password" [errorsMap]="errorsMap" />
+  </form>
+</div>
+
+<div mat-dialog-actions class="bg-dark text-white">
+  <button class="btn btn-outline-light me-auto" type="button" (click)="onCancelClick()">Cancel</button>
+  <button class="btn btn-outline-light" type="button" (click)="onSaveClick()">Save</button>
+</div>

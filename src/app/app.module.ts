@@ -57,6 +57,7 @@ import { ApplicantsDialogComponent } from './components/common/appointment-post-
 import { ProfileAppliedPostsComponent } from './components/profile/profile-applied-posts/profile-applied-posts.component';
 import { NoResultsComponent } from './components/common/no-results/no-results.component';
 import { LoadingComponent } from './components/common/loading/loading.component';
+import { EditProfileDialogComponent } from './components/profile/edit-profile-dialog/edit-profile-dialog.component';
 
 @NgModule({
   declarations: [
@@ -100,6 +101,7 @@ import { LoadingComponent } from './components/common/loading/loading.component'
     ProfileAppliedPostsComponent,
     NoResultsComponent,
     LoadingComponent,
+    EditProfileDialogComponent,
   ],
   imports: [
     BrowserModule,

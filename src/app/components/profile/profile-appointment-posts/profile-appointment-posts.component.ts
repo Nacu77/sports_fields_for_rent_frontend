@@ -14,6 +14,7 @@ export class ProfileAppointmentPostsComponent implements OnInit {
   @Input() username: string;
 
   appointmentPosts: Array<AppointmentPost>;
+  loaded: boolean = false;
 
   private appointmentPostToDelete: AppointmentPost;
 
@@ -44,8 +45,9 @@ export class ProfileAppointmentPostsComponent implements OnInit {
   }
 
   private getAppointmentPosts(): void {
-    this.appointmentPostService
-      .getAppointmentPostsForSpecificUser(this.username)
-      .subscribe((appointmentPosts) => (this.appointmentPosts = appointmentPosts));
+    this.appointmentPostService.getAppointmentPostsForSpecificUser(this.username).subscribe((appointmentPosts) => {
+      this.appointmentPosts = appointmentPosts;
+      this.loaded = true;
+    });
   }
 }

@@ -1,6 +1,10 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user/user.service';
+import { EditProfileDialogComponent } from './edit-profile-dialog/edit-profile-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { savedChangesSnackBar } from 'src/app/utility/snackbar-utilities';
 
 enum ProfileOptions {
   CURRENT_APPOINTMENTS,
@@ -21,13 +25,17 @@ export class ProfileComponent implements OnInit {
   ProfileOptionsType = ProfileOptions;
 
   isScreenSmall: boolean;
+  profileLoaded: boolean = false;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, public dialog: MatDialog, private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     const username = this.userService.getUsername();
     if (username) {
-      this.userService.getProfile(username).subscribe((user) => (this.user = user));
+      this.userService.getProfile(username).subscribe((user) => {
+        this.user = user;
+        this.profileLoaded = true;
+      });
     }
   }
 
@@ -62,5 +70,22 @@ export class ProfileComponent implements OnInit {
     } else {
       this.isScreenSmall = false;
     }
+  }
+
+  openEditProfileDialog(): void {
+    let user = { ...this.user };
+    user.password = undefined;
+
+    const dialogRef = this.dialog.open(EditProfileDialogComponent, {
+      data: { user: user, password: this.user.password },
+      minWidth: '30%',
+    });
+
+    dialogRef.afterClosed().subscribe((updatedUser) => {
+      if (updatedUser) {
+        this.user = updatedUser;
+        savedChangesSnackBar('Profile edited successfully', this.snackBar);
+      }
+    });
   }
 }

@@ -34,6 +34,10 @@ export class UserService {
     return this.http.get<User>(this.url + username);
   }
 
+  updateProfile(user: User): Observable<User> {
+    return this.http.put<User>(this.url, user);
+  }
+
   isLoggedIn(): boolean {
     return sessionStorage.getItem('app.token') != null;
   }

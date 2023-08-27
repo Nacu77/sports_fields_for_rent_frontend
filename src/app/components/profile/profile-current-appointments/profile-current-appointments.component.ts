@@ -17,6 +17,7 @@ export class ProfileCurrentAppointmentsComponent implements OnInit {
   @Input() username: string;
 
   currentAppointments: Array<Appointment>;
+  loaded: boolean = false;
 
   private appointmentToCancel: Appointment;
 
@@ -31,9 +32,10 @@ export class ProfileCurrentAppointmentsComponent implements OnInit {
       username: this.username,
       isCurrent: true,
     };
-    this.appointmentService
-      .getAppointmentsForSpecificUser(getAppointmentsForSpecificUserRequest)
-      .subscribe((appointments) => (this.currentAppointments = appointments));
+    this.appointmentService.getAppointmentsForSpecificUser(getAppointmentsForSpecificUserRequest).subscribe((appointments) => {
+      this.currentAppointments = appointments;
+      this.loaded = true;
+    });
   }
 
   onPrepareCancelAppointment(appointment: Appointment): void {

@@ -12,6 +12,7 @@ export class ProfileAppointmentsHistoryComponent implements OnInit {
   @Input() username: string;
 
   appointmentsHistory: Array<Appointment>;
+  loaded: boolean = false;
 
   constructor(private appointmentService: AppointmentService) {}
 
@@ -20,8 +21,9 @@ export class ProfileAppointmentsHistoryComponent implements OnInit {
       username: this.username,
       isCurrent: false,
     };
-    this.appointmentService
-      .getAppointmentsForSpecificUser(getAppointmentsForSpecificUserRequest)
-      .subscribe((appointments) => (this.appointmentsHistory = appointments));
+    this.appointmentService.getAppointmentsForSpecificUser(getAppointmentsForSpecificUserRequest).subscribe((appointments) => {
+      this.appointmentsHistory = appointments;
+      this.loaded = true;
+    });
   }
 }

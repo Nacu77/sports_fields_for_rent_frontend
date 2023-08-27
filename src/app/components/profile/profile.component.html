@@ -1,6 +1,7 @@
 <!-- HEADER -->
-<div *ngIf="user" class="container-fluid border-bottom bg-light text-center p-5">
+<div *ngIf="profileLoaded" class="container-fluid border-bottom bg-light text-center p-5">
   <h1 class="fst-italic fw-bold mb-5">{{ user.lastName + " " + user.firstName }}</h1>
+  <i class="fa-solid fa-pen-to-square" (click)="openEditProfileDialog()"></i>
   <h6>
     <span class="fst-italic fw-bold">Username: </span><span>{{ user.username }}</span>
   </h6>
@@ -12,7 +13,7 @@
   </h6>
 </div>
 
-<div *ngIf="user" class="container text-center">
+<div *ngIf="profileLoaded" class="container text-center">
   <!-- Toggle options -->
   <div class="d-flex" [ngClass]="isScreenSmall ? 'btn-group-vertical' : 'btn-group'" role="group" aria-label="Basic radio toggle button group">
     <input
@@ -56,3 +57,8 @@
   <!-- Owned Sport Fields -->
   <app-profile-owned-fields *ngIf="selectedOption === ProfileOptionsType.OWNED_FIELDS" [username]="user.username" />
 </div>
+
+<!--Loading-->
+<ng-container *ngIf="!profileLoaded">
+  <app-loading />
+</ng-container>

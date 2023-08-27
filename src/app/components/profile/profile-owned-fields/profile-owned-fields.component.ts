@@ -14,13 +14,17 @@ export class ProfileOwnedFieldsComponent implements OnInit {
   @Input() username: string;
 
   ownedFields: Array<SportField>;
+  loaded: boolean = false;
 
   private fieldToDelete: SportField;
 
   constructor(private sportFieldService: SportFieldService, private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
-    this.sportFieldService.findAllByUser(this.username).subscribe((sportFields) => (this.ownedFields = sportFields));
+    this.sportFieldService.findAllByUser(this.username).subscribe((sportFields) => {
+      this.ownedFields = sportFields;
+      this.loaded = true;
+    });
   }
 
   onPrepareDeleteField(sportField: SportField): void {

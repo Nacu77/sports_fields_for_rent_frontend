@@ -8,3 +8,15 @@
     ></app-appointment-post-card>
   </div>
 </div>
+
+<!--No Results-->
+<ng-container *ngIf="appointmentPosts?.length == 0">
+  <app-no-results
+    message="You didn't create an appointment post. Go to the Current Appointments tab and choose an appointment if you want to create a post."
+  />
+</ng-container>
+
+<!--Loading-->
+<ng-container *ngIf="!loaded">
+  <app-loading />
+</ng-container>

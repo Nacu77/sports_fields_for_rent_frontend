@@ -8,3 +8,13 @@
     ></app-sport-field-card>
   </div>
 </div>
+
+<!--No Results-->
+<ng-container *ngIf="ownedFields?.length == 0">
+  <app-no-results message="You don't have any fields registered. Go to the New Field page to create a new field." />
+</ng-container>
+
+<!--Loading-->
+<ng-container *ngIf="!loaded">
+  <app-loading />
+</ng-container>

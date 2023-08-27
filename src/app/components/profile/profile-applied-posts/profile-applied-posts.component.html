@@ -3,3 +3,13 @@
     <app-appointment-post-card [appointmentPost]="appointmentPost" (appointmentPostUpdated)="onAppointmentPostUpdated()"></app-appointment-post-card>
   </div>
 </div>
+
+<!--No Results-->
+<ng-container *ngIf="appointmentPosts?.length == 0">
+  <app-no-results message="You didn't apply for an appointment. Go to the Appointment Posts page if you want to apply." />
+</ng-container>
+
+<!--Loading-->
+<ng-container *ngIf="!loaded">
+  <app-loading />
+</ng-container>

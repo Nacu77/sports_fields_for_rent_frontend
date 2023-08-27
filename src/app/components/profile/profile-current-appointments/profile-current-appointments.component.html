@@ -10,3 +10,13 @@
     ></app-appointment-card>
   </div>
 </div>
+
+<!--No Results-->
+<ng-container *ngIf="currentAppointments?.length == 0">
+  <app-no-results message="You have no current appointments. Search for a field, then do an appointment and it will be displayed here." />
+</ng-container>
+
+<!--Loading-->
+<ng-container *ngIf="!loaded">
+  <app-loading />
+</ng-container>

@@ -11,6 +11,7 @@ export class ProfileAppliedPostsComponent {
   @Input() username: string;
 
   appointmentPosts: Array<AppointmentPost>;
+  loaded: boolean = false;
 
   constructor(private appointmentPostService: AppointmentPostService) {}
 
@@ -23,8 +24,9 @@ export class ProfileAppliedPostsComponent {
   }
 
   private getAppliedAppointmentPosts(): void {
-    this.appointmentPostService
-      .getAppliedAppointmentPostsForSpecificUser(this.username)
-      .subscribe((appointmentPosts) => (this.appointmentPosts = appointmentPosts));
+    this.appointmentPostService.getAppliedAppointmentPostsForSpecificUser(this.username).subscribe((appointmentPosts) => {
+      this.appointmentPosts = appointmentPosts;
+      this.loaded = true;
+    });
   }
 }
