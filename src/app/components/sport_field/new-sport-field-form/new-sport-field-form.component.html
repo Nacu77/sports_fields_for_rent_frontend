@@ -1,112 +1,34 @@
-<div class="p-5 m-5">
-  <div class="card text-center">
-    <div class="card-header bg-dark text-white">Add New Sport Field</div>
+<div class="p-5" style="background-color: rgba(0, 0, 0, 0.1)">
+  <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 justify-content-center">
+    <div class="col">
+      <div class="card text-center">
+        <div class="card-header bg-dark text-white">
+          <h2 class="fw-bold fst-italic">Add New Sport Field</h2>
+        </div>
 
-    <div class="card-body container bg-image p-0">
-      <div class="mask p-5" style="background-color: rgba(0, 0, 0, 0.6); width: 100%; height: 100%">
-        <form>
-          <div class="form-floating mb-3">
-            <input
-              type="text"
-              class="form-control"
-              id="nameInput"
-              placeholder="Name"
-              name="name"
-              [(ngModel)]="sportField.name"
-              [ngClass]="errorsMap ? (errorsMap.has('name') ? 'is-invalid' : 'is-valid') : ''"
-            />
-            <label for="nameInput">Name</label>
-            <span *ngIf="errorsMap && errorsMap.has('name')" class="text-danger fw-bold fs-6">*{{ errorsMap.get("name") }}</span>
-          </div>
-
-          <div class="form-floating mb-3">
-            <textarea
-              class="form-control"
-              id="descriptionTextarea"
-              placeholder="Description"
-              name="description"
-              [(ngModel)]="sportField.description"
-            ></textarea>
-            <label for="descriptionTextarea">Description</label>
-          </div>
-
-          <div class="form-floating mb-3">
-            <input
-              type="text"
-              class="form-control"
-              id="countryInput"
-              placeholder="Country"
-              name="description"
-              [(ngModel)]="sportField.address.country"
-              [ngClass]="errorsMap ? (errorsMap.has('address.country') ? 'is-invalid' : 'is-valid') : ''"
-            />
-            <label for="countryInput">Country</label>
-            <span *ngIf="errorsMap && errorsMap.has('address.country')" class="text-danger fw-bold fs-6"
-              >*{{ errorsMap.get("address.country") }}</span
-            >
-          </div>
-
-          <div class="form-floating mb-3">
-            <input
-              type="text"
-              class="form-control"
-              id="cityInput"
-              placeholder="City"
-              name="city"
-              [(ngModel)]="sportField.address.city"
-              [ngClass]="errorsMap ? (errorsMap.has('address.city') ? 'is-invalid' : 'is-valid') : ''"
-            />
-            <label for="cityInput">City</label>
-            <span *ngIf="errorsMap && errorsMap.has('address.city')" class="text-danger fw-bold fs-6">*{{ errorsMap.get("address.city") }}</span>
-          </div>
-
-          <div class="form-floating mb-3">
-            <input
-              type="text"
-              class="form-control"
-              id="streetInput"
-              placeholder="Street"
-              name="street"
-              [(ngModel)]="sportField.address.street"
-              [ngClass]="errorsMap ? (errorsMap.has('address.street') ? 'is-invalid' : 'is-valid') : ''"
-            />
-            <label for="streetInput">Street</label>
-            <span *ngIf="errorsMap && errorsMap.has('address.street')" class="text-danger fw-bold fs-6">*{{ errorsMap.get("address.street") }}</span>
-          </div>
-
-          <div class="form-floating mb-3">
-            <input
+        <div class="card-body container p-5">
+          <form>
+            <app-custom-input [(model)]="sportField.name" field="name" type="text" label="Name" [errorsMap]="errorsMap" />
+            <app-custom-input [(model)]="sportField.description" field="description" type="text" label="Description" [errorsMap]="errorsMap" />
+            <app-custom-input [(model)]="sportField.address.country" field="address.country" type="text" label="Country" [errorsMap]="errorsMap" />
+            <app-custom-input [(model)]="sportField.address.city" field="address.city" type="text" label="City" [errorsMap]="errorsMap" />
+            <app-custom-input [(model)]="sportField.address.street" field="address.street" type="text" label="Street" [errorsMap]="errorsMap" />
+            <app-custom-input [(model)]="sportField.address.number" field="address.number" type="number" label="Number" [errorsMap]="errorsMap" />
+            <app-custom-input
+              [(model)]="sportField.pricePerHour"
+              field="pricePerHour"
               type="number"
-              class="form-control"
-              id="numberInput"
-              placeholder="Number"
-              name="number"
-              [(ngModel)]="sportField.address.number"
-              [ngClass]="errorsMap ? (errorsMap.has('address.number') ? 'is-invalid' : 'is-valid') : ''"
+              label="Price ($) / hour"
+              [errorsMap]="errorsMap"
             />
-            <label for="numberInput">Number</label>
-            <span *ngIf="errorsMap && errorsMap.has('address.number')" class="text-danger fw-bold fs-6">*{{ errorsMap.get("address.number") }}</span>
-          </div>
+            <app-custom-select [(model)]="sportField.type" field="type" [options]="types" [errorsMap]="errorsMap" />
+          </form>
+        </div>
 
-          <div class="form-floating">
-            <input
-              type="number"
-              class="form-control"
-              id="priceInput"
-              placeholder="Price ($)"
-              name="pricePerHour"
-              [(ngModel)]="sportField.pricePerHour"
-              [ngClass]="errorsMap ? (errorsMap.has('pricePerHour') ? 'is-invalid' : 'is-valid') : ''"
-            />
-            <label for="priceInput">Price ($) / hour</label>
-            <span *ngIf="errorsMap && errorsMap.has('pricePerHour')" class="text-danger fw-bold fs-6">*{{ errorsMap.get("pricePerHour") }}</span>
-          </div>
-        </form>
+        <div class="card-footer bg-dark text-white">
+          <button class="btn btn-outline-light btn-floating m-1" (click)="newSportField()">Submit</button>
+        </div>
       </div>
-    </div>
-
-    <div class="card-footer bg-dark text-white">
-      <button class="btn btn-outline-light btn-floating m-1" (click)="newSportField()">Submit</button>
     </div>
   </div>
 </div>

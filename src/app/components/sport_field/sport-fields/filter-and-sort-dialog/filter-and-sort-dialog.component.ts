@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { SportFieldType } from 'src/app/models/sport-field';
 
 @Component({
   selector: 'app-filter-and-sort-dialog',
@@ -19,6 +20,19 @@ export class FilterAndSortDialogComponent {
 
   onSaveClick(): void {
     this.dialogRef.close(this.data.filterAndSortOptions);
+  }
+
+  getTypes(): Map<string, string> {
+    let types = new Map();
+
+    const roleKeys = Object.keys(SportFieldType);
+    const roleValues = Object.values(SportFieldType);
+
+    for (let i = 0; i < roleKeys.length; i++) {
+      types.set(roleKeys[i], roleValues[i]);
+    }
+
+    return types;
   }
 
   areFilterOptionsValid(): boolean {

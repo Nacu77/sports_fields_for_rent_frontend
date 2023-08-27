@@ -80,6 +80,7 @@ export class SportFieldsComponent implements OnInit {
       country: this.filterAndSortOptions['country'],
       city: this.filterAndSortOptions['city'],
       name: forSearch ? this.searchName : undefined,
+      type: this.filterAndSortOptions['type'],
     } as GetFilteredFieldsRequest;
 
     this.sportFieldService.getFilteredFields(getFilteredFieldsRequest).subscribe((sportFields) => {

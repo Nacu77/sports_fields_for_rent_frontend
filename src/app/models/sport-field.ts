@@ -13,4 +13,11 @@ export interface SportField {
   schedule: Schedule;
   primaryImageName: string;
   primaryImage: Image;
+  type: SportFieldType;
+}
+
+export enum SportFieldType {
+  FOOTBALL = 'Football field',
+  BASKETBALL = 'Basketball field',
+  TENNIS = 'Tennis field',
 }

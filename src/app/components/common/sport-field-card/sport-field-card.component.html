@@ -7,7 +7,8 @@
     alt="Sport Field image"
   />
   <div class="card-body pb-0">
-    <h5 class="card-title fst-italic mb-3">{{ sportField.name }}</h5>
+    <h5 class="card-title fst-italic">{{ sportField.name }}</h5>
+    <p class="card-title fst-italic fw-bold mb-3">{{ (sportField.type ? "- " + sportField.type + " Field -" : "- Field -") | titlecase }}</p>
     <p class="card-text">
       <span class="fst-italic fw-bold">Address: </span>
       {{ sportField.address.country + ", " + sportField.address.city + ", " + sportField.address.street + ", " + sportField.address.number }}

@@ -2,57 +2,48 @@
 
 <div mat-dialog-content>
   <form>
-    <div class="row mb-3">
+    <div class="row">
       <label for="price" class="col-sm-3 col-form-label">Price Range:</label>
       <div class="col-sm-4">
-        <input
-          type="number"
-          [(ngModel)]="data.filterAndSortOptions.minPrice"
-          class="form-control"
-          min="0"
-          id="minPrice"
-          name="minPrice"
-          placeholder="Min Price"
-        />
+        <app-custom-input [(model)]="data.filterAndSortOptions.minPrice" field="minPrice" type="number" label="Min Price" />
       </div>
       <div class="col-sm-4">
-        <input
-          type="number"
-          [(ngModel)]="data.filterAndSortOptions.maxPrice"
-          class="form-control"
-          min="0"
-          id="maxPrice"
-          name="maxPrice"
-          placeholder="Max Price"
-        />
+        <app-custom-input [(model)]="data.filterAndSortOptions.maxPrice" field="maxPrice" type="number" label="Max Price" />
       </div>
     </div>
 
-    <div class="row mb-3">
+    <div class="row">
       <label for="date" class="col-sm-3 col-form-label">Free Between:</label>
       <div class="col-sm-4">
-        <input type="datetime" class="form-control" id="startDate" name="startDate" placeholder="Start Date" />
+        <app-custom-input field="startDate" type="datetime" label="Start Date" />
       </div>
       <div class="col-sm-4">
-        <input type="datetime" class="form-control" id="endDate" name="endDate" placeholder="End Date" />
+        <app-custom-input field="endDate" type="datetime" label="End Date" />
       </div>
     </div>
 
-    <div class="row mb-3">
+    <div class="row">
       <label for="country" class="col-sm-3 col-form-label">Country:</label>
       <div class="col-sm-8">
-        <input type="text" [(ngModel)]="data.filterAndSortOptions.country" class="form-control" id="country" name="country" placeholder="Country" />
+        <app-custom-input [(model)]="data.filterAndSortOptions.country" field="country" type="text" label="Country" />
       </div>
     </div>
 
-    <div class="row mb-3">
+    <div class="row">
       <label for="city" class="col-sm-3 col-form-label">City:</label>
       <div class="col-sm-8">
-        <input type="text" [(ngModel)]="data.filterAndSortOptions.city" class="form-control" id="city" name="city" placeholder="City" />
+        <app-custom-input [(model)]="data.filterAndSortOptions.city" field="city" type="text" label="City" />
       </div>
     </div>
 
-    <div class="dropdown text-center">
+    <div class="row">
+      <label for="type" class="col-sm-3 col-form-label">Type:</label>
+      <div class="col-sm-8">
+        <app-custom-select [(model)]="data.filterAndSortOptions.type" field="type" [options]="getTypes()" />
+      </div>
+    </div>
+
+    <div class="dropdown text-center m-3">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownSort" data-bs-toggle="dropdown" aria-expanded="false">
         Sort by
       </button>

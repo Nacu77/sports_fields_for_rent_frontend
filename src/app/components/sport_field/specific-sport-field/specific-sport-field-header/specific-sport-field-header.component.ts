@@ -9,4 +9,17 @@ import { SportField } from 'src/app/models/sport-field';
 export class SpecificSportFieldHeaderComponent {
   @Input() sportField: SportField;
   @Input() isScheduleSet: boolean;
+
+  getHeaderImage(): string {
+    switch (this.sportField.type?.toString()) {
+      case 'FOOTBALL':
+        return '../../../../../assets/images/header_football_image.jpg';
+      case 'BASKETBALL':
+        return '../../../../../assets/images/header_basketball_image.jpg';
+      case 'TENNIS':
+        return '../../../../../assets/images/header_tennis_image.jpg';
+      default:
+        return '';
+    }
+  }
 }

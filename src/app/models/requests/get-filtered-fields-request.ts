@@ -4,4 +4,5 @@ export interface GetFilteredFieldsRequest {
   country: string;
   city: string;
   name: string;
+  type: string;
 }
