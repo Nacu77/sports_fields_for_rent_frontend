@@ -14,7 +14,7 @@ export class AppointmentPostsComponent implements OnInit {
   constructor(private appointmentPostService: AppointmentPostService, private router: Router) {}
 
   ngOnInit(): void {
-    this.appointmentPostService.findAll().subscribe((appointmentPosts) => (this.appointmentPosts = appointmentPosts));
+    this.appointmentPostService.getAllAppointmentPostsWithFreeSlots().subscribe((appointmentPosts) => (this.appointmentPosts = appointmentPosts));
   }
 
   onAppointmentPostUpdated(): void {

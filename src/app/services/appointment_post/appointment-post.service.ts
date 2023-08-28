@@ -15,8 +15,8 @@ export class AppointmentPostService {
     return this.http.post<AppointmentPost>(this.url, appointmentPost);
   }
 
-  findAll(): Observable<Array<AppointmentPost>> {
-    return this.http.get<Array<AppointmentPost>>(this.url);
+  getAllAppointmentPostsWithFreeSlots(): Observable<Array<AppointmentPost>> {
+    return this.http.get<Array<AppointmentPost>>(this.url + 'get-all-appointment-posts-with-free-slots');
   }
 
   update(appointmentPost: AppointmentPost): Observable<AppointmentPost> {
