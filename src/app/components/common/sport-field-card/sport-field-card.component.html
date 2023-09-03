@@ -17,7 +17,7 @@
   <div class="card-footer text-center">
     <small class="fw-bold fst-italic">{{ sportField.pricePerHour + "$ / hour" }}</small>
   </div>
-  <div *ngIf="forProfile" class="card-footer text-center" style="background-color: rgba(0, 0, 0, 0.2)">
+  <div showControl [ownedBy]="sportField.createdBy" class="card-footer text-center" style="background-color: rgba(0, 0, 0, 0.2)">
     <button class="btn btn-outline-light mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#fieldDeleteModal" (click)="onPrepareDeleteField()">
       Delete Sport Field
     </button>

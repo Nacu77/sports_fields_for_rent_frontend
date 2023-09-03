@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 import { UserService } from '../services/user/user.service';
-import { Role } from '../models/user';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +14,7 @@ export class AuthGuard implements CanActivate {
         return true;
       }
 
-      if (this.userService.isUserInRole(Role.ADMIN)) {
+      if (this.userService.isUserInRole('ADMIN')) {
         return true;
       }
 
