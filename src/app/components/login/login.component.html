@@ -11,7 +11,10 @@
             <app-custom-input [(model)]="username" field="username" type="text" label="Username" />
             <app-custom-input [(model)]="password" field="password" type="password" label="Password" />
           </form>
-          <span *ngIf="badCredentials" class="text-danger">*Wrong username or password</span>
+          <ng-container *ngIf="badCredentials">
+            <p class="text-danger mb-1">*Wrong username or password</p>
+            <p class="mb-0">You forgot your password? Then <a class="text-dark" (click)="resetPassword()">reset</a>!</p>
+          </ng-container>
         </div>
 
         <div class="card-footer bg-dark text-white">

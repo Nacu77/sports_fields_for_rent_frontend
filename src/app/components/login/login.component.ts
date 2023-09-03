@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import jwtDecode, { JwtPayload } from 'jwt-decode';
 import { UserService } from 'src/app/services/user/user.service';
+import { savedChangesSnackBar } from 'src/app/utility/snackbar-utilities';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +15,7 @@ export class LoginComponent {
   password: string;
   badCredentials: boolean = false;
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(private userService: UserService, private router: Router, private snackBar: MatSnackBar) {}
 
   login(): void {
     if (this.userService.isLoggedIn()) {
@@ -31,6 +33,17 @@ export class LoginComponent {
         this.router.navigateByUrl('/');
       },
       error: (_error) => (this.badCredentials = true),
+    });
+  }
+
+  resetPassword(): void {
+    this.userService.resetPassword(this.username).subscribe({
+      next: () => {
+        savedChangesSnackBar('An email was sent to this account address', this.snackBar);
+      },
+      error: (_error) => {
+        savedChangesSnackBar('Error sending the email, please check the username', this.snackBar);
+      },
     });
   }
 }

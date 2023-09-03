@@ -38,6 +38,10 @@ export class UserService {
     return this.http.put<User>(this.url, user);
   }
 
+  resetPassword(username: string): Observable<void> {
+    return this.http.post<void>(this.url + 'reset-password', username);
+  }
+
   isLoggedIn(): boolean {
     return sessionStorage.getItem('app.token') != null;
   }
