@@ -29,7 +29,7 @@ import { ScheduleDialogComponent } from './components/sport_field/specific-sport
 import { TimeRangeInputComponent } from './components/common/time-range-input/time-range-input.component';
 import { RentSportFieldComponent } from './components/rent-sport-field/rent-sport-field.component';
 import { ScheduleComponent } from './components/common/schedule/schedule.component';
-import { FilterAndSortDialogComponent } from './components/sport_field/sport-fields/filter-and-sort-dialog/filter-and-sort-dialog.component';
+import { FilterAndSortFieldsDialogComponent } from './components/sport_field/sport-fields/filter-and-sort-fields-dialog/filter-and-sort-fields-dialog.component';
 import { SpecificSportFieldHeaderComponent } from './components/sport_field/specific-sport-field/specific-sport-field-header/specific-sport-field-header.component';
 import { SpecificSportFieldScheduleComponent } from './components/sport_field/specific-sport-field/specific-sport-field-schedule/specific-sport-field-schedule.component';
 import { SpecificSportFieldMapComponent } from './components/sport_field/specific-sport-field/specific-sport-field-map/specific-sport-field-map.component';
@@ -59,6 +59,7 @@ import { NoResultsComponent } from './components/common/no-results/no-results.co
 import { LoadingComponent } from './components/common/loading/loading.component';
 import { EditProfileDialogComponent } from './components/profile/edit-profile-dialog/edit-profile-dialog.component';
 import { EditFieldHeaderDialogComponent } from './components/sport_field/specific-sport-field/specific-sport-field-header/edit-field-header-dialog/edit-field-header-dialog.component';
+import { FilterAndSortPostsDialogComponent } from './components/appointment-posts/filter-and-sort-posts-dialog/filter-and-sort-posts-dialog.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { EditFieldHeaderDialogComponent } from './components/sport_field/specifi
     TimeRangeInputComponent,
     RentSportFieldComponent,
     ScheduleComponent,
-    FilterAndSortDialogComponent,
+    FilterAndSortFieldsDialogComponent,
+    FilterAndSortPostsDialogComponent,
     SpecificSportFieldHeaderComponent,
     SpecificSportFieldScheduleComponent,
     SpecificSportFieldMapComponent,

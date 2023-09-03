@@ -1,4 +1,32 @@
-<div class="container">
+<div *ngIf="loaded" class="container">
+  <div class="container text-center">
+    <!-- Filter & Sort button -->
+    <a class="btn btn-dark btn-outline-white btn-floating m-3" role="button" (click)="openFilterAndSortDialog()"> Open filter & sort options </a>
+
+    <!--Filter chips options-->
+    <mat-chip-set>
+      <mat-chip *ngFor="let option of filterAndSortOptions | keyvalue" (removed)="removeFilterOption(option.key)" highlighted>
+        {{ option.key + ": " + option.value }}
+        <mat-icon matChipRemove>cancel</mat-icon>
+      </mat-chip>
+    </mat-chip-set>
+
+    <!--Search by field name-->
+    <div class="d-flex w-50 ms-auto me-auto">
+      <input
+        [(ngModel)]="searchFieldName"
+        class="form-control"
+        name="searchByFieldName"
+        placeholder="Search By Field Name"
+        aria-label="Search By Field Name"
+      />
+      <button class="btn btn-dark" (click)="onSearch()">Search</button>
+    </div>
+
+    <a class="btn btn-outline-dark mt-2" (click)="onReset()">Reset</a>
+  </div>
+
+  <!--Appointment Posts cards-->
   <div class="p-5 row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-3 g-3">
     <div class="col p-0" *ngFor="let appointmentPost of appointmentPosts">
       <app-appointment-post-card
@@ -7,4 +35,14 @@
       ></app-appointment-post-card>
     </div>
   </div>
+
+  <!--No Results-->
+  <ng-container *ngIf="appointmentPosts.length == 0">
+    <app-no-results message="There where 0 appointment posts fetched..." />
+  </ng-container>
 </div>
+
+<!--Loading-->
+<ng-container *ngIf="!loaded">
+  <app-loading />
+</ng-container>

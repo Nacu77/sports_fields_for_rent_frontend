@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AppointmentPost } from 'src/app/models/appointment-post';
+import { GetFilteredPostsRequest } from 'src/app/models/requests/get-filtered-posts-request';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +18,10 @@ export class AppointmentPostService {
 
   getAllAppointmentPostsWithFreeSlots(): Observable<Array<AppointmentPost>> {
     return this.http.get<Array<AppointmentPost>>(this.url + 'get-all-appointment-posts-with-free-slots');
+  }
+
+  getFilteredAppointmentPostsWithFreeSlots(getFilteredPostsRequest: GetFilteredPostsRequest): Observable<Array<AppointmentPost>> {
+    return this.http.post<Array<AppointmentPost>>(this.url + 'get-filtered-appointment-posts-with-free-slots', getFilteredPostsRequest);
   }
 
   update(appointmentPost: AppointmentPost): Observable<AppointmentPost> {

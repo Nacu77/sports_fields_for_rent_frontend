@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SportField } from 'src/app/models/sport-field';
 import { SportFieldService } from 'src/app/services/sport_field/sport-field.service';
 import { MatDialog } from '@angular/material/dialog';
-import { FilterAndSortDialogComponent } from './filter-and-sort-dialog/filter-and-sort-dialog.component';
+import { FilterAndSortFieldsDialogComponent } from './filter-and-sort-fields-dialog/filter-and-sort-fields-dialog.component';
 import { GetFilteredFieldsRequest } from 'src/app/models/requests/get-filtered-fields-request';
 
 @Component({
@@ -28,7 +28,7 @@ export class SportFieldsComponent implements OnInit {
       filterAndSortOptions = {};
     }
 
-    const dialogRef = this.dialog.open(FilterAndSortDialogComponent, {
+    const dialogRef = this.dialog.open(FilterAndSortFieldsDialogComponent, {
       data: { filterAndSortOptions: filterAndSortOptions },
     });
 

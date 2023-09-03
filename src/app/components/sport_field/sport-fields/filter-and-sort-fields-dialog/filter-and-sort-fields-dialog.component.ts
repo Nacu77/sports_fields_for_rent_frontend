@@ -3,16 +3,16 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { SportFieldType } from 'src/app/models/sport-field';
 
 @Component({
-  selector: 'app-filter-and-sort-dialog',
-  templateUrl: './filter-and-sort-dialog.component.html',
-  styleUrls: ['./filter-and-sort-dialog.component.css'],
+  selector: 'app-filter-and-sort-fields-dialog',
+  templateUrl: './filter-and-sort-fields-dialog.component.html',
+  styleUrls: ['./filter-and-sort-fields-dialog.component.css'],
 })
-export class FilterAndSortDialogComponent {
+export class FilterAndSortFieldsDialogComponent {
   invalidMessage: string | undefined = undefined;
 
   sortAsc: boolean = true;
 
-  constructor(public dialogRef: MatDialogRef<FilterAndSortDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {}
+  constructor(public dialogRef: MatDialogRef<FilterAndSortFieldsDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {}
 
   onCancelClick(): void {
     this.dialogRef.close();

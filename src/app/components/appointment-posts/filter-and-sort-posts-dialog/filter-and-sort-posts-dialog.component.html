@@ -1,0 +1,67 @@
+<h1 mat-dialog-title class="bg-dark text-white text-center mb-4">Filter & Sort</h1>
+
+<div mat-dialog-content>
+  <form>
+    <div class="row">
+      <label for="price" class="col-sm-3 col-form-label">Price Range:</label>
+      <div class="col-sm-4">
+        <app-custom-input [(model)]="data.filterAndSortOptions.minPrice" field="minPrice" type="number" label="Min Price" />
+      </div>
+      <div class="col-sm-4">
+        <app-custom-input [(model)]="data.filterAndSortOptions.maxPrice" field="maxPrice" type="number" label="Max Price" />
+      </div>
+    </div>
+
+    <div class="row">
+      <label for="date" class="col-sm-3 col-form-label">Date:</label>
+      <div class="col-sm-4">
+        <app-custom-input field="startDate" type="datetime" label="Start Date" />
+      </div>
+      <div class="col-sm-4">
+        <app-custom-input field="endDate" type="datetime" label="End Date" />
+      </div>
+    </div>
+
+    <div class="row">
+      <label for="country" class="col-sm-3 col-form-label">Country:</label>
+      <div class="col-sm-8">
+        <app-custom-input [(model)]="data.filterAndSortOptions.country" field="country" type="text" label="Country" />
+      </div>
+    </div>
+
+    <div class="row">
+      <label for="city" class="col-sm-3 col-form-label">City:</label>
+      <div class="col-sm-8">
+        <app-custom-input [(model)]="data.filterAndSortOptions.city" field="city" type="text" label="City" />
+      </div>
+    </div>
+
+    <div class="row">
+      <label for="type" class="col-sm-3 col-form-label">Type:</label>
+      <div class="col-sm-8">
+        <app-custom-select [(model)]="data.filterAndSortOptions.type" field="type" [options]="getTypes()" />
+      </div>
+    </div>
+
+    <div class="dropdown text-center m-3">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownSort" data-bs-toggle="dropdown" aria-expanded="false">
+        Sort by
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownSort">
+        <li><a class="dropdown-item">Min Price</a></li>
+        <li><a class="dropdown-item">Max Price</a></li>
+        <li><a class="dropdown-item">Country</a></li>
+        <li><a class="dropdown-item">City</a></li>
+      </ul>
+      <span *ngIf="sortAsc" class="ms-2"><i class="fa fa-arrow-up" (click)="sortAsc = !sortAsc"></i></span>
+      <span *ngIf="!sortAsc" class="ms-2"><i class="fa fa-arrow-down" (click)="sortAsc = !sortAsc"></i></span>
+    </div>
+  </form>
+
+  <div *ngIf="!areFilterOptionsValid()" class="text-center text-danger">{{ "*" + invalidMessage }}</div>
+</div>
+
+<div mat-dialog-actions class="bg-dark text-white">
+  <button class="btn btn-outline-light me-auto" type="button" (click)="onCancelClick()">Cancel</button>
+  <button class="btn btn-outline-light" type="button" (click)="onSaveClick()" [disabled]="invalidMessage">Save</button>
+</div>

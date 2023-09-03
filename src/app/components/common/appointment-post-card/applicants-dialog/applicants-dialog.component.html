@@ -7,6 +7,8 @@
       <mat-icon *ngIf="applicant === data.username" matChipRemove>cancel</mat-icon>
     </mat-chip>
   </mat-chip-set>
+
+  <p *ngIf="!data.applicants?.length">No applicants yet...</p>
 </div>
 
 <div mat-dialog-actions class="bg-dark text-white">
