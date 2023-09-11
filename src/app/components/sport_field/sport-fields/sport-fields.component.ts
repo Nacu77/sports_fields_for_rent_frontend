@@ -4,6 +4,9 @@ import { SportFieldService } from 'src/app/services/sport_field/sport-field.serv
 import { MatDialog } from '@angular/material/dialog';
 import { FilterAndSortFieldsDialogComponent } from './filter-and-sort-fields-dialog/filter-and-sort-fields-dialog.component';
 import { GetFilteredFieldsRequest } from 'src/app/models/requests/get-filtered-fields-request';
+import { savedChangesSnackBar } from 'src/app/utility/snackbar-utilities';
+import { HttpErrorResponse } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-sport-fields',
@@ -16,7 +19,9 @@ export class SportFieldsComponent implements OnInit {
   filterAndSortOptions: any = {};
   searchName: string;
 
-  constructor(private sportFieldService: SportFieldService, public dialog: MatDialog) {}
+  private fieldToDelete: SportField;
+
+  constructor(private sportFieldService: SportFieldService, public dialog: MatDialog, private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.getAllFields();
@@ -86,6 +91,22 @@ export class SportFieldsComponent implements OnInit {
     this.sportFieldService.getFilteredFields(getFilteredFieldsRequest).subscribe((sportFields) => {
       this.sportFields = sportFields;
       this.sportFieldsLoaded = true;
+    });
+  }
+
+  onPrepareDeleteField(sportField: SportField): void {
+    this.fieldToDelete = sportField;
+  }
+
+  onDeleteField(): void {
+    this.sportFieldService.delete(this.fieldToDelete.id).subscribe({
+      next: () => {
+        this.sportFields = this.sportFields.filter((ownedField) => ownedField.id !== this.fieldToDelete.id);
+        savedChangesSnackBar('Field deleted successfully', this.snackBar);
+      },
+      error: (_e: HttpErrorResponse) => {
+        savedChangesSnackBar('Error while deleting field', this.snackBar);
+      },
     });
   }
 }

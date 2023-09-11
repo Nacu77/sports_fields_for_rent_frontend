@@ -5,6 +5,9 @@ import { AppointmentPost } from 'src/app/models/appointment-post';
 import { GetFilteredPostsRequest } from 'src/app/models/requests/get-filtered-posts-request';
 import { AppointmentPostService } from 'src/app/services/appointment_post/appointment-post.service';
 import { FilterAndSortPostsDialogComponent } from './filter-and-sort-posts-dialog/filter-and-sort-posts-dialog.component';
+import { HttpErrorResponse } from '@angular/common/http';
+import { savedChangesSnackBar } from 'src/app/utility/snackbar-utilities';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-appointment-posts',
@@ -18,7 +21,14 @@ export class AppointmentPostsComponent implements OnInit {
 
   loaded: boolean = false;
 
-  constructor(private appointmentPostService: AppointmentPostService, private router: Router, public dialog: MatDialog) {}
+  private appointmentPostToDelete: AppointmentPost;
+
+  constructor(
+    private appointmentPostService: AppointmentPostService,
+    private router: Router,
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.getAllPosts();
@@ -68,6 +78,22 @@ export class AppointmentPostsComponent implements OnInit {
     this.searchFieldName = '';
     this.filterAndSortOptions = {};
     this.getAllPosts();
+  }
+
+  onPrepareDeleteAppointmentPost(appointmentPost: AppointmentPost): void {
+    this.appointmentPostToDelete = appointmentPost;
+  }
+
+  onDeleteAppointmentPost(): void {
+    this.appointmentPostService.delete(this.appointmentPostToDelete.id).subscribe({
+      next: () => {
+        this.appointmentPosts = this.appointmentPosts.filter((appointmentPost) => appointmentPost.id !== this.appointmentPostToDelete.id);
+        savedChangesSnackBar('Appointment Post deleted successfully', this.snackBar);
+      },
+      error: (_e: HttpErrorResponse) => {
+        savedChangesSnackBar('Error while deleting appointment post', this.snackBar);
+      },
+    });
   }
 
   private getAllPosts(): void {

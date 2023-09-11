@@ -31,6 +31,8 @@
     <div class="col p-0" *ngFor="let appointmentPost of appointmentPosts">
       <app-appointment-post-card
         [appointmentPost]="appointmentPost"
+        (prepareDeleteAppointmentPost)="onPrepareDeleteAppointmentPost($event)"
+        (deleteAppointmentPost)="onDeleteAppointmentPost()"
         (appointmentPostUpdated)="onAppointmentPostUpdated()"
       ></app-appointment-post-card>
     </div>
